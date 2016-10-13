@@ -1,0 +1,93 @@
+<logo>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="600" width="960">
+        <g></g>
+        <g transform="translate(480,300)scale(1.3675214052200317,1.3675214052200317)">
+            <text style="font-size: 100px; font-family: Impact; fill: rgb(222, 158, 214);"
+                  transform="translate(-22,99)rotate(0)" text-anchor="middle">myValencer
+            </text>
+            <text style="font-size: 49px; font-family: Impact; fill: rgb(57, 59, 121);"
+                  transform="translate(-189,147)rotate(0)" text-anchor="middle">FrameNet
+            </text>
+            <text style="font-size: 49px; font-family: Impact; fill: rgb(181, 207, 107);" transform="translate(262,32)"
+                  text-anchor="middle">API
+            </text>
+            <text style="font-size: 46px; font-family: Impact; fill: rgb(82, 84, 163);"
+                  transform="translate(125,-34)rotate(90)" text-anchor="middle">search
+            </text>
+            <text style="font-size: 42px; font-family: Impact; fill: rgb(99, 121, 57);"
+                  transform="translate(-146,-52)rotate(90)" text-anchor="middle">valence
+            </text>
+            <text style="font-size: 42px; font-family: Impact; fill: rgb(140, 162, 82);"
+                  transform="translate(171,-34)rotate(90)" text-anchor="middle">pattern
+            </text>
+            <text style="font-size: 39px; font-family: Impact; fill: rgb(140, 109, 49);" transform="translate(-222,28)"
+                  text-anchor="middle">Fillmore
+            </text>
+            <text style="font-size: 39px; font-family: Impact; fill: rgb(107, 110, 207);"
+                  transform="translate(44,-39)rotate(0)" text-anchor="middle">frame
+            </text>
+            <text style="font-size: 39px; font-family: Impact; fill: rgb(156, 158, 222);"
+                  transform="translate(44,136)rotate(0)" text-anchor="middle">semantics
+            </text>
+            <text style="font-size: 35px; font-family: Impact; fill: rgb(165, 81, 148);"
+                  transform="translate(-235,-54)rotate(90)" text-anchor="middle">project
+            </text>
+            <text style="font-size: 29px; font-family: Impact; fill: rgb(206, 219, 156);" transform="translate(240,126)"
+                  text-anchor="middle">data
+            </text>
+            <text style="font-size: 29px; font-family: Impact; fill: rgb(231, 203, 148);" transform="translate(252,84)"
+                  text-anchor="middle">JSON
+            </text>
+            <text style="font-size: 22px; font-family: Impact; fill: rgb(57, 59, 121);"
+                  transform="translate(239,-13)rotate(0)" text-anchor="middle">NodeJS
+            </text>
+            <text style="font-size: 22px; font-family: Impact; fill: rgb(165, 81, 148);"
+                  transform="translate(-24,156)rotate(0)" text-anchor="middle">MongoDB
+            </text>
+            <text style="font-size: 25px; font-family: Impact; fill: rgb(99, 121, 57);"
+                  transform="translate(187,126)rotate(90)" text-anchor="middle">HTTP
+            </text>
+            <text style="font-size: 25px; font-family: Impact; fill: rgb(140, 162, 82);"
+                  transform="translate(-112,-30)rotate(90)" text-anchor="middle">GET
+            </text>
+            <text style="font-size: 18px; font-family: Impact; fill: rgb(82, 84, 163);"
+                  transform="translate(99,-105)rotate(0)" text-anchor="middle">concordancer
+            </text>
+            <text style="font-size: 20px; font-family: Impact; fill: rgb(82, 84, 163);" transform="translate(65,-12)"
+                  text-anchor="middle">information
+            </text>
+            <text style="font-size: 18px; font-family: Impact; fill: rgb(57, 59, 121);"
+                  transform="translate(-173,-124)rotate(90)" text-anchor="middle">output
+            </text>
+            <text style="font-size: 18px; font-family: Impact; fill: rgb(156, 158, 222);"
+                  transform="translate(216,149)rotate(90)" text-anchor="middle">input
+            </text>
+            <text style="font-size: 22px; font-family: Impact; fill: rgb(165, 81, 148);"
+                  transform="translate(-197,-53)rotate(90)" text-anchor="middle">arguments
+            </text>
+            <text style="font-size: 22px; font-family: Impact; fill: rgb(206, 109, 189);"
+                  transform="translate(287,53)rotate(0)" text-anchor="middle">predicate
+            </text>
+            <text style="font-size: 18px; font-family: Impact; fill: rgb(231, 150, 156);"
+                  transform="translate(146,138)rotate(90)" text-anchor="middle">syntactic
+            </text>
+            <text style="font-size: 18px; font-family: Impact; fill: rgb(123, 65, 115);" transform="translate(93,156)"
+                  text-anchor="middle">realizations
+            </text>
+            <text style="font-size: 18px; font-family: Impact; fill: rgb(181, 207, 107);"
+                  transform="translate(25,26)rotate(0)" text-anchor="middle">lexical
+            </text>
+            <text style="font-size: 18px; font-family: Impact; fill: rgb(206, 219, 156);"
+                  transform="translate(-113,-122)rotate(90)" text-anchor="middle">unit
+            </text>
+            <text style="font-size: 18px; font-family: Impact; fill: rgb(231, 150, 156);"
+                  transform="translate(-63,-51)rotate(0)" text-anchor="middle">element
+            </text>
+            <text style="font-size: 10px; font-family: Impact; fill: rgb(82, 84, 163);" transform="translate(-46,-111)"
+                  text-anchor="middle"></text>
+            <text style="font-size: 20px; font-family: Impact; fill: rgb(189, 158, 57);"
+                  transform="translate(-25,-31)rotate(90)" text-anchor="middle">annotation
+            </text>
+        </g>
+    </svg>
+</logo>
