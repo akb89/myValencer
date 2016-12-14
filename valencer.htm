@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>myValencer</title>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="./css/materialize.min.css" type="text/css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="./css/custom.css" type="text/css" media="screen" charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col s6 offset-s3 center">
+                    <!-- Here put the logo -->
+                    <img class="img-responsive" src="./img/logo.png" width="400px" />
+                </div>
+                
+                <div class="input-field col s6 offset-s3">
+                    <input placeholder="Type your search" id="search" name="search" type="text" class="validate">
+                    <label for="search">Search</label>
+                </div> 
+                <div class="input-field col s6 offset-s3">
+                    <input class="with-gap" name="routes" type="radio" id="annotation_set" checked />
+                    <label for="annotation_set">AnnotationSets</label>
+                    <input class="with-gap" name="routes" type="radio" id="frame" />
+                    <label for="frame">Frames</label>
+                    <input class="with-gap" name="routes" type="radio" id="lexical_unit" />
+                    <label for="lexical_unit">Lexical Units</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6 m6 offset-s3 offset-m3 center">
+                     <a id="search-btn" class="waves-effect waves-light btn">I'm feeling lucky</a>
+                </div>
+            </div>
+            <div class="row" id="results">
+            </div>
+        </div>
+        <script type="text/javascript" src="./js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="./js/materialize.min.js"></script>       
+        <script type="text/javascript" src="./js/logic.js"></script>       
+    </body>
+</html>
