@@ -1,0 +1,6 @@
+.idea
+*.swp
+*.pyc
+*.o
+*.zip
+*.log
