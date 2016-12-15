@@ -10,6 +10,23 @@ String.prototype.format = function() {
     return formatted;
 };
 
+function error_handler(err) {
+    console.error(err);
+    console.error(err.message);
+    console.error(err.stackTrace);
+}
+
+function http_error_handler(response) {
+    if(response.status === 404 || response.status === 400){
+        response.text().then(function(ret) {
+            $('#404-row .card-panel').html(ret);
+            $('#404-row').removeClass('hide');
+        });
+    } else {
+        $('#404-row .card-panel').html('Unknown error!');
+        $('#404-row').removeClass('hide');
+    }
+}
 
 function format_fe_pt_gf(valence) {
     var name = "";
@@ -49,16 +66,17 @@ function run_query(search, route_id) {
 
     fetch(final_request, options)
     .then(function(response) {
-        return response.json();
-    }).then(function(data) {
-        console.log(data);
-        format_results(data, route_id);
+        if(response.status === 200) {
+            response.json()
+            .then(function(data) {
+                console.log(data);
+                format_results(data, route_id);
+            });
+        } else {
+            http_error_handler(response);
+        }
     })
-    .catch(function(err) {
-        console.error(err);
-        console.error(err.message);
-        console.error(err.stackTrace);
-    });
+    .catch(error_handler);
 }
 
 function format_sentence(sentence, labels, frame) {
@@ -128,17 +146,38 @@ function format_pattern(pattern) {
     return stemplate + patterns.join(" ") + etemplate;
 }
 
-function format_annotation_sets(data) {
+function format_annotation_set(data, html) {
     var stemplate = "<div class='col s12'><div class='card-panel'>"
     var etemplate = "</div></div>"
-    var html = "";
-    for(var i in data) {
-        var res = data[i];
-        html += stemplate;
-        html += format_sentence(res.sentence, res.labels, res.lexUnit.frame);
-        html += format_pattern(res.pattern);
-        html += etemplate;
+
+    html += stemplate;
+    html += format_sentence(data.sentence, data.labels, data.lexUnit.frame);
+
+    if(data.hasOwnProperty('pattern')){
+        html += format_pattern(data.pattern);
     }
+
+    html += etemplate;
+
+    return html;
+}
+
+function format_annotation_sets(data, is_array) {
+    var html = "";
+    if(is_array) {
+        if(data.length === 0) {
+            $('#nothing-row').removeClass('hide');
+            return;
+        }
+
+        for(var i in data) {
+            var anno = data[i];
+            html = format_annotation_set(anno, html);
+        }
+    } else {
+        html = format_annotation_set(data, html);
+    }
+
     return html;
 }
 
@@ -247,8 +286,10 @@ function formatting_dispatch(data, route_id) {
         case "lexical_units":
             return format_lexical_units(data, true);
         case "annotation_set":
+            return format_annotation_sets(data, false);
+        case "annotation_sets":
         default:
-            return format_annotation_sets(data);
+            return format_annotation_sets(data, true);
     }
 }
 
@@ -268,6 +309,8 @@ function find_route(route_id) {
         case "lexical_units":
             return myValencer_url_prefix + "/lexUnits?vp={0}&populate=true";
         case "annotation_set":
+            return myValencer_url_prefix + "/annoSet/{0}?populate=true";
+        case "annotation_sets":
         default:
             return myValencer_url_prefix + "/annoSets?populate=true&vp={0}";
     }
@@ -280,6 +323,9 @@ function is_numeric_search_id(n) {
 $(document).ready(function() {
     $('#search-btn').click(function(e) {
         e.preventDefault();
+        $('#nothing-row').addClass('hide');
+        $('#404-row').addClass('hide');
+        $('#results').html('');
         var search   = $('#search').val();
 
         var route_id = $('input[name=routes]:checked').attr('id');
