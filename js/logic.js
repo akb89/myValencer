@@ -66,6 +66,8 @@ function run_query(search, route_id) {
 
     fetch(final_request, options)
     .then(function(response) {
+        $('#preload').addClass('hide');
+        $('#search-btn').removeClass('disabled');
         if(response.status === 200) {
             response.json()
             .then(function(data) {
@@ -324,6 +326,8 @@ function run_search(e) {
     e.preventDefault();
     $('#nothing-row').addClass('hide');
     $('#404-row').addClass('hide');
+    $('#preload').removeClass('hide');
+    $('#search-btn').addClass('disabled');
     $('#results').html('');
     var search   = $('#search').val();
 
