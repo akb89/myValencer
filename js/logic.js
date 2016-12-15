@@ -260,16 +260,16 @@ function format_results(data, route_id) {
 function find_route(route_id) {
     switch(route_id) {
         case "frame":
-            return "http://localhost:3030/frame/{0}?populate=true";
+            return myValencer_url_prefix + "/frame/{0}?populate=true";
         case "lexical_unit":
-            return "http://localhost:3030/lexUnit/{0}?populate=true";
+            return myValencer_url_prefix + "/lexUnit/{0}?populate=true";
         case "frames":
-            return "http://localhost:3030/frames?vp={0}&populate=true";
+            return myValencer_url_prefix + "/frames?vp={0}&populate=true";
         case "lexical_units":
-            return "http://localhost:3030/lexUnits?vp={0}&populate=true";
+            return myValencer_url_prefix + "/lexUnits?vp={0}&populate=true";
         case "annotation_set":
         default:
-            return "http://localhost:3030/annoSets?populate=true&vp={0}";
+            return myValencer_url_prefix + "/annoSets?populate=true&vp={0}";
     }
 }
 
