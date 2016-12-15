@@ -17,8 +17,11 @@
                 </div>
                 
                 <div class="input-field col s6 offset-s3">
-                    <input placeholder="Type your search" id="search" name="search" type="text" class="validate">
-                    <label for="search">Search</label>
+                    <form id="search-form" destination="#">
+                        <input placeholder="Type your search" id="search" name="search" type="text" class="validate">
+                        <label for="search">Search</label>
+                        <input type='submit' value="I\'m feeling lucky" class="hide" /> 
+                    </form>
                 </div> 
                 <div class="input-field col s6 offset-s3">
                     <input class="with-gap" name="routes" type="radio" id="annotation_set" checked />
@@ -31,7 +34,7 @@
             </div>
             <div class="row">
                 <div class="col s6 m6 offset-s3 offset-m3 center">
-                     <a id="search-btn" class="waves-effect waves-light btn">I'm feeling lucky</a>
+                        <a id="search-btn" class="waves-effect waves-light btn">I'm feeling lucky</a>
                 </div>
             </div>
             <div class="row" id="results">

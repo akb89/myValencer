@@ -320,18 +320,25 @@ function is_numeric_search_id(n) {
    return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-$(document).ready(function() {
-    $('#search-btn').click(function(e) {
-        e.preventDefault();
-        $('#nothing-row').addClass('hide');
-        $('#404-row').addClass('hide');
-        $('#results').html('');
-        var search   = $('#search').val();
+function run_search(e) {
+    e.preventDefault();
+    $('#nothing-row').addClass('hide');
+    $('#404-row').addClass('hide');
+    $('#results').html('');
+    var search   = $('#search').val();
 
-        var route_id = $('input[name=routes]:checked').attr('id');
-        if( !is_numeric_search_id(search) ){
-            route_id += "s";
-        }
-        run_query(search, route_id);
+    var route_id = $('input[name=routes]:checked').attr('id');
+    if( !is_numeric_search_id(search) ){
+        route_id += "s";
+    }
+    run_query(search, route_id);
+}
+
+$(document).ready(function() {
+    $('#search-form').submit(function(e) {
+        run_search(e);
+    });
+    $('#search-btn').click(function(e) {
+        run_search(e);
     });
 });
