@@ -1,0 +1,216 @@
+.keyboard-container {
+  max-width: 816px;
+  //padding: 30px 8px 8px;
+  margin: 0 auto;
+
+  .keyboard-row {
+      display: flex;
+  }
+
+  @key-height: 30px;
+  .key {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      padding: 3px 2px;
+      height: @key-height !important;
+      margin: 4px;
+      letter-spacing: 0.5px;
+      color: #3a3a3a;
+      background-color: #f7f7f7;
+      flex: 1;
+      border-radius: 3px;
+      text-transform: uppercase;
+      font-size: 14px;
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+
+      .fa {
+        vertical-align: middle !important;
+      }
+
+      span {
+          display: inline-block;
+          vertical-align: middle;
+      }
+
+      &::before {
+          display: inline-block;
+          vertical-align: middle;
+          height: 100% !important;
+          content: '';
+      }
+
+      .keyboard-row.thin & {
+          height: 20px !important; 
+      }
+      .keyboard-row.bottom-row & {
+          height: 24px !important; 
+      }
+
+      @media (min-width: 640px) {
+          height: 48px !important;
+          .keyboard-row.thin & {
+              height: 28px !important; 
+          }
+          .keyboard-row.bottom-row & {
+              height: 55px !important; 
+          }
+      }
+
+      &.extra-size {
+          flex: 1.25;
+      }
+      &.extra-size-two {
+          flex: 1.625;
+      }
+      &.double-size {
+          flex: 2.125;
+      }
+
+      &.lowercase {
+          font-size: 11px;
+          text-transform: lowercase;
+      }
+
+      &.function {
+          vertical-align: bottom;
+          text-align: right;
+          font-size: 8px;
+      }
+
+      &.lower-right {
+          vertical-align: bottom;
+          text-align: right;
+          padding-right: 5px;
+      }
+      &.lower-left {
+          vertical-align: bottom;
+          text-align: left;
+          padding-left: 5px;
+      }
+      &.lower-center {
+          vertical-align: bottom;
+      }
+
+      &.space-bar {
+          flex: 7.2;
+      }
+
+      .absolute-left ,
+      .absolute-right {
+          position: absolute;
+          top: 5px;
+          font-size: 9px;
+          &.icon {
+              font-size: 12px;
+          }
+      }
+      .absolute-right {
+          right: 5px;
+      }
+      .absolute-left {
+          left: 5px;
+          &.caps-dot {
+              top: 3px;
+              left: 4px;
+          }
+      }
+  }
+
+  .bottom-row .arrows {
+      display: flex;
+      flex: 4;
+      justify-content: justify;
+      align-items: flex-end;
+      padding-bottom: 4px;
+
+      .up-down {
+          flex: 1.2;
+          display: flex;
+          flex-direction: column;
+          margin-left: 4px;
+          margin-right: 4px;
+
+          .key {
+              margin: 0;
+          }
+
+          .key:first-child {
+              box-shadow: inset 0 -5px 4px -4px #aaaaaa,
+              inset 0px 1px 1px -1px #fff,
+              0px 1px 1px 0px #7a7a7a;
+              border-bottom-left-radius: 1px;
+              border-bottom-right-radius: 1px;
+          }
+          .key + .key {
+
+              border-top-left-radius: 1px;
+              border-top-right-radius: 1px;
+          }
+      }
+
+      .key {
+          flex: 1;
+          font-size: 7px;
+          margin: 0 4px;
+          height: 27px !important;
+          font-family: "Georgia", sans-serif;
+          color: #555;
+      }
+  }
+
+  /* function row icons */
+  .fn-row-icon {
+      background-size: auto 60%;
+      background-position: 50% 45%;
+      background-repeat: no-repeat;
+  }
+
+  .eject, .lo-bright, .hi-bright, .expose, .tilez, .rewind, .ffwd, .play-pause, .mute, .lo-vol, .hi-vol, .eject {
+      .fn-row-icon;
+  }
+
+  .rewind, .play-pause, .mute, .lo-vol, .hi-vol, .eject {
+  }
+
+  .eject {
+      background-image: url(//s3-us-west-2.amazonaws.com/s.cdpn.io/8533/apple-icons-01_1.svg);
+  }
+  .lo-bright {
+      background-image: url(//s3-us-west-2.amazonaws.com/s.cdpn.io/8533/apple-icons-10_1.svg);
+  }
+  .hi-bright {
+      background-image: url(//s3-us-west-2.amazonaws.com/s.cdpn.io/8533/apple-icons-09_1.svg);
+  }
+  .expose{
+      background-image: url(//s3-us-west-2.amazonaws.com/s.cdpn.io/8533/apple-icons-08_1.svg);
+  }
+  .tilez{
+      background-image: url(//s3-us-west-2.amazonaws.com/s.cdpn.io/8533/apple-icons-07_1.svg);
+  }
+  .rewind{
+      background-image: url(//s3-us-west-2.amazonaws.com/s.cdpn.io/8533/apple-icons-06_1.svg);
+  }
+  .ffwd{
+      background-image: url(//s3-us-west-2.amazonaws.com/s.cdpn.io/8533/apple-icons-04_1.svg);
+  }
+  .play-pause{
+      background-image: url(//s3-us-west-2.amazonaws.com/s.cdpn.io/8533/apple-icons-05_1.svg);
+  }
+  .mute{
+      background-image: url(//s3-us-west-2.amazonaws.com/s.cdpn.io/8533/apple-icons-11.svg);
+  }
+  .lo-vol{
+      background-image: url(//s3-us-west-2.amazonaws.com/s.cdpn.io/8533/apple-icons-03_1.svg);
+  }
+  .hi-vol{
+      background-image: url(//s3-us-west-2.amazonaws.com/s.cdpn.io/8533/apple-icons-02_1.svg);
+  }
+  .eject {
+      background-image: url(//s3-us-west-2.amazonaws.com/s.cdpn.io/8533/apple-icons-01_1.svg);
+  }
+
+}
