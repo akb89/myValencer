@@ -1,15 +1,5 @@
 const development = {
-    port: 4002,
-    logger: {
-        transports: {
-            console: {
-                level: 'debug',
-            },
-            file: {
-                level: 'verbose',
-            },
-        },
-    },
+    port: 4022,
 };
 
 module.exports = development;

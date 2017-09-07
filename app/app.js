@@ -1,29 +1,27 @@
 const Koa = require('koa');
-const winstonKoaLogger = require('winston-koa-logger');
-const logger = require('./logger');
 const cors = require('kcors');
-const router = require('./initializations/routes');
 const config = require('./config');
 const views = require('koa-views');
 const koaqs = require('koa-qs');
+const router = require('./routes');
+const path = require('path');
+
+const public_path = path.resolve(path.join(config.root, 'public'));
 
 let koa = new Koa();
 koa = koaqs(koa, 'strict');
 koa.use(cors());
-koa.use(winstonKoaLogger(logger));
 koa.use(async (context, next) => {
     try {
         await next();
     } catch (err) {
-        logger.error(err.message);
-        logger.debug(err);
         err.expose = true; // expose the error to the context;
         context.status = err.status || 500;
         context.body = { message: err.message, error: err.name, code: err.status };
     }
 });
 
-koa.use(views(`${config.root}/public`));
+koa.use(views(public_path));
 const koa_router = router();
 koa.use(koa_router.routes());
 koa.use(koa_router.allowedMethods());
@@ -37,12 +35,12 @@ process.on('message', (message) => {
 
 (async () => {
     try {
-        logger.info('Starting koalication...');
+        console.log('Starting koalication...');
         await koa.listen(config.port);
-        logger.info(`MyValencer started on port ${config.port}`);
+        console.log(`MyValencer started on port ${config.port}`);
         if (process.send) { process.send('online'); }
     } catch (err) {
-        logger.debug(err);
+        console.debug(err);
         process.exit(1);
     }
 })();

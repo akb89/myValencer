@@ -17,6 +17,7 @@ const gzip = require('gulp-gzip');
 const htmlreplace = require('gulp-html-replace');
 const clean = require('gulp-clean');
 const uglify = require('gulp-uglify');
+const vueify = require('vueify')
 
 class GulpFrontend {
     constructor(production) {
@@ -31,12 +32,8 @@ class GulpFrontend {
         };
 
         this.dependencies = [
-            'react',
-            'react-dom',
-            'react-router',
-            'react-router-dom',
-            'react-bootstrap',
-            'prop-types',
+            'vue',
+            'vue-router',
             'lodash',
             'moment',
         ];
@@ -57,8 +54,8 @@ class GulpFrontend {
     bundleApp() {
         this.scriptsCount += 1;
         const appBundler = browserify({
-            entries: './front/frontend/main.jsx',
-            extensions: ['.js', '.jsx'],
+            entries: './front/frontend/main.js',
+            extensions: ['.js', '.vue'],
             debug: true,
         });
 
@@ -67,11 +64,15 @@ class GulpFrontend {
         });
 
         return appBundler
-        .transform('babelify', { presets: ['es2015', 'react'] })
+        .transform(vueify)
+        .transform('babelify', {
+            presets: ['es2015'],
+            plugins: ['transform-runtime', 'transform-async-to-generator'],
+        })
         .bundle()
         .on('error', gutil.log)
         .pipe(source('bundle.js'))
-        .pipe(gulpif(this.isProduction, uglify({ mangle: true })))
+        //.pipe(gulpif(this.isProduction, uglify({ mangle: true })))
         .pipe(gulp.dest(this.PUB_LOCATIONS.js));
     }
 
@@ -83,7 +84,7 @@ class GulpFrontend {
         .bundle()
         .on('error', gutil.log)
         .pipe(source('vendors.js'))
-        .pipe(gulpif(this.isProduction, uglify({ mangle: true })))
+        //.pipe(gulpif(this.isProduction, uglify({ mangle: true })))
         .pipe(gulp.dest(this.PUB_LOCATIONS.js));
     }
 
@@ -91,12 +92,12 @@ class GulpFrontend {
         gulp
         .src(this.external_dependencies)
         .pipe(concat('vendors.external.js'))
-        .pipe(gulpif(this.isProduction, uglify({ mangle: true })))
+        //.pipe(gulpif(this.isProduction, uglify({ mangle: true })))
         .pipe(gulp.dest(this.PUB_LOCATIONS.js));
     }
 
     watch() {
-        gulp.watch(['./front/frontend/**/*.{jsx,js}'], ['front-scripts']);
+        gulp.watch(['./front/frontend/**/*.{vue,js}'], ['front-scripts']);
         gulp.watch(['./front/frontend/styles/**/*.*'], ['front-styles']);
         gulp.watch(['./front/frontend/views/*.*'], ['front-views']);
     }

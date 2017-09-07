@@ -1,11 +1,24 @@
 import { createStore, applyMiddleware } from 'redux';
-import Reducer from './reducer';
-import APIMiddleware from './api_middleware';
+import createSagaMiddleware from 'redux-saga';
+import { all } from 'redux-saga/effects';
+import reducer from './reducer';
+import API from './api';
+import Cache from './caching';
 
-const defaultState = {
-    objects: [],
-    object: {},
-    message: {},
-};
+const cache = new Cache();
 
-export default createStore(Reducer, defaultState, applyMiddleware(APIMiddleware));
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  reducer,
+  applyMiddleware(API.cacheApiFetch(cache), sagaMiddleware),
+);
+
+
+function* rootSaga() {
+    yield all([
+        API.watchApiFetch(cache)(),
+    ]);
+}
+sagaMiddleware.run(rootSaga);
+
+export default store;
