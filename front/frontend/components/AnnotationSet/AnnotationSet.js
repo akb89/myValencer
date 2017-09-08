@@ -6,8 +6,16 @@ module.exports = {
     props: ['sentence', 'labels', 'lexUnit', 'pattern'],
     methods: {
         format_pattern(pattern) {
+            if (!('valenceUnits' in pattern)) {
+                return '';
+            }
+
             return pattern.valenceUnits.reduce((array, val) => {
-                array.push(`${val.FE}.${val.PT}.${val.GF}`);
+                if (val.GF === undefined) {
+                    array.push(`${val.FE.name}.${val.PT}`);
+                } else {
+                    array.push(`${val.FE.name}.${val.PT}.${val.GF}`);
+                }
                 return array;
             }, []).join(' ');
         },

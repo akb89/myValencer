@@ -30,6 +30,8 @@ module.exports = {
         },
         fetch_data(e) {
             e.preventDefault();
+            this.state.final_request_type = this.make_request_type(this.state.input,
+                    this.state.request_type);
             const path = StringUtils.format_with_obj(APIRoutes[this.state.final_request_type],
                 { id: this.state.input });
             this.$store.dispatch('call_api', {

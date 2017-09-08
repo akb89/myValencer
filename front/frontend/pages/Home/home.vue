@@ -28,7 +28,7 @@
     </div>
 </div>
 <div v-else class="container is-fluid">
-    <div class="columns is-centered">
+    <div class="columns is-centered is-vcentered">
         <div class="column is-2">
             <div class="figure is-16by9">
                 <img src='/public/front/img/logo.png' alt='Valencer Logo' />
@@ -49,11 +49,30 @@
             </div>
         </div>
     </div>
+    <div class="columns">
+        <div class="column is-offset-2 is-8">
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="request_type" value="ANNOSET" v-model="state.request_type">
+                    Annotation set 
+                </label>
+                <label class="radio">
+                    <input type="radio" name="request_type" value="FRAME" v-model="state.request_type">
+                    Frame 
+                </label>
+                <label class="radio">
+                    <input type="radio" name="request_type" value="LEXUNIT" v-model="state.request_type">
+                    Lexical unit 
+                </label>
+            </div>
+            {{state.request_type}}
+        </div>
+    </div>
     <div v-if="$store.state.loading" class="columns is-centered">
         <loader></loader>
     </div>
         <lex-unit 
-            v-if="state.request_type.startsWith('LEXUNIT')"
+            v-if="state.final_request_type.startsWith('LEXUNIT')"
             v-for="item in $store.state.content" 
             :key="item._id"
             :id="item._id"
@@ -64,7 +83,7 @@
             :frame="item.frame">
         </lex-unit>
         <f-frame
-            v-if="state.request_type.startsWith('FRAME')"
+            v-if="state.final_request_type.startsWith('FRAME')"
             v-for="item in $store.state.content" 
             :key="item._id" 
             :name="item.name" 
@@ -72,7 +91,7 @@
             :frame-elements="item.frameElements">
         </f-frame>
         <annotation-set
-            v-if="state.request_type.startsWith('ANNOSET')"
+            v-if="state.final_request_type.startsWith('ANNOSET')"
             v-for="item in $store.state.content" 
             :key="item._id" 
             :sentence="item.sentence" 
