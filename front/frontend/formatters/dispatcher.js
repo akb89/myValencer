@@ -1,8 +1,7 @@
-function dispatch(data, rid) {
+function dispatch(rid, data) {
     switch (rid) {
     case 'frame':
         return null;
-        // return <FrameComponent data={data} />;
     default:
         return null;
     }

@@ -1,21 +1,15 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Home from './pages/Home.vue';
-import Page1 from './pages/page1.vue';
+const Vue = require('vue');
+const Router = require('vue-router');
+const Home = require('./pages/Home/home.vue');
 
 Vue.use(Router);
 
-export default new Router({
+module.exports = new Router({
     routes: [
         {
             path: '/',
             name: 'Home',
             component: Home,
-        },
-        {
-            path: '/about',
-            name: 'Page1',
-            component: Page1,
         },
     ],
 });

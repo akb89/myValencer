@@ -7,7 +7,7 @@
 </template>
 
 <script>
-export default {
+module.exports = {
   name: 'app'
 }
 </script>
