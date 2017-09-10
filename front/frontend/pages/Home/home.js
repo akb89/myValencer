@@ -11,6 +11,28 @@ module.exports = {
                 try_query: 'Donor.NP.Ext Theme.NP.Obj Recipient.PP.Dep',
                 request_type: 'ANNOSET',
                 final_request_type: '',
+                display: {
+                    annosets: true,
+                    frames: false,
+                    lexunits: false,
+                },
+                results: {
+                    annosets: {
+                        raw: {},
+                        displacy_ner: {},
+                        displacy_dep: {},
+                    },
+                    frames: {
+                        raw: {},
+                        cluster: {},
+                    },
+                    lexunits: {
+                        raw: {},
+                        cluster: {},
+                    },
+                    valence_units: {},
+                    patterns: {},
+                },
             },
         };
     },
@@ -39,11 +61,52 @@ module.exports = {
                 path,
             });
         },
+        fetch_id_data(e) {
+            e.preventDefault();
+            this.$store.dispatch('annoset/call_api', { method: 'GET',
+                path: StringUtils.format_with_obj(APIRoutes.ANNOSET,
+                { id: this.state.input }) });
+            this.$store.dispatch('frame/call_api', { method: 'GET',
+                path: StringUtils.format_with_obj(APIRoutes.FRAME,
+                { id: this.state.input }) });
+            this.$store.dispatch('lexunit/call_api', { method: 'GET',
+                path: StringUtils.format_with_obj(APIRoutes.LEXUNIT,
+                { id: this.state.input }) });
+        },
+        fetch_vp_data(e) {
+            e.preventDefault();
+            this.$store.dispatch('annoset/call_api', { method: 'GET',
+                path: StringUtils.format_with_obj(APIRoutes.ANNOSETS,
+                  { id: this.state.input }) });
+            this.$store.dispatch('frame/call_api', { method: 'GET',
+                path: StringUtils.format_with_obj(APIRoutes.FRAMES,
+                  { id: this.state.input }) });
+            this.$store.dispatch('lexunit/call_api', { method: 'GET',
+                path: StringUtils.format_with_obj(APIRoutes.LEXUNITS,
+                  { id: this.state.input }) });
+        },
+        is_id_type_query(input) {
+            if (Utils.is_numeric(input) || Utils.is_oid(input)) {
+                return true;
+            }
+            return false;
+        },
         fetch_trying_data(e) {
             this.state.input = this.state.try_query;
-            this.state.final_request_type = this.make_request_type(this.state.input,
-                    this.state.request_type);
-            this.fetch_data(e);
+            if (this.is_id_type_query(this.state.input)) {
+                this.fetch_id_data(e);
+            } else {
+                this.fetch_vp_data(e);
+            }
+        },
+        display_tab(tab_name) {
+            Object.keys(this.state.display).forEach((key) => {
+                if (key === tab_name) {
+                    this.state.display[key] = true;
+                } else {
+                    this.state.display[key] = false;
+                }
+            });
         },
     },
     directives: {

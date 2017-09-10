@@ -87,3 +87,8 @@
 .mv-loader .primary-color {
   background-color: #3273dc;
 }
+#cy {
+  width: 300px;
+  height: 300px;
+  display: block;
+}

@@ -19,7 +19,7 @@
 
 <script>
 module.exports = {
-    name: 'LexicalUnit',
+    name: 'LexUnit',
     props: ['id', 'name', 'pos', 'definition', 'semTypes', 'frame'],
 }
 </script>

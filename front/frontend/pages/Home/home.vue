@@ -18,7 +18,7 @@
     </div>
     <div class="columns is-centered">
         <div class="column is-8">
-            <div class="field"> 
+            <div class="field">
                 <div class="control has-text-centered">
                     <button @click="fetch_data" class="button is-info">Search</button>
                     <button @click="fetch_trying_data" class="button is-info">Try me out!</button>
@@ -42,63 +42,23 @@
             </div>
         </div>
         <div class="column is-2">
-            <div class="field"> 
+            <div class="field">
                 <div class="control has-text-centered">
                     <button @click="fetch_data" class="button is-info">Search</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="columns">
-        <div class="column is-offset-2 is-8">
-            <div class="control">
-                <label class="radio">
-                    <input type="radio" name="request_type" value="ANNOSET" v-model="state.request_type">
-                    Annotation set 
-                </label>
-                <label class="radio">
-                    <input type="radio" name="request_type" value="FRAME" v-model="state.request_type">
-                    Frame 
-                </label>
-                <label class="radio">
-                    <input type="radio" name="request_type" value="LEXUNIT" v-model="state.request_type">
-                    Lexical unit 
-                </label>
-            </div>
-            {{state.request_type}}
-        </div>
-    </div>
-    <div v-if="$store.state.loading" class="columns is-centered">
-        <loader></loader>
-    </div>
-        <lex-unit 
-            v-if="state.final_request_type.startsWith('LEXUNIT')"
-            v-for="item in $store.state.content" 
-            :key="item._id"
-            :id="item._id"
-            :name="item.name" 
-            :pos="item.pos" 
-            :definition="item.definition" 
-            :sem-types="item.semTypes"
-            :frame="item.frame">
-        </lex-unit>
-        <f-frame
-            v-if="state.final_request_type.startsWith('FRAME')"
-            v-for="item in $store.state.content" 
-            :key="item._id" 
-            :name="item.name" 
-            :sem-types="item.semTypes"
-            :frame-elements="item.frameElements">
-        </f-frame>
-        <annotation-set
-            v-if="state.final_request_type.startsWith('ANNOSET')"
-            v-for="item in $store.state.content" 
-            :key="item._id" 
-            :sentence="item.sentence" 
-            :labels="item.labels" 
-            :lex-unit="item.lexUnit" 
-            :pattern="item.pattern">
-        </annotation-set>
+    <div class="tabs is-centered">
+      <ul>
+        <li v-bind:class="{ 'is-active': state.display.annosets }" @click="display_tab('annosets')"><a>AnnotationSets</a></li>
+        <li v-bind:class="{ 'is-active': state.display.frames }" @click="display_tab('frames')"><a>Frames</a></li>
+        <li v-bind:class="{ 'is-active': state.display.lexunits }" @click="display_tab('lexunits')"><a>LexicalUnits</a></li>
+      </ul>
+  </div>
+  <fn-annosets v-if="state.display.annosets"></fn-annosets>
+  <fn-frames v-if="state.display.frames"></fn-frames>
+  <fn-lexunits v-if="state.display.lexunits"></fn-lexunits>
     </div>
 </div>
 </template>
