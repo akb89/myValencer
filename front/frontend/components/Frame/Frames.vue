@@ -27,6 +27,9 @@
           :sem-types="item.semTypes"
           :frame-elements="item.frameElements">
       </fn-frame>
+      <fn-frame-cluster
+        v-if="state.display.cluster && !$store.state.frame.loading">
+      </fn-frame-cluster>
     </div>
 </template>
 

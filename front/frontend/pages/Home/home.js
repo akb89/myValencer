@@ -12,26 +12,9 @@ module.exports = {
                 request_type: 'ANNOSET',
                 final_request_type: '',
                 display: {
-                    annosets: true,
-                    frames: false,
+                    annosets: false,
+                    frames: true,
                     lexunits: false,
-                },
-                results: {
-                    annosets: {
-                        raw: {},
-                        displacy_ner: {},
-                        displacy_dep: {},
-                    },
-                    frames: {
-                        raw: {},
-                        cluster: {},
-                    },
-                    lexunits: {
-                        raw: {},
-                        cluster: {},
-                    },
-                    valence_units: {},
-                    patterns: {},
                 },
             },
         };
@@ -52,14 +35,21 @@ module.exports = {
         },
         fetch_data(e) {
             e.preventDefault();
-            this.state.final_request_type = this.make_request_type(this.state.input,
-                    this.state.request_type);
-            const path = StringUtils.format_with_obj(APIRoutes[this.state.final_request_type],
-                { id: this.state.input });
-            this.$store.dispatch('call_api', {
-                method: 'GET',
-                path,
-            });
+            console.log('Fetching data with input: ');
+            console.log(this.state.input);
+            if (this.is_id_type_query(this.state.input)) {
+                this.fetch_id_data(e);
+            } else {
+                this.fetch_vp_data(e);
+            }
+            // this.state.final_request_type = this.make_request_type(this.state.input,
+            //         this.state.request_type);
+            // const path = StringUtils.format_with_obj(APIRoutes[this.state.final_request_type],
+            //     { id: this.state.input });
+            // this.$store.dispatch('call_api', {
+            //     method: 'GET',
+            //     path,
+            // });
         },
         fetch_id_data(e) {
             e.preventDefault();
@@ -81,6 +71,9 @@ module.exports = {
             this.$store.dispatch('frame/call_api', { method: 'GET',
                 path: StringUtils.format_with_obj(APIRoutes.FRAMES,
                   { id: this.state.input }) });
+            // this.$store.dispatch('frame/fetch_frames_and_relations', { method: 'GET',
+            //     path: StringUtils.format_with_obj(APIRoutes.FRAMES,
+            //             { id: this.state.input }) });
             this.$store.dispatch('lexunit/call_api', { method: 'GET',
                 path: StringUtils.format_with_obj(APIRoutes.LEXUNITS,
                   { id: this.state.input }) });

@@ -2,6 +2,13 @@ const Vue = require('vue');
 const Vuex = require('vuex');
 const mutations = require('./mutations');
 const actions = require('./actions');
+const state = require('./state');
+
+const Messages = require('../api/messages');
+const APIRoutes = require('../api/routes');
+const StringUtils = require('../utils/strings');
+const API = require('../api');
+const request = require('superagent');
 
 Vue.use(Vuex);
 

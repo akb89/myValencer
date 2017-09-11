@@ -42,7 +42,6 @@ module.exports = {
             return name;
         },
         format_sentence(sentence, labels, frame) {
-            console.log('formatting sentence...');
             const valences = labels.reduce((obj, label) => {
                 const name = label.name;
                 const start = label.startPos;
