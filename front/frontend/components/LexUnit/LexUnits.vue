@@ -1,16 +1,16 @@
 <template>
     <div>
-      <div class="tabs is-boxed is-small">
+      <div class="tabs is-toggle is-centered is-small">
         <ul>
           <li v-bind:class="{ 'is-active': state.display.raw }" @click="display_tab('raw')">
             <a>
-              <span class="icon is-small"><i class="fa fa-music"></i></span>
-              <span>RAW</span>
+              <span class="icon is-small"><i class="fa fa-bars"></i></span>
+              <span>LIST</span>
             </a>
           </li>
           <li v-bind:class="{ 'is-active': state.display.cluster }" @click="display_tab('cluster')">
             <a>
-              <span class="icon is-small"><i class="fa fa-music"></i></span>
+              <span class="icon is-small"><i class="fa fa-dot-circle-o"></i></span>
               <span>CLUSTER</span>
             </a>
           </li>

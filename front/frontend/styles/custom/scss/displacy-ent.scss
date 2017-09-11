@@ -2,9 +2,8 @@
 //- Based on 💥 DISPLACY ENT
 //- ----------------------------------
 
-$entities: (f1: #a6e22d, f2: #e00084, f3: #43c6fc, f4: #43c6fc, f5: #fd9720,
-f6: #fd9720, f7: #8e7dff, f8: #ffcc00, f9: #ffcc00, f10: #ffcc00, f11: #2fbbab,
-f12: #2fbbab, f13: #999, f14: #999, f15: #999, f16: #999, f17: #999);
+$labels: (f1: #a6e22d, f2: #fd9720, f3: #43c6fc, f4: #8e7dff, f5: #2fbbab,
+f6: #ffcc00, f7: #999, f8: #e00084);
 
 .fnlabels {
   line-height: 2;
@@ -31,8 +30,8 @@ f12: #2fbbab, f13: #999, f14: #999, f15: #999, f16: #999, f17: #999);
     margin: 0 0 0.1rem 0.5rem;
   }
 
-  @each $entity, $color in $entities {
-    &[label-format="#{$entity}"] {
+  @each $label, $color in $labels {
+    &[label-format="#{$label}"] {
       background: rgba($color, 0.2);
       border-color: $color;
 

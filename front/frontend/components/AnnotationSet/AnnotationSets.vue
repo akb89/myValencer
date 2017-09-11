@@ -1,6 +1,6 @@
 <template>
     <div>
-      <div class="tabs is-boxed is-small">
+      <!-- <div class="tabs is-boxed is-small">
         <ul>
           <li v-bind:class="{ 'is-active': state.display.ent }" @click="display_tab('ent')">
             <a>
@@ -21,7 +21,7 @@
             </a>
           </li>
         </ul>
-      </div>
+      </div> -->
       <div v-if="state.display.raw && $store.state.annoset.loading" class="columns is-centered">
           <loader></loader>
       </div>
@@ -39,7 +39,9 @@
        v-for="item in $store.state.annoset.content"
        :key="item._id"
        :labels="item.labels"
-       :text="item.sentence.text">
+       :text="item.sentence.text"
+       :frame="item.lexUnit.frame"
+       :pattern="item.pattern">
       </fn-annoset-ent>
     </div>
 </template>

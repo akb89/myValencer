@@ -51,9 +51,9 @@
     </div>
     <div class="tabs is-centered">
       <ul>
-        <li v-bind:class="{ 'is-active': state.display.annosets }" @click="display_tab('annosets')"><a>AnnotationSets</a></li>
+        <li v-bind:class="{ 'is-active': state.display.annosets }" @click="display_tab('annosets')"><a>Annotations</a></li>
         <li v-bind:class="{ 'is-active': state.display.frames }" @click="display_tab('frames')"><a>Frames</a></li>
-        <li v-bind:class="{ 'is-active': state.display.lexunits }" @click="display_tab('lexunits')"><a>LexicalUnits</a></li>
+        <li v-bind:class="{ 'is-active': state.display.lexunits }" @click="display_tab('lexunits')"><a>Lexical units</a></li>
       </ul>
   </div>
   <fn-annosets v-if="state.display.annosets"></fn-annosets>
