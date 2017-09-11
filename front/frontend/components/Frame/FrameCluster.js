@@ -13,7 +13,7 @@ module.exports = {
             },
         };
     },
-    async mounted() {
+    mounted() {
         const cy = cytoscape({
             container: document.getElementById('cy'), // container to render in
         });

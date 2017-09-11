@@ -81,6 +81,114 @@
 .mv-loader-last {
   margin-right: 0; }
 
+.fnlabels {
+  line-height: 2; }
+
+[label-format] {
+  padding: 0.25em 0.35em;
+  margin: 0 0.25em;
+  line-height: 1;
+  display: inline-block;
+  border-radius: 0.25em;
+  border: 1px solid; }
+  [label-format]:after {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    content: attr(fe-name);
+    font-size: 0.6em;
+    line-height: 1;
+    padding: 0.35em 0.35em;
+    border-radius: 0.35em;
+    text-transform: uppercase;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0.1rem 0.5rem; }
+  [label-format][label-format="f1"] {
+    background: rgba(166, 226, 45, 0.2);
+    border-color: #a6e22d; }
+    [label-format][label-format="f1"]:after {
+      background: #a6e22d; }
+  [label-format][label-format="f2"] {
+    background: rgba(224, 0, 132, 0.2);
+    border-color: #e00084; }
+    [label-format][label-format="f2"]:after {
+      background: #e00084; }
+  [label-format][label-format="f3"] {
+    background: rgba(67, 198, 252, 0.2);
+    border-color: #43c6fc; }
+    [label-format][label-format="f3"]:after {
+      background: #43c6fc; }
+  [label-format][label-format="f4"] {
+    background: rgba(67, 198, 252, 0.2);
+    border-color: #43c6fc; }
+    [label-format][label-format="f4"]:after {
+      background: #43c6fc; }
+  [label-format][label-format="f5"] {
+    background: rgba(253, 151, 32, 0.2);
+    border-color: #fd9720; }
+    [label-format][label-format="f5"]:after {
+      background: #fd9720; }
+  [label-format][label-format="f6"] {
+    background: rgba(253, 151, 32, 0.2);
+    border-color: #fd9720; }
+    [label-format][label-format="f6"]:after {
+      background: #fd9720; }
+  [label-format][label-format="f7"] {
+    background: rgba(142, 125, 255, 0.2);
+    border-color: #8e7dff; }
+    [label-format][label-format="f7"]:after {
+      background: #8e7dff; }
+  [label-format][label-format="f8"] {
+    background: rgba(255, 204, 0, 0.2);
+    border-color: #ffcc00; }
+    [label-format][label-format="f8"]:after {
+      background: #ffcc00; }
+  [label-format][label-format="f9"] {
+    background: rgba(255, 204, 0, 0.2);
+    border-color: #ffcc00; }
+    [label-format][label-format="f9"]:after {
+      background: #ffcc00; }
+  [label-format][label-format="f10"] {
+    background: rgba(255, 204, 0, 0.2);
+    border-color: #ffcc00; }
+    [label-format][label-format="f10"]:after {
+      background: #ffcc00; }
+  [label-format][label-format="f11"] {
+    background: rgba(47, 187, 171, 0.2);
+    border-color: #2fbbab; }
+    [label-format][label-format="f11"]:after {
+      background: #2fbbab; }
+  [label-format][label-format="f12"] {
+    background: rgba(47, 187, 171, 0.2);
+    border-color: #2fbbab; }
+    [label-format][label-format="f12"]:after {
+      background: #2fbbab; }
+  [label-format][label-format="f13"] {
+    background: rgba(153, 153, 153, 0.2);
+    border-color: #999; }
+    [label-format][label-format="f13"]:after {
+      background: #999; }
+  [label-format][label-format="f14"] {
+    background: rgba(153, 153, 153, 0.2);
+    border-color: #999; }
+    [label-format][label-format="f14"]:after {
+      background: #999; }
+  [label-format][label-format="f15"] {
+    background: rgba(153, 153, 153, 0.2);
+    border-color: #999; }
+    [label-format][label-format="f15"]:after {
+      background: #999; }
+  [label-format][label-format="f16"] {
+    background: rgba(153, 153, 153, 0.2);
+    border-color: #999; }
+    [label-format][label-format="f16"]:after {
+      background: #999; }
+  [label-format][label-format="f17"] {
+    background: rgba(153, 153, 153, 0.2);
+    border-color: #999; }
+    [label-format][label-format="f17"]:after {
+      background: #999; }
+
 .mv-loader .color-black {
   background-color: black;
 }

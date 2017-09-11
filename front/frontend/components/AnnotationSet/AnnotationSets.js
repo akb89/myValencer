@@ -4,9 +4,9 @@ module.exports = {
         return {
             state: {
                 display: {
-                    ner: false,
+                    ent: true,
                     dep: false,
-                    raw: true,
+                    raw: false,
                 },
             },
         };

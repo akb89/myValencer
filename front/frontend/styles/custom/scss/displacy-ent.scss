@@ -1,0 +1,45 @@
+//- ----------------------------------
+//- Based on 💥 DISPLACY ENT
+//- ----------------------------------
+
+$entities: (f1: #a6e22d, f2: #e00084, f3: #43c6fc, f4: #43c6fc, f5: #fd9720,
+f6: #fd9720, f7: #8e7dff, f8: #ffcc00, f9: #ffcc00, f10: #ffcc00, f11: #2fbbab,
+f12: #2fbbab, f13: #999, f14: #999, f15: #999, f16: #999, f17: #999);
+
+.fnlabels {
+  line-height: 2;
+}
+
+[label-format] {
+  padding: 0.25em 0.35em;
+  margin: 0 0.25em;
+  line-height: 1;
+  display: inline-block;
+  border-radius: 0.25em;
+  border: 1px solid;
+
+  &:after {
+    box-sizing: border-box;
+    content: attr(fe-name);
+    font-size: 0.6em;
+    line-height: 1;
+    padding: 0.35em 0.35em;
+    border-radius: 0.35em;
+    text-transform: uppercase;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0.1rem 0.5rem;
+  }
+
+  @each $entity, $color in $entities {
+    &[label-format="#{$entity}"] {
+      background: rgba($color, 0.2);
+      border-color: $color;
+
+      &:after {
+        background: $color;
+      }
+
+    }
+  }
+}

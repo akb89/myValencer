@@ -2,10 +2,10 @@
     <div>
       <div class="tabs is-boxed is-small">
         <ul>
-          <li v-bind:class="{ 'is-active': state.display.ner }" @click="display_tab('ner')">
+          <li v-bind:class="{ 'is-active': state.display.ent }" @click="display_tab('ent')">
             <a>
               <span class="icon is-small"><i class="fa fa-music"></i></span>
-              <span>NER</span>
+              <span>ENT</span>
             </a>
           </li>
           <li v-bind:class="{ 'is-active': state.display.raw }" @click="display_tab('raw')">
@@ -22,11 +22,11 @@
           </li>
         </ul>
       </div>
-      <div v-if="$store.state.annoset.loading" class="columns is-centered">
+      <div v-if="state.display.raw && $store.state.annoset.loading" class="columns is-centered">
           <loader></loader>
       </div>
       <fn-annoset
-          v-if="state.display.raw"
+          v-if="state.display.raw && !$store.state.annoset.loading"
           v-for="item in $store.state.annoset.content"
           :key="item._id"
           :sentence="item.sentence"
@@ -34,6 +34,13 @@
           :lex-unit="item.lexUnit"
           :pattern="item.pattern">
       </fn-annoset>
+      <fn-annoset-ent
+       v-if="state.display.ent && !$store.state.annoset.loading"
+       v-for="item in $store.state.annoset.content"
+       :key="item._id"
+       :labels="item.labels"
+       :text="item.sentence.text">
+      </fn-annoset-ent>
     </div>
 </template>
 

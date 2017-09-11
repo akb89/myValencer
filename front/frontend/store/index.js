@@ -16,6 +16,17 @@ const annoset_module = {
     actions,
 };
 
+const ent_annoset_module = {
+    namespaced: true,
+    state: {
+        loading: false,
+        success: false,
+        content: [],
+    },
+    mutations,
+    actions,
+};
+
 const frame_module = {
     namespaced: true,
     state: {
@@ -68,6 +79,7 @@ const store = new Vuex.Store({
         lexunit: lexunit_module,
         cytoframe: cytoframe_module,
         cytolexunit: cytolexunit_module,
+        entannoset: ent_annoset_module,
     },
 });
 
