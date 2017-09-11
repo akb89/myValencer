@@ -16,11 +16,14 @@
           </li>
         </ul>
       </div>
-      <div v-if="$store.state.lexunit.loading" class="columns is-centered">
+      <div v-if="state.display.raw && $store.state.lexunit.loading" class="columns is-centered">
+          <loader></loader>
+      </div>
+      <div v-if="state.display.cluster && $store.state.cytolexunit.loading" class="columns is-centered">
           <loader></loader>
       </div>
       <fn-lexunit
-          v-if="state.display.raw"
+          v-if="state.display.raw && !$store.state.lexunit.loading"
           v-for="item in $store.state.lexunit.content"
           :key="item._id"
           :id="item._id"
@@ -30,6 +33,9 @@
           :sem-types="item.semTypes"
           :frame="item.frame">
       </fn-lexunit>
+      <fn-lexunit-cluster
+        v-if="state.display.cluster && !$store.state.cytolexunit.loading">
+      </fn-lexunit-cluster>
     </div>
 </template>
 

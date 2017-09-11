@@ -13,8 +13,8 @@ module.exports = {
                 final_request_type: '',
                 display: {
                     annosets: false,
-                    frames: true,
-                    lexunits: false,
+                    frames: false,
+                    lexunits: true,
                 },
             },
         };
@@ -35,21 +35,11 @@ module.exports = {
         },
         fetch_data(e) {
             e.preventDefault();
-            console.log('Fetching data with input: ');
-            console.log(this.state.input);
             if (this.is_id_type_query(this.state.input)) {
                 this.fetch_id_data(e);
             } else {
                 this.fetch_vp_data(e);
             }
-            // this.state.final_request_type = this.make_request_type(this.state.input,
-            //         this.state.request_type);
-            // const path = StringUtils.format_with_obj(APIRoutes[this.state.final_request_type],
-            //     { id: this.state.input });
-            // this.$store.dispatch('call_api', {
-            //     method: 'GET',
-            //     path,
-            // });
         },
         fetch_id_data(e) {
             e.preventDefault();
@@ -71,12 +61,15 @@ module.exports = {
             this.$store.dispatch('frame/call_api', { method: 'GET',
                 path: StringUtils.format_with_obj(APIRoutes.FRAMES,
                   { id: this.state.input }) });
-            // this.$store.dispatch('frame/fetch_frames_and_relations', { method: 'GET',
-            //     path: StringUtils.format_with_obj(APIRoutes.FRAMES,
-            //             { id: this.state.input }) });
+            this.$store.dispatch('cytoframe/call_api', { method: 'GET',
+                path: StringUtils.format_with_obj(APIRoutes.CYTOFRAMES,
+                        { id: this.state.input }) });
             this.$store.dispatch('lexunit/call_api', { method: 'GET',
                 path: StringUtils.format_with_obj(APIRoutes.LEXUNITS,
                   { id: this.state.input }) });
+            this.$store.dispatch('cytolexunit/call_api', { method: 'GET',
+                path: StringUtils.format_with_obj(APIRoutes.CYTOLEXUNITS,
+                              { id: this.state.input }) });
         },
         is_id_type_query(input) {
             if (Utils.is_numeric(input) || Utils.is_oid(input)) {

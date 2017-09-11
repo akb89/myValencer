@@ -27,7 +27,29 @@ const frame_module = {
     actions,
 };
 
+const cytoframe_module = {
+    namespaced: true,
+    state: {
+        loading: false,
+        success: false,
+        content: [],
+    },
+    mutations,
+    actions,
+};
+
 const lexunit_module = {
+    namespaced: true,
+    state: {
+        loading: false,
+        success: false,
+        content: [],
+    },
+    mutations,
+    actions,
+};
+
+const cytolexunit_module = {
     namespaced: true,
     state: {
         loading: false,
@@ -44,6 +66,8 @@ const store = new Vuex.Store({
         annoset: annoset_module,
         frame: frame_module,
         lexunit: lexunit_module,
+        cytoframe: cytoframe_module,
+        cytolexunit: cytolexunit_module,
     },
 });
 

@@ -4,7 +4,7 @@ const cycola = require('cytoscape-cola');
 cytoscape.use(cycola);
 
 module.exports = {
-    name: 'FrameCluster',
+    name: 'LexUnitCluster',
     props: [],
     data() {
         return {
@@ -18,7 +18,7 @@ module.exports = {
             container: document.getElementById('cy'), // container to render in
         });
         this.state.cy = cy;
-        cy.add(this.$store.state.cytoframe.content);
+        cy.add(this.$store.state.cytolexunit.content);
         cy.style().fromJson([ // the stylesheet for the graph
             {
                 selector: 'node',

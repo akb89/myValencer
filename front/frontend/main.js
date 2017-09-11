@@ -8,7 +8,7 @@ const Frames = require('./components/Frame/Frames.vue');
 const FrameCluster = require('./components/Frame/FrameCluster.vue');
 const LexUnit = require('./components/LexUnit/LexUnit.vue');
 const LexUnits = require('./components/LexUnit/LexUnits.vue');
-const LexUnitCluster = require('./components/LexUnitCluster/LexUnitCluster.vue');
+const LexUnitCluster = require('./components/LexUnit/LexUnitCluster.vue');
 const Loader = require('./components/Loader.vue');
 
 

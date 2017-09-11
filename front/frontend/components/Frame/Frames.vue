@@ -16,11 +16,14 @@
           </li>
         </ul>
       </div>
-      <div v-if="$store.state.frame.loading" class="columns is-centered">
+      <div v-if="state.display.raw && $store.state.frame.loading" class="columns is-centered">
+          <loader></loader>
+      </div>
+      <div v-if="state.display.cluster && $store.state.cytoframe.loading" class="columns is-centered">
           <loader></loader>
       </div>
       <fn-frame
-          v-if="state.display.raw"
+          v-if="state.display.raw && !$store.state.frame.loading"
           v-for="item in $store.state.frame.content"
           :key="item._id"
           :name="item.name"
@@ -28,7 +31,7 @@
           :frame-elements="item.frameElements">
       </fn-frame>
       <fn-frame-cluster
-        v-if="state.display.cluster && !$store.state.frame.loading">
+        v-if="state.display.cluster && !$store.state.cytoframe.loading">
       </fn-frame-cluster>
     </div>
 </template>
