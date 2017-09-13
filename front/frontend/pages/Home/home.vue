@@ -3,7 +3,7 @@
     <div class="columns is-centered">
         <div class="column is-6">
             <div class="figure is-16by9">
-                <img src='/public/front/img/logo.png' alt='Valencer Logo' />
+                <img src='/public/front/img/logo_colors.png' alt='Valencer Logo' />
             </div>
         </div>
     </div>
@@ -11,95 +11,93 @@
         <div class="column is-6">
             <div class="field">
                 <div class="control">
-                    <input v-focus :value="state.input" @input="update_input" class="input" type="text" placeholder="Type your fantastic query" />
+                    <input v-focus :value="state.input" @input="update_input" class="input" type="text" placeholder="Type in a valence pattern to search..." />
                 </div>
             </div>
         </div>
     </div>
     <div class="columns is-centered">
         <div class="column is-8">
-            <div class="field"> 
+            <div class="field">
                 <div class="control has-text-centered">
-                    <button @click="fetch_data" class="button is-info">Search</button>
-                    <button @click="fetch_trying_data" class="button is-info">Try me out!</button>
+                    <button @click="fetch_data" class="button is-primary">Search</button>
+                    <button @click="fetch_trying_data" class="button is-primary">Try me out!</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div v-else class="container is-fluid">
-    <div class="columns is-centered is-vcentered">
-        <div class="column is-2">
-            <div class="figure is-16by9">
-                <img src='/public/front/img/logo.png' alt='Valencer Logo' />
-            </div>
+    <div class="columns is-multiline is-mobile is-centered is-vcentered">
+      <div class="column is-2">
+        <div class="image">
+            <img src='/public/front/img/logo_colors_16by9_tiny.png' alt='myValencer Logo' />
         </div>
-        <div class="column is-8">
-            <div class="field">
-                <div class="control">
-                    <input v-focus :value="state.input" @input="update_input" class="input" type="text" placeholder="Type your fantastic query" />
-                </div>
-            </div>
+      </div>
+      <div class="column is-8">
+        <div class="field">
+          <p class="control has-icons-right">
+            <input v-focus :value="state.input" @input="update_input" class="input" type="text" placeholder="Type your fantastic query" >
+            <span class="icon is-small is-right">
+              <i class="fa fa-search" aria-hidden="false"></i>
+            </span>
+          </p>
         </div>
-        <div class="column is-2">
-            <div class="field"> 
-                <div class="control has-text-centered">
-                    <button @click="fetch_data" class="button is-info">Search</button>
-                </div>
-            </div>
+      </div>
+      <div class="column is-2">
+        <button @click="fetch_data" class="button is-primary">Search</button>
+      </div>
+  </div>
+  <!-- <div class="columns is-multiline is-mobile">
+    <div class="column is-8 is-offset-2">
+      <div class="field">
+        <div class="control">
+          <div class="select is-small">
+            <select>
+              <option>Language</option>
+              <option>en</option>
+            </select>
+          </div>
+          <div class="select is-small">
+            <select>
+              <option>Dataset</option>
+              <option>1.5</option>
+              <option>1.6</option>
+              <option>1.7</option>
+            </select>
+          </div>
+          <div class="select is-small">
+            <select>
+              <option>Extra Core FEs</option>
+              <option>yes</option>
+              <option>no</option>
+            </select>
+          </div>
+          <div class="select is-small">
+            <select>
+              <option>Strict VU matching</option>
+              <option>yes</option>
+              <option>no</option>
+            </select>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="columns">
-        <div class="column is-offset-2 is-8">
-            <div class="control">
-                <label class="radio">
-                    <input type="radio" name="request_type" value="ANNOSET" v-model="state.request_type">
-                    Annotation set 
-                </label>
-                <label class="radio">
-                    <input type="radio" name="request_type" value="FRAME" v-model="state.request_type">
-                    Frame 
-                </label>
-                <label class="radio">
-                    <input type="radio" name="request_type" value="LEXUNIT" v-model="state.request_type">
-                    Lexical unit 
-                </label>
-            </div>
-            {{state.request_type}}
-        </div>
+  </div> -->
+  <div class="columns is-mobile">
+    <div class="column is-12">
+      <div class="tabs is-centered">
+        <ul>
+          <li v-bind:class="{ 'is-active': state.display.annosets }" @click="display_tab('annosets')"><a>Annotations</a></li>
+          <li v-bind:class="{ 'is-active': state.display.frames }" @click="display_tab('frames')"><a>Frames</a></li>
+          <li v-bind:class="{ 'is-active': state.display.lexunits }" @click="display_tab('lexunits')"><a>Lexical units</a></li>
+        </ul>
     </div>
-    <div v-if="$store.state.loading" class="columns is-centered">
-        <loader></loader>
+    <fn-annosets v-if="state.display.annosets"></fn-annosets>
+    <fn-frames v-if="state.display.frames"></fn-frames>
+    <fn-lexunits v-if="state.display.lexunits"></fn-lexunits>
     </div>
-        <lex-unit 
-            v-if="state.final_request_type.startsWith('LEXUNIT')"
-            v-for="item in $store.state.content" 
-            :key="item._id"
-            :id="item._id"
-            :name="item.name" 
-            :pos="item.pos" 
-            :definition="item.definition" 
-            :sem-types="item.semTypes"
-            :frame="item.frame">
-        </lex-unit>
-        <f-frame
-            v-if="state.final_request_type.startsWith('FRAME')"
-            v-for="item in $store.state.content" 
-            :key="item._id" 
-            :name="item.name" 
-            :sem-types="item.semTypes"
-            :frame-elements="item.frameElements">
-        </f-frame>
-        <annotation-set
-            v-if="state.final_request_type.startsWith('ANNOSET')"
-            v-for="item in $store.state.content" 
-            :key="item._id" 
-            :sentence="item.sentence" 
-            :labels="item.labels" 
-            :lex-unit="item.lexUnit" 
-            :pattern="item.pattern">
-        </annotation-set>
-    </div>
+  </div>
 </div>
 </template>
 

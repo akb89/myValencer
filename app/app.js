@@ -37,7 +37,7 @@ process.on('message', (message) => {
     try {
         console.log('Starting koalication...');
         await koa.listen(config.port);
-        console.log(`MyValencer started on port ${config.port}`);
+        console.log(`myValencer started on port ${config.port}`);
         if (process.send) { process.send('online'); }
     } catch (err) {
         console.debug(err);

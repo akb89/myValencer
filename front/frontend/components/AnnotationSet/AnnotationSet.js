@@ -9,7 +9,6 @@ module.exports = {
             if (!('valenceUnits' in pattern)) {
                 return '';
             }
-
             return pattern.valenceUnits.reduce((array, val) => {
                 if (val.GF === undefined) {
                     array.push(`${val.FE.name}.${val.PT}`);
