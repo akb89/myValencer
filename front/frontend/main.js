@@ -12,7 +12,6 @@ const LexUnits = require('./components/LexUnit/LexUnits.vue');
 const LexUnitCluster = require('./components/LexUnit/LexUnitCluster.vue');
 const Loader = require('./components/Loader.vue');
 
-
 Vue.component('fn-annoset', AnnotationSet);
 Vue.component('fn-annosets', AnnotationSets);
 Vue.component('fn-annoset-ent', AnnotationSetEnt);
@@ -25,6 +24,7 @@ Vue.component('fn-lexunit-cluster', LexUnitCluster);
 Vue.component('loader', Loader);
 
 const App = require('./pages/app.vue');
+
 
 new Vue({
     el: '#app',

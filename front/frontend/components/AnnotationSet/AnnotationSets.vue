@@ -22,27 +22,30 @@
           </li>
         </ul>
       </div> -->
-      <div v-if="state.display.raw && $store.state.annoset.loading" class="columns is-centered">
+      <div v-if="$store.state.annoset.loading" class="columns is-centered">
           <loader></loader>
       </div>
-      <fn-annoset
+      <div v-if="!$store.state.annoset.loading && state.content.length > 0">
+          <fn-annoset
           v-if="state.display.raw && !$store.state.annoset.loading"
-          v-for="item in $store.state.annoset.content"
+          v-for="item in state.content"
           :key="item._id"
           :sentence="item.sentence"
           :labels="item.labels"
           :lex-unit="item.lexUnit"
           :pattern="item.pattern">
-      </fn-annoset>
-      <fn-annoset-ent
-       v-if="state.display.ent && !$store.state.annoset.loading"
-       v-for="item in $store.state.annoset.content"
-       :key="item._id"
-       :labels="item.labels"
-       :text="item.sentence.text"
-       :frame="item.lexUnit.frame"
-       :pattern="item.pattern">
-      </fn-annoset-ent>
+          </fn-annoset>
+          <fn-annoset-ent
+          v-if="state.display.ent && !$store.state.annoset.loading"
+          v-for="item in state.content"
+          :key="item._id"
+          :labels="item.labels"
+          :text="item.sentence.text"
+          :frame="item.lexUnit.frame"
+          :pattern="item.pattern">
+          </fn-annoset-ent>
+          <infinite-loading :on-infinite="infiniteLoadMore" ref="infiniteLoading"></infinite-loading>
+      </div>
     </div>
 </template>
 

@@ -22,9 +22,10 @@
       <div v-if="state.display.cluster && $store.state.cytolexunit.loading" class="columns is-centered">
           <loader></loader>
       </div>
-      <fn-lexunit
-          v-if="state.display.raw && !$store.state.lexunit.loading"
-          v-for="item in $store.state.lexunit.content"
+        
+      <div v-if="state.display.raw && !$store.state.lexunit.loading">
+          <fn-lexunit
+          v-for="item in state.content"
           :key="item._id"
           :id="item._id"
           :name="item.name"
@@ -32,7 +33,9 @@
           :definition="item.definition"
           :sem-types="item.semTypes"
           :frame="item.frame">
-      </fn-lexunit>
+          </fn-lexunit>
+          <infinite-loading v-if="state.content.length > 0" :on-infinite="infiniteLoadMore" ref="infiniteLoading"></infinite-loading>
+      </div>
       <fn-lexunit-cluster
         v-if="state.display.cluster && !$store.state.cytolexunit.loading">
       </fn-lexunit-cluster>
