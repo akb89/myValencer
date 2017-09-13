@@ -30,9 +30,21 @@
 <div v-else class="container is-fluid">
     <div class="columns is-centered is-vcentered">
         <div class="column is-2">
-            <div class="figure is-16by9">
-                <img src='/public/front/img/logo.png' alt='Valencer Logo' />
+            <!-- <div class="image is-96x96">
+                <img src='/public/front/img/logo.png' alt='myValencer Logo' />
+            </div> -->
+            <!-- <div class="select">
+              <select>
+                <option>A</option>
+                <option>With options</option>
+              </select>
             </div>
+            <div class="select">
+              <select>
+                <option>B</option>
+                <option>With options</option>
+              </select>
+            </div> -->
         </div>
         <div class="column is-8">
             <div class="field">
@@ -42,11 +54,12 @@
             </div>
         </div>
         <div class="column is-2">
-            <div class="field">
+          <button @click="fetch_data" class="button is-info">Search</button>
+            <!-- <div class="field">
                 <div class="control has-text-centered">
                     <button @click="fetch_data" class="button is-info">Search</button>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="tabs is-centered">

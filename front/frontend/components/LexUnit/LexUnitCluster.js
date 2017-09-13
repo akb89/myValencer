@@ -1,7 +1,17 @@
 const cytoscape = require('cytoscape');
-const cycola = require('cytoscape-cola');
+// const cycola = require('cytoscape-cola');
+const regCose = require('cytoscape-cose-bilkent');
 
-cytoscape.use(cycola);
+regCose(cytoscape); // register extension
+
+// cytoscape.use(cycola);
+
+function getColor(counter, colors) {
+    if (counter < colors.length) {
+        return { color: colors[counter], blacken: 0 };
+    }
+    return { color: colors[counter % colors.length], blacken: -0.3 * Math.floor(counter / colors.length) };
+}
 
 module.exports = {
     name: 'LexUnitCluster',
@@ -19,61 +29,102 @@ module.exports = {
         });
         this.state.cy = cy;
         cy.add(this.$store.state.cytolexunit.content);
-        cy.style().fromJson([ // the stylesheet for the graph
-            {
-                selector: 'node',
+        const style = [];
+        const frameIDs = this.$store.state.cytolexunit.content.reduce((idset, item) => {
+            if (item.data.frame && !idset.has(item.data.frame)) {
+                idset.add(item.data.frame);
+            }
+            return idset;
+        }, new Set());
+        const COLORS = ['#a6e22d', '#fd9720', '#43c6fc', '#8e7dff', '#2fbbab',
+            '#ffcc00', '#e00084'];
+        let colorCounter = 0;
+        frameIDs.forEach((id) => {
+            const background = getColor(colorCounter, COLORS);
+            style.push(...[{
+                selector: `node[frame = ${id}]`,
                 style: {
-                    'background-color': '#666',
+                    'background-color': background.color,
+                    'background-blacken': background.blacken,
+                    width: '20px',
+                    height: '20px',
+                    'background-opacity': 0.8,
                     label: 'data(name)',
+                    color: 'white',
                 },
-            },
-
-            {
-                selector: 'edge',
+            }, {
+                selector: `edge[frame = ${id}]`,
                 style: {
                     width: 3,
-                    'line-color': '#ccc',
-                    'target-arrow-color': '#ccc',
-                    'target-arrow-shape': 'triangle',
+                    'line-color': background.color,
+                    'line-style': 'solid',
+                    opacity: 0.2,
                 },
-            },
-        ]).update();
+            }, {
+                selector: 'edge[type]',
+                style: {
+                    width: 3,
+                    'line-style': 'solid',
+                    'line-color': '#999',
+                    opacity: 0.2,
+                },
+            }]);
+            colorCounter += 1;
+        });
+        cy.style().fromJson(style).update();
         cy.layout({
-            name: 'cola',
-            animate: true, // whether to show the layout as it's running
-            refresh: 1, // number of ticks per frame; higher is faster but more jerky
-            maxSimulationTime: 4000, // max length in ms to run the layout
-            ungrabifyWhileSimulating: false, // so you can't drag nodes during layout
-            fit: true, // on every layout reposition of nodes, fit the viewport
-            padding: 30, // padding around the simulation
-            boundingBox: undefined, // constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
-            nodeDimensionsIncludeLabels: true, // whether labels should be included in determining the space used by a node (default true)
-
-            // layout event callbacks
-            ready() {}, // on layoutready
-            stop() {}, // on layoutstop
-
-            // positioning options
-            randomize: false, // use random node positions at beginning of layout
-            avoidOverlap: true, // if true, prevents overlap of node bounding boxes
-            handleDisconnected: true, // if true, avoids disconnected components from overlapping
-            nodeSpacing(node) { return 10; }, // extra spacing around nodes
-            flow: undefined, // use DAG/tree flow layout if specified, e.g. { axis: 'y', minSeparation: 30 }
-            alignment: undefined, // relative alignment constraints on nodes, e.g. function( node ){ return { x: 0, y: 1 } }
-
-            // different methods of specifying edge length
-            // each can be a constant numerical value or a function like `function( edge ){ return 2; }`
-            edgeLength: undefined, // sets edge length directly in simulation
-            edgeSymDiffLength: undefined, // symmetric diff edge length in simulation
-            edgeJaccardLength: undefined, // jaccard edge length in simulation
-
-            // iterations of cola algorithm; uses default values on undefined
-            unconstrIter: undefined, // unconstrained initial layout iterations
-            userConstIter: undefined, // initial layout iterations with user-specified constraints
-            allConstIter: undefined, // initial layout iterations with all constraints including non-overlap
-
-            // infinite layout options
-            infinite: false, // overrides all other options for a forces-all-the-time mode
+            name: 'cose-bilkent',
+          // Called on `layoutready`
+            ready() {
+            },
+ // Called on `layoutstop`
+            stop() {
+            },
+ // Whether to include labels in node dimensions. Useful for avoiding label overlap
+            nodeDimensionsIncludeLabels: true,
+ // number of ticks per frame; higher is faster but more jerky
+            refresh: 30,
+ // Whether to fit the network view after when done
+            fit: true,
+ // Padding on fit
+            padding: 10,
+ // Whether to enable incremental mode
+            randomize: false,
+ // Node repulsion (non overlapping) multiplier
+            // nodeRepulsion: 4500,
+ // Ideal (intra-graph) edge length
+            // idealEdgeLength: 50,
+            // idealEdgeLength: 100,
+ // Divisor to compute edge forces
+            // edgeElasticity: 0.45,
+            edgeElasticity: 0.1,
+ // Nesting factor (multiplier) to compute ideal edge length for inter-graph edges
+            // nestingFactor: 0.1,
+            nestingFactor: 0.1,
+            // nestingFactor: 10,
+ // Gravity force (constant)
+            // gravity: 0.25,
+            gravity: 0.25,
+ // Maximum number of iterations to perform
+            numIter: 2500,
+ // Whether to tile disconnected nodes
+            tile: true,
+ // Type of layout animation. The option set is {'during', 'end', false}
+            // animate: 'end',
+            animate: false,
+ // Amount of vertical space to put between degree zero nodes during tiling (can also be a function)
+            tilingPaddingVertical: 10,
+ // Amount of horizontal space to put between degree zero nodes during tiling (can also be a function)
+            tilingPaddingHorizontal: 10,
+ // Gravity range (constant) for compounds
+            gravityRangeCompound: 1.5,
+ // Gravity force (constant) for compounds
+            // gravityCompound: 1.0,
+            gravityCompound: 0.1,
+ // Gravity range (constant)
+            gravityRange: 3.8,
+ // Initial cooling factor for incremental layout
+            initialEnergyOnIncremental: 0.8,
         }).run();
     },
 };

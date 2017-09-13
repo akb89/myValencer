@@ -15,6 +15,7 @@
     "bulma": "^0.5.1",
     "cytoscape": "^3.2.2",
     "cytoscape-cola": "^2.0.0",
+    "cytoscape-cose-bilkent": "^2.1.0",
     "font-awesome": "^4.7.0",
     "kcors": "^2.2.1",
     "koa": "^2.3.0",

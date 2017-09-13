@@ -1,7 +1,12 @@
 const cytoscape = require('cytoscape');
-const cycola = require('cytoscape-cola');
 
-cytoscape.use(cycola);
+function getColor(relationType, colors, relationsColorMap) {
+    if (relationsColorMap.has(relationType)) {
+        return relationsColorMap.get(relationType);
+    }
+    relationsColorMap.set(relationType, colors[relationsColorMap.size]);
+    return colors[relationsColorMap.size];
+}
 
 module.exports = {
     name: 'FrameCluster',
@@ -19,61 +24,91 @@ module.exports = {
         });
         this.state.cy = cy;
         cy.add(this.$store.state.cytoframe.content);
-        cy.style().fromJson([ // the stylesheet for the graph
-            {
-                selector: 'node',
-                style: {
-                    'background-color': '#666',
-                    label: 'data(name)',
-                },
-            },
 
-            {
-                selector: 'edge',
+        const style = [];
+        const relationTypes = this.$store.state.cytoframe.content.reduce((items, item) => {
+            if (item.data.type) items.push(item.data.type);
+            return items;
+        }, []);
+        const COLORS = ['#3366ff', '#a6e22d', '#fd9720', '#43c6fc', '#ff0033', '#8e7dff', '#2fbbab',
+            '#ffcc00', '#e00084', '#ffff00']; // There are max 10 frame relations: 1 color each
+        const relationsColorMap = new Map();
+        relationTypes.forEach((relationType) => {
+            console.log(JSON.stringify(relationType));
+            const color = getColor(relationType, COLORS, relationsColorMap);
+            style.push(...[{
+                selector: `edge[type = '${relationType}']`,
                 style: {
-                    width: 3,
-                    'line-color': '#ccc',
-                    'target-arrow-color': '#ccc',
-                    'target-arrow-shape': 'triangle',
+                    width: 2,
+                    'line-color': color,
+                    'line-style': 'solid',
+                    opacity: 0.8,
                 },
+            }]);
+        });
+        style.push({
+            selector: 'node',
+            style: {
+                'background-color': 'orange',
+                width: '20px',
+                height: '20px',
+                'background-opacity': 0.6,
+                label: 'data(name)',
+                color: 'white',
             },
-        ]).update();
+        });
+        cy.style().fromJson(style).update();
+
         cy.layout({
-            name: 'cola',
-            animate: true, // whether to show the layout as it's running
-            refresh: 1, // number of ticks per frame; higher is faster but more jerky
-            maxSimulationTime: 4000, // max length in ms to run the layout
-            ungrabifyWhileSimulating: false, // so you can't drag nodes during layout
-            fit: true, // on every layout reposition of nodes, fit the viewport
-            padding: 30, // padding around the simulation
-            boundingBox: undefined, // constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
-            nodeDimensionsIncludeLabels: true, // whether labels should be included in determining the space used by a node (default true)
-
-            // layout event callbacks
-            ready() {}, // on layoutready
-            stop() {}, // on layoutstop
-
-            // positioning options
-            randomize: false, // use random node positions at beginning of layout
-            avoidOverlap: true, // if true, prevents overlap of node bounding boxes
-            handleDisconnected: true, // if true, avoids disconnected components from overlapping
-            nodeSpacing(node) { return 10; }, // extra spacing around nodes
-            flow: undefined, // use DAG/tree flow layout if specified, e.g. { axis: 'y', minSeparation: 30 }
-            alignment: undefined, // relative alignment constraints on nodes, e.g. function( node ){ return { x: 0, y: 1 } }
-
-            // different methods of specifying edge length
-            // each can be a constant numerical value or a function like `function( edge ){ return 2; }`
-            edgeLength: undefined, // sets edge length directly in simulation
-            edgeSymDiffLength: undefined, // symmetric diff edge length in simulation
-            edgeJaccardLength: undefined, // jaccard edge length in simulation
-
-            // iterations of cola algorithm; uses default values on undefined
-            unconstrIter: undefined, // unconstrained initial layout iterations
-            userConstIter: undefined, // initial layout iterations with user-specified constraints
-            allConstIter: undefined, // initial layout iterations with all constraints including non-overlap
-
-            // infinite layout options
-            infinite: false, // overrides all other options for a forces-all-the-time mode
+            name: 'cose-bilkent',
+            // Called on `layoutready`
+            ready() {
+            },
+            // Called on `layoutstop`
+            stop() {
+            },
+            // Whether to include labels in node dimensions. Useful for avoiding label overlap
+            nodeDimensionsIncludeLabels: true,
+            // number of ticks per frame; higher is faster but more jerky
+            refresh: 30,
+            // Whether to fit the network view after when done
+            fit: true,
+            // Padding on fit
+            padding: 10,
+            // Whether to enable incremental mode
+            randomize: false,
+            // Node repulsion (non overlapping) multiplier
+            nodeRepulsion: 4500,
+            // nodeRepulsion: 45000,
+            // Ideal (intra-graph) edge length
+            idealEdgeLength: 50,
+            // idealEdgeLength: 100,
+            // Divisor to compute edge forces
+            edgeElasticity: 0.45,
+            // Nesting factor (multiplier) to compute ideal edge length for inter-graph edges
+            nestingFactor: 0.1,
+            // Gravity force (constant)
+            gravity: 0.25,
+            // Maximum number of iterations to perform
+            numIter: 2500,
+            // Whether to tile disconnected nodes
+            tile: true,
+            // Type of layout animation. The option set is {'during', 'end', false}
+            // animate: 'end'
+            animate: false,
+            // Amount of vertical space to put between degree zero nodes during tiling (can also be a function)
+            tilingPaddingVertical: 10,
+            // Amount of horizontal space to put between degree zero nodes during tiling (can also be a function)
+            tilingPaddingHorizontal: 10,
+            // Gravity range (constant) for compounds
+            gravityRangeCompound: 1.5,
+            // Gravity force (constant) for compounds
+            gravityCompound: 1.0,
+            // gravityCompound: 0.1,
+            // Gravity range (constant)
+            gravityRange: 3.8,
+            // Initial cooling factor for incremental layout
+            initialEnergyOnIncremental: 0.8,
         }).run();
     },
 };
