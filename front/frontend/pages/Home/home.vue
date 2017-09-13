@@ -20,8 +20,8 @@
         <div class="column is-8">
             <div class="field">
                 <div class="control has-text-centered">
-                    <button @click="fetch_data" class="button is-info">Search</button>
-                    <button @click="fetch_trying_data" class="button is-info">Try me out!</button>
+                    <button @click="fetch_data" class="button is-primary">Search</button>
+                    <button @click="fetch_trying_data" class="button is-primary">Try me out!</button>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
         </div>
       </div>
       <div class="column is-2">
-        <button @click="fetch_data" class="button is-info">Search</button>
+        <button @click="fetch_data" class="button is-primary">Search</button>
       </div>
   </div>
   <!-- <div class="columns is-multiline is-mobile">
