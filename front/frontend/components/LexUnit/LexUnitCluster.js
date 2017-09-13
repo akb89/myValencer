@@ -36,7 +36,7 @@ module.exports = {
             }
             return idset;
         }, new Set());
-        const COLORS = ['#a6e22d', '#fd9720', '#43c6fc', '#8e7dff', '#2fbbab',
+        const COLORS = ['#00d1b2', '#fd9720', '#43c6fc', '#8e7dff', '#2fbbab',
             '#ffcc00', '#e00084'];
         let colorCounter = 0;
         frameIDs.forEach((id) => {

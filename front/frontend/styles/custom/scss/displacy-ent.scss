@@ -2,8 +2,11 @@
 //- Based on 💥 DISPLACY ENT
 //- ----------------------------------
 
-$labels: (f1: #a6e22d, f2: #fd9720, f3: #43c6fc, f4: #8e7dff, f5: #2fbbab,
-f6: #ffcc00, f7: #999, f8: #e00084);
+$labels: (f1: #00d1b2, f2: #ffdd57, f3: #43c6fc, f4: #8e7dff, f5: #fd9720,
+f6: #a6e22d, f7: #999, f8: #ff3860);
+
+// $labels: (f1: #a6e22d, f2: #fd9720, f3: #43c6fc, f4: #8e7dff, f5: #2fbbab,
+// f6: #ffcc00, f7: #999, f8: #e00084);
 
 .fnlabels {
   line-height: 2;

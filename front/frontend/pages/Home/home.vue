@@ -3,7 +3,7 @@
     <div class="columns is-centered">
         <div class="column is-6">
             <div class="figure is-16by9">
-                <img src='/public/front/img/logo.png' alt='Valencer Logo' />
+                <img src='/public/front/img/logo_colors.png' alt='Valencer Logo' />
             </div>
         </div>
     </div>
@@ -11,7 +11,7 @@
         <div class="column is-6">
             <div class="field">
                 <div class="control">
-                    <input v-focus :value="state.input" @input="update_input" class="input" type="text" placeholder="Type your fantastic query" />
+                    <input v-focus :value="state.input" @input="update_input" class="input" type="text" placeholder="Type in a valence pattern to search..." />
                 </div>
             </div>
         </div>
@@ -30,8 +30,8 @@
 <div v-else class="container is-fluid">
     <div class="columns is-multiline is-mobile is-centered is-vcentered">
       <div class="column is-2">
-        <div class="image is-16by9">
-            <img src='/public/front/img/logo_16by9_tiny.png' alt='myValencer Logo' />
+        <div class="image">
+            <img src='/public/front/img/logo_colors_16by9_tiny.png' alt='myValencer Logo' />
         </div>
       </div>
       <div class="column is-8">
