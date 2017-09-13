@@ -28,7 +28,9 @@
           :key="item._id"
           :name="item.name"
           :sem-types="item.semTypes"
-          :frame-elements="item.frameElements">
+          :frame-elements="item.frameElements"
+          :lexUnits="item.lexUnits"
+          :definition="item.definition">
       </fn-frame>
       <fn-frame-cluster
         v-if="state.display.cluster && !$store.state.cytoframe.loading">

@@ -4,8 +4,8 @@ module.exports = {
         return {
             state: {
                 display: {
-                    raw: false,
-                    cluster: true,
+                    raw: true,
+                    cluster: false,
                 },
             },
         };
