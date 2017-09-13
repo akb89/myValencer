@@ -6,4 +6,3 @@
 *.log
 node_modules/
 build/
-public/

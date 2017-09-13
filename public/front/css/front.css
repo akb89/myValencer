@@ -1,16 +1,3 @@
-.mv-loader .color-black {
-  background-color: black;
-}
-.mv-loader .primary-color {
-  background-color: #3273dc;
-}
-#cy {
-  width: 100%;
-  height: 500px;
-  display: block;
-  background-color: #0a0a0a;
-}
-
 @-webkit-keyframes enter {
   0% {
     opacity: 0;
@@ -156,3 +143,16 @@
     border-color: #ff3860; }
     [label-format][label-format="f8"]:after {
       background: #ff3860; }
+
+.mv-loader .color-black {
+  background-color: black;
+}
+.mv-loader .primary-color {
+  background-color: #3273dc;
+}
+#cy {
+  width: 100%;
+  height: 500px;
+  display: block;
+  background-color: #0a0a0a;
+}
