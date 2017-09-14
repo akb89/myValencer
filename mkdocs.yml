@@ -1,0 +1,10 @@
+site_name: myValencer
+pages:
+  - Home: index.md
+theme: 'material'
+
+extra:
+  palette:
+    primary: 'cyan'
+    accent: 'light blue'
+  logo: 'images/logo_colors_square.jpg'
