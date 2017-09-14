@@ -53,6 +53,9 @@ module.exports = {
             }
         },
     },
+    mounted() {
+        this.infiniteLoadMore();
+    },
     components: {
         InfiniteLoading,
     },

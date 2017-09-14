@@ -12,8 +12,8 @@ module.exports = {
                 request_type: 'ANNOSET',
                 final_request_type: '',
                 display: {
-                    annosets: false,
-                    frames: true,
+                    annosets: true,
+                    frames: false,
                     lexunits: false,
                 },
             },
