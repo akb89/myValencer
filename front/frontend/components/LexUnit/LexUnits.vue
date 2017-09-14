@@ -34,7 +34,12 @@
           :sem-types="item.semTypes"
           :frame="item.frame">
           </fn-lexunit>
-          <infinite-loading v-if="state.content.length > 0" :on-infinite="infiniteLoadMore" ref="infiniteLoading"></infinite-loading>
+          <infinite-loading 
+              v-if="state.content.length > 0 && $store.state.annoset.content.length > state.infiniteSlice"
+              :on-infinite="infiniteLoadMore" 
+              ref="infiniteLoading"
+          >
+          </infinite-loading>
       </div>
       <fn-lexunit-cluster
         v-if="state.display.cluster && !$store.state.cytolexunit.loading">

@@ -32,9 +32,9 @@
           :lexUnits="item.lexUnits"
           :definition="item.definition">
       </fn-frame>
-      <fn-frame-cluster
+      <!--<fn-frame-cluster
         v-if="state.display.cluster && !$store.state.cytoframe.loading">
-      </fn-frame-cluster>
+        </fn-frame-cluster>-->
     </div>
 </template>
 

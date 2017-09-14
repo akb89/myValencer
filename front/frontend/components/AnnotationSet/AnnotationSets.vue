@@ -22,7 +22,10 @@
           :frame="item.lexUnit.frame"
           :pattern="item.pattern">
           </fn-annoset-ent>
-          <infinite-loading :on-infinite="infiniteLoadMore" ref="infiniteLoading"></infinite-loading>
+          <infinite-loading
+          v-if="$store.state.annoset.content.length > state.infiniteSlice"
+          :on-infinite="infiniteLoadMore" 
+          ref="infiniteLoading"></infinite-loading>
       </div>
     </div>
 </template>
