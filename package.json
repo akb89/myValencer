@@ -8,7 +8,7 @@
   "main": "app/app.js",
   "scripts": {
     "dev": "node --harmony app/app.js",
-    "start": "NODE_ENV=production ./node_modules/.bin/pm2 start app/app.js --name myValencer",
+    "start": "NODE_ENV=production ./node_modules/.bin/pm2 start app/app.js --name myValencer --env production",
     "stop": "./node_modules/.bin/pm2 stop myValencer",
     "watch": "./node_modules/.bin/nodemon -e js,jsx,less,css,scss -w 'app/**/*.*' -w 'public/**/*.*' -x 'npm run dev'"
   },
