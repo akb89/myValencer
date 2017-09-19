@@ -1,4 +1,6 @@
-const PREFIX = 'http://localhost:3030'; // TODO to be defined in a config file!
+const Config = require('../../../app/config');
+
+const PREFIX = Config.api_host;
 const VERSION = 'v4';
 const LANG = 'en';
 const FN = '170';
