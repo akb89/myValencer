@@ -5,7 +5,7 @@
       </div>
       <div v-if="!$store.state.annoset.loading && state.content.length > 0">
           <fn-annoset
-          v-if="state.display.raw && !$store.state.annoset.loading"
+          v-if="$store.state.display.subtype === 'RAW' && !$store.state.annoset.loading"
           v-for="item in state.content"
           :key="item._id"
           :sentence="item.sentence"
@@ -14,7 +14,7 @@
           :pattern="item.pattern">
           </fn-annoset>
           <fn-annoset-ent
-          v-if="state.display.ent && !$store.state.annoset.loading"
+          v-if="$store.state.display.subtype === 'ENT' && !$store.state.annoset.loading"
           v-for="item in state.content"
           :key="item._id"
           :labels="item.labels"
@@ -22,10 +22,10 @@
           :frame="item.lexUnit.frame"
           :pattern="item.pattern">
           </fn-annoset-ent>
-          <infinite-loading
-          v-if="$store.state.annoset.content.length > state.infiniteSlice"
+          <!--<infinite-loading
+          v-if="$store.state.annoset.content.length > state.infiniteSlice && $store.state.display.type === 'ANNOSET'"
           :on-infinite="infiniteLoadMore" 
-          ref="infiniteLoading"></infinite-loading>
+          ref="infiniteLoading"></infinite-loading>-->
       </div>
     </div>
 </template>

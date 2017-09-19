@@ -1,24 +1,11 @@
 module.exports = {
     name: 'Frames',
     data() {
-        return {
-            state: {
-                display: {
-                    raw: true,
-                    cluster: false,
-                },
-            },
-        };
+        return {};
     },
     methods: {
         display_tab(tab_name) {
-            Object.keys(this.state.display).forEach((key) => {
-                if (key === tab_name) {
-                    this.state.display[key] = true;
-                } else {
-                    this.state.display[key] = false;
-                }
-            });
+            this.$store.commit('display_tab', { name: tab_name, display: 'subtype' });
         },
     },
 };

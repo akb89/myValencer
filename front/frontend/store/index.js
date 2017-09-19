@@ -1,86 +1,35 @@
 const Vue = require('vue');
 const Vuex = require('vuex');
+const _ = require('lodash');
 const mutations = require('./mutations');
 const actions = require('./actions');
+const state = require('./state');
+const mmutations = require('./module_store/mutations');
+const mactions = require('./module_store/actions');
+const mstate = require('./module_store/state');
 
 Vue.use(Vuex);
 
-const annoset_module = {
+const modules_list = ['annoset', 'entannoset',
+    'frame', 'cytoframe', 'lexunit', 'cytolexunit'];
+
+const module_template = {
     namespaced: true,
-    state: {
-        loading: false,
-        success: false,
-        content: [],
-    },
-    mutations,
-    actions,
+    state: mstate,
+    mutations: mmutations,
+    actions: mactions,
 };
 
-const ent_annoset_module = {
-    namespaced: true,
-    state: {
-        loading: false,
-        success: false,
-        content: [],
-    },
-    mutations,
-    actions,
-};
-
-const frame_module = {
-    namespaced: true,
-    state: {
-        loading: false,
-        success: false,
-        content: [],
-    },
-    mutations,
-    actions,
-};
-
-const cytoframe_module = {
-    namespaced: true,
-    state: {
-        loading: false,
-        success: false,
-        content: [],
-    },
-    mutations,
-    actions,
-};
-
-const lexunit_module = {
-    namespaced: true,
-    state: {
-        loading: false,
-        success: false,
-        content: [],
-    },
-    mutations,
-    actions,
-};
-
-const cytolexunit_module = {
-    namespaced: true,
-    state: {
-        loading: false,
-        success: false,
-        content: [],
-    },
-    mutations,
-    actions,
-};
-
+const modules = modules_list.reduce((obj, module) => {
+    obj[module] = _.cloneDeep(module_template);
+    return obj;
+}, {});
 
 const store = new Vuex.Store({
-    modules: {
-        annoset: annoset_module,
-        frame: frame_module,
-        lexunit: lexunit_module,
-        cytoframe: cytoframe_module,
-        cytolexunit: cytolexunit_module,
-        entannoset: ent_annoset_module,
-    },
+    modules,
+    state,
+    actions,
+    mutations,
 });
 
 module.exports = store;

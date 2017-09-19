@@ -88,14 +88,17 @@
     <div class="column is-12">
       <div class="tabs is-centered">
         <ul>
-          <li v-bind:class="{ 'is-active': state.display.annosets }" @click="display_tab('annosets')"><a>Annotations</a></li>
-          <li v-bind:class="{ 'is-active': state.display.frames }" @click="display_tab('frames')"><a>Frames</a></li>
-          <li v-bind:class="{ 'is-active': state.display.lexunits }" @click="display_tab('lexunits')"><a>Lexical units</a></li>
+          <li v-bind:class="{ 'is-active': $store.state.display.type === 'ANNOSET'}" @click="display_tab('ANNOSET')"><a>Annotations</a></li>
+          <li v-bind:class="{ 'is-active': $store.state.display.type === 'FRAME' }" @click="display_tab('FRAME')"><a>Frames</a></li>
+          <li v-bind:class="{ 'is-active': $store.state.display.type === 'LEXUNIT'}" @click="display_tab('LEXUNIT')"><a>Lexical units</a></li>
         </ul>
     </div>
-    <fn-annosets v-if="state.display.annosets"></fn-annosets>
-    <fn-frames v-if="state.display.frames"></fn-frames>
-    <fn-lexunits v-if="state.display.lexunits"></fn-lexunits>
+    <!--<fn-annosets v-bind:class="{'is-hidden': $store.state.display.type !== 'ANNOSET'}"></fn-annosets>
+    <fn-frames v-bind:class="{'is-hidden': $store.state.display.type !== 'FRAME'}"></fn-frames>
+    <fn-lexunits v-bind:class="{'is-hidden': $store.state.display.type !== 'LEXUNIT'}"></fn-lexunits>-->
+    <fn-annosets v-if="$store.state.display.type === 'ANNOSET'"></fn-annosets>
+    <fn-frames v-if="$store.state.display.type === 'FRAME'"></fn-frames>
+    <fn-lexunits v-if="$store.state.display.type === 'LEXUNIT'"></fn-lexunits>
     </div>
   </div>
 </div>

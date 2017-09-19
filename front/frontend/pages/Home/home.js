@@ -86,13 +86,7 @@ module.exports = {
             }
         },
         display_tab(tab_name) {
-            Object.keys(this.state.display).forEach((key) => {
-                if (key === tab_name) {
-                    this.state.display[key] = true;
-                } else {
-                    this.state.display[key] = false;
-                }
-            });
+            this.$store.commit('display_tab', { name: tab_name, display: 'type' });
         },
     },
     directives: {

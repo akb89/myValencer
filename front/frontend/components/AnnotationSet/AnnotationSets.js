@@ -7,11 +7,6 @@ module.exports = {
             state: {
                 content: [],
                 infiniteSlice: 10,
-                display: {
-                    ent: true,
-                    dep: false,
-                    raw: false,
-                },
             },
         };
     },
@@ -27,17 +22,12 @@ module.exports = {
     },
     methods: {
         display_tab(tab_name) {
-            Object.keys(this.state.display).forEach((key) => {
-                if (key === tab_name) {
-                    this.state.display[key] = true;
-                } else {
-                    this.state.display[key] = false;
-                }
-            });
+            this.$store.commit('display_tab', { name: tab_name, display: 'subtype' });
         },
         infiniteLoadMore() {
             const store_content = this.$store.state.annoset.content;
             const store_content_len = store_content.length;
+
             if (store_content_len === 0) {
                 this.state.content = [];
                 return;

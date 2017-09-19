@@ -1,24 +1,13 @@
-const Messages = require('../api/messages');
-
 module.exports = {
-    [Messages.LOADING]: (state) => {
-        state.loading = true;
-        state.success = false;
-        state.content = [];
-    },
-    [Messages.FETCH]: (state, payload) => {
-        state.success = payload.type === Messages.SUCCESS;
-        if (payload.content == null) {
-            payload.content = [];
+    display_tab: (state, payload) => {
+        // TODO HACK HACK HACK, should use tabs as well
+        if (payload.display === 'type') {
+            if (payload.name === 'ANNOSET') {
+                state.display.subtype = 'ENT';
+            } else {
+                state.display.subtype = 'RAW';
+            }
         }
-
-        if (state.success) {
-            state.content = payload.content instanceof Array ? payload.content
-                : [payload.content];
-        } else {
-            state.content = payload.content;
-        }
-        state.loading = false;
-        console.log(state.success, state.content);
+        state.display[payload.display] = payload.name;
     },
 };

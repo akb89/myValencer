@@ -83,8 +83,6 @@ module.exports = {
 
             container.appendChild(document.createTextNode(text.slice(offset, text.length)));
 
-            console.log(`%c💥  HTML markup\n%c${container.innerHTML}`,
-            'font: bold 16px/2 arial, sans-serif', 'font: 13px/1.5 Consolas, "Andale Mono", Menlo, Monaco, Courier, monospace');
             return container.innerHTML;
         },
     },
