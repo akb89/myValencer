@@ -18,7 +18,7 @@ const gzip = require('gulp-gzip');
 const htmlreplace = require('gulp-html-replace');
 const clean = require('gulp-clean');
 const uglify = require('gulp-uglify');
-const vueify = require('vueify')
+const vueify = require('vueify');
 
 class GulpFrontend {
     constructor(production) {
@@ -66,7 +66,7 @@ class GulpFrontend {
 
         return appBundler
         .transform(envify({
-            NODE_ENV= process.env.NODE_ENV || 'development',
+            NODE_ENV: process.env.NODE_ENV || 'development',
         }))
         .transform(vueify)
         .transform('babelify', {
@@ -76,7 +76,7 @@ class GulpFrontend {
         .bundle()
         .on('error', gutil.log)
         .pipe(source('bundle.js'))
-        //.pipe(gulpif(this.isProduction, uglify({ mangle: true })))
+        // .pipe(gulpif(this.isProduction, uglify({ mangle: true })))
         .pipe(gulp.dest(this.PUB_LOCATIONS.js));
     }
 
@@ -88,7 +88,7 @@ class GulpFrontend {
         .bundle()
         .on('error', gutil.log)
         .pipe(source('vendors.js'))
-        //.pipe(gulpif(this.isProduction, uglify({ mangle: true })))
+        // .pipe(gulpif(this.isProduction, uglify({ mangle: true })))
         .pipe(gulp.dest(this.PUB_LOCATIONS.js));
     }
 
@@ -96,7 +96,7 @@ class GulpFrontend {
         gulp
         .src(this.external_dependencies)
         .pipe(concat('vendors.external.js'))
-        //.pipe(gulpif(this.isProduction, uglify({ mangle: true })))
+        // .pipe(gulpif(this.isProduction, uglify({ mangle: true })))
         .pipe(gulp.dest(this.PUB_LOCATIONS.js));
     }
 
