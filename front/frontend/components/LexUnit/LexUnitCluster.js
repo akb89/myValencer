@@ -1,16 +1,16 @@
 const cytoscape = require('cytoscape');
-// const cycola = require('cytoscape-cola');
 const regCose = require('cytoscape-cose-bilkent');
 
 regCose(cytoscape); // register extension
-
-// cytoscape.use(cycola);
 
 function getColor(counter, colors) {
     if (counter < colors.length) {
         return { color: colors[counter], blacken: 0 };
     }
-    return { color: colors[counter % colors.length], blacken: -0.3 * Math.floor(counter / colors.length) };
+    return {
+        color: colors[counter % colors.length],
+        blacken: -0.15 * Math.floor(counter / colors.length),
+    };
 }
 
 module.exports = {
@@ -26,6 +26,8 @@ module.exports = {
     mounted() {
         const cy = cytoscape({
             container: document.getElementById('cy'), // container to render in
+            hideEdgesOnViewport: true,
+            hideLabelsOnViewport: true,
         });
         this.state.cy = cy;
         cy.add(this.$store.state.cytolexunit.content);

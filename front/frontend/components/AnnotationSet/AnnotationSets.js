@@ -45,7 +45,7 @@ module.exports = {
 
             const slice = this.state.infiniteSlice;
             const start = this.state.content.length;
-            for (let i = start; i < store_content_len && i < (start + slice); i++) {
+            for (let i = start; i < store_content_len && i < (start + slice); i += 1) {
                 this.state.content.push(store_content[i]);
             }
             if ('infiniteLoading' in this.$refs) {
