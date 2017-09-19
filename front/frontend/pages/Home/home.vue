@@ -11,7 +11,7 @@
         <div class="column is-6">
             <div class="field">
                 <div class="control">
-                    <input v-focus :value="state.input" @input="update_input" class="input" type="text" placeholder="Type in a valence pattern to search..." />
+                    <input v-focus :value="state.input" @input="update_input" @keyup.enter="fetch_data" class="input" type="text" placeholder="Type in a valence pattern to search..." />
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
       <div class="column is-8">
         <div class="field">
           <p class="control has-icons-right">
-            <input v-focus :value="state.input" @input="update_input" class="input" type="text" placeholder="Type your fantastic query" >
+            <input v-focus :value="state.input" @input="update_input" @keyup.enter="fetch_data" class="input" type="text" placeholder="Type your fantastic query" >
             <span class="icon is-small is-right">
               <i class="fa fa-search" aria-hidden="false"></i>
             </span>
