@@ -8,6 +8,7 @@
   "main": "app/app.js",
   "scripts": {
     "dev": "node --harmony app/app.js",
+    "build": "NODE_ENV=production gulp default",
     "start": "NODE_ENV=production ./node_modules/.bin/pm2 start app/app.js --name myValencer --env production",
     "stop": "./node_modules/.bin/pm2 stop myValencer",
     "watch": "./node_modules/.bin/nodemon -e js,jsx,less,css,scss -w 'app/**/*.*' -w 'public/**/*.*' -x 'npm run dev'"
@@ -41,6 +42,7 @@
     "babelify": "^7.3.0",
     "browserify": "^14.3.0",
     "chai": "^3.5.0",
+    "envify": "^4.1.0",
     "eslint": "^3.17.1",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-flowtype": "^2.32.1",

@@ -3,6 +3,7 @@
 const fs = require('fs');
 const gulp = require('gulp');
 const browserify = require('browserify');
+const envify = require('envify/custom');
 const source = require('vinyl-source-stream');
 const gutil = require('gulp-util');
 const gulpif = require('gulp-if');
@@ -64,6 +65,9 @@ class GulpFrontend {
         });
 
         return appBundler
+        .transform(envify({
+            NODE_ENV= process.env.NODE_ENV || 'development';
+        }))
         .transform(vueify)
         .transform('babelify', {
             presets: ['es2015'],
