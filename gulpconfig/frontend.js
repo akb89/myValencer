@@ -66,7 +66,7 @@ class GulpFrontend {
 
         return appBundler
         .transform(envify({
-            NODE_ENV= process.env.NODE_ENV || 'development';
+            NODE_ENV= process.env.NODE_ENV || 'development',
         }))
         .transform(vueify)
         .transform('babelify', {
