@@ -14,7 +14,7 @@ function getColor(counter, colors) {
 }
 
 module.exports = {
-    name: 'LexUnitCluster',
+    name: 'Cluster',
     props: [],
     data() {
         return {

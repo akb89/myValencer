@@ -91,14 +91,13 @@
           <li v-bind:class="{ 'is-active': $store.state.display.type === 'ANNOSET'}" @click="display_tab('ANNOSET')"><a>Annotations</a></li>
           <li v-bind:class="{ 'is-active': $store.state.display.type === 'FRAME' }" @click="display_tab('FRAME')"><a>Frames</a></li>
           <li v-bind:class="{ 'is-active': $store.state.display.type === 'LEXUNIT'}" @click="display_tab('LEXUNIT')"><a>Lexical units</a></li>
+          <li v-bind:class="{ 'is-active': $store.state.display.type === 'CLUSTER'}" @click="display_tab('CLUSTER')"><a>Cluster</a></li>
         </ul>
     </div>
-    <!--<fn-annosets v-bind:class="{'is-hidden': $store.state.display.type !== 'ANNOSET'}"></fn-annosets>
-    <fn-frames v-bind:class="{'is-hidden': $store.state.display.type !== 'FRAME'}"></fn-frames>
-    <fn-lexunits v-bind:class="{'is-hidden': $store.state.display.type !== 'LEXUNIT'}"></fn-lexunits>-->
     <fn-annosets v-if="$store.state.display.type === 'ANNOSET'"></fn-annosets>
     <fn-frames v-if="$store.state.display.type === 'FRAME'"></fn-frames>
     <fn-lexunits v-if="$store.state.display.type === 'LEXUNIT'"></fn-lexunits>
+    <fn-cluster v-if="$store.state.display.type === 'CLUSTER'"></fn-cluster>
     </div>
   </div>
 </div>

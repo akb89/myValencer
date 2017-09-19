@@ -11,11 +11,6 @@ module.exports = {
                 try_query: 'Donor.NP.Ext Theme.NP.Obj Recipient.PP.Dep',
                 request_type: 'ANNOSET',
                 final_request_type: '',
-                display: {
-                    annosets: true,
-                    frames: false,
-                    lexunits: false,
-                },
             },
         };
     },

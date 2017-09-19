@@ -1,9 +1,9 @@
 <template>
   <div class="columns is-centered">
-    <div id="cy"></div>
+      <div id="cy"></div>
   </div>
 </template>
 
 <script>
-module.exports = require('./FrameCluster');
+module.exports = require('./Cluster');
 </script>
