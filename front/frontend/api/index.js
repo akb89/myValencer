@@ -16,6 +16,7 @@ async function fetch(object) {
         return {
             type: Messages.SUCCESS,
             content: res.body,
+            header: res.header,
         };
     } catch (err) {
         return {

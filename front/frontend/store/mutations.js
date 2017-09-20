@@ -10,4 +10,7 @@ module.exports = {
         }
         state.display[payload.display] = payload.name;
     },
+    update_query: (state, input) => {
+        state.queries.current = input;
+    },
 };

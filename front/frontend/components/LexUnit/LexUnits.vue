@@ -1,5 +1,15 @@
 <template>
-    <div>
+<div>
+    <div class="columns">
+        <div class="column is-12">
+            <paginator 
+            display="LEXUNIT" 
+            :items-per-page=this.$store.state.queries.items
+            :number-of-items=this.$store.state.lexunit.total
+            :skip=this.$store.state.lexunit.skip
+            />
+        </div>
+    </div>
       <div v-if="$store.state.lexunit.loading" class="columns is-centered">
           <loader></loader>
       </div>
@@ -15,7 +25,17 @@
           :frame="item.frame">
           </fn-lexunit>
       </div>
+    <div class="columns">
+        <div class="column is-12">
+            <paginator 
+            display="LEXUNIT" 
+            :items-per-page=this.$store.state.queries.items
+            :number-of-items=this.$store.state.lexunit.total
+            :skip=this.$store.state.lexunit.skip
+            />
+        </div>
     </div>
+</div>
 </template>
 
 <script>

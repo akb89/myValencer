@@ -10,6 +10,7 @@ const Frames = require('./components/Frame/Frames.vue');
 const LexUnit = require('./components/LexUnit/LexUnit.vue');
 const LexUnits = require('./components/LexUnit/LexUnits.vue');
 const Loader = require('./components/Loader.vue');
+const Paginator = require('./components/Paginator/Paginator.vue');
 
 Vue.component('fn-annoset', AnnotationSet);
 Vue.component('fn-annosets', AnnotationSets);
@@ -20,6 +21,7 @@ Vue.component('fn-frames', Frames);
 Vue.component('fn-lexunit', LexUnit);
 Vue.component('fn-lexunits', LexUnits);
 Vue.component('loader', Loader);
+Vue.component('paginator', Paginator);
 
 const App = require('./pages/app.vue');
 

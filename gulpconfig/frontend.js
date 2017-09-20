@@ -28,7 +28,7 @@ class GulpFrontend {
             js: 'public/front/js',
             css: 'public/front/css',
             fonts: 'public/front/fonts',
-            imgs: 'public/front/imgs',
+            imgs: 'public/front/img',
             views: 'public/front/views',
         };
 
@@ -104,6 +104,7 @@ class GulpFrontend {
         gulp.watch(['./front/frontend/**/*.{vue,js}'], ['front-scripts']);
         gulp.watch(['./front/frontend/styles/**/*.*'], ['front-styles']);
         gulp.watch(['./front/frontend/views/*.*'], ['front-views']);
+        gulp.watch(['./front/frontend/img/*.*'], ['front-imgs']);
     }
 
     createVendorStyles() {
@@ -138,6 +139,14 @@ class GulpFrontend {
             `${font_awesome}/FontAwesome.otf`,
         ])
         .pipe(gulp.dest(this.PUB_LOCATIONS.fonts));
+    }
+
+    copyImgs() {
+        const imgs = './front/frontend/img';
+        return gulp.src([
+            `${imgs}/*`,
+        ])
+        .pipe(gulp.dest(this.PUB_LOCATIONS.imgs));
     }
 
     copyViews() {
