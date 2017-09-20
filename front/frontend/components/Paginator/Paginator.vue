@@ -1,5 +1,5 @@
 <template>
-    <nav class="is-small pagination is-centered" role="navigation" aria-label="pagination">
+<nav v-if="state.firstPage < state.lastPage" class="is-small pagination is-centered" role="navigation" aria-label="pagination">
     <ul class="pagination-list">
         <li v-if="state.currentPage > 1"><a @click="goto(state.currentPage-1, $event)" class="pagination-link">Previous</a></li>
         <li v-if="state.currentPage > state.firstPage"><a @click="goto(1, $event)" class="pagination-link" aria-label="Goto page 1">1</a></li>

@@ -23,4 +23,8 @@ module.exports = {
         }
         state.loading = false;
     },
+    reset_state: (state) => {
+        state.skip = 0;
+        state.total = 0;
+    },
 };

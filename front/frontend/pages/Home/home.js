@@ -15,6 +15,9 @@ module.exports = {
         },
         fetch_data(e) {
             e.preventDefault();
+            this.$store.commit('annoset/reset_state');
+            this.$store.commit('frame/reset_state');
+            this.$store.commit('lexunit/reset_state');
             if (this.is_id_type_query(this.$store.state.queries.current)) {
                 this.fetch_id_data(e);
             } else {
@@ -60,8 +63,9 @@ module.exports = {
             return false;
         },
         fetch_trying_data(e) {
-            this.$store.commit('update_query', this.$store.state.queries.default);
-            if (this.is_id_type_query(this.$store.state.queries.default)) {
+            const q = Utils.choice(this.$store.state.queries.default);
+            this.$store.commit('update_query', q);
+            if (this.is_id_type_query(q)) {
                 this.fetch_id_data(e);
             } else {
                 this.fetch_vp_data(e);
