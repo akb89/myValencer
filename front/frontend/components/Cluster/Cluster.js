@@ -3,12 +3,30 @@ const regCose = require('cytoscape-cose-bilkent');
 
 regCose(cytoscape); // register extension
 
-function getColor(relationType, colors, relationsColorMap) {
-    if (relationsColorMap.has(relationType)) {
-        return relationsColorMap.get(relationType);
-    }
-    relationsColorMap.set(relationType, colors[relationsColorMap.size]);
-    return colors[relationsColorMap.size];
+
+const RELATION_COLORS = {
+    Inheritance: '#00d1b2',
+    Subframe: '#fd9720',
+    Using: '#43c6fc',
+    See_also: '#',
+    ReFraming_Mapping: '#8e7dff',
+    Inchoative_of: '#2fbbab',
+    Causative_of: '#ffcc00',
+    Precedes: '#e00084',
+    Perspective_on: '#3366ff',
+    Metaphor: '#ff0033',
+};
+
+const NODE_COLORS = ['#00d1b2', '#fd9720', '#43c6fc', '#8e7dff', '#2fbbab',
+    '#ffcc00', '#e00084'];
+
+const blackenThreshold = 0.20;
+
+function getNodeColor(colorCounter, blackenCounter) {
+    return {
+        color: NODE_COLORS[colorCounter],
+        blacken: -0.8 + (blackenThreshold * blackenCounter),
+    };
 }
 
 function displayCluster(cytoframes) {
@@ -17,37 +35,75 @@ function displayCluster(cytoframes) {
     });
     cy.add(cytoframes);
     const style = [];
-    const relationTypes = cytoframes.reduce((items, item) => {
-        if (item.data.type) items.push(item.data.type);
-        return items;
-    }, []);
-    const COLORS = ['#3366ff', '#a6e22d', '#fd9720', '#43c6fc', '#ff0033', '#8e7dff', '#2fbbab',
-        '#ffcc00', '#e00084', '#ffff00']; // There are max 10 frame relations: 1 color each
-    const relationsColorMap = new Map();
+    const relationTypes = [];
+    const nodes = [];
+    cytoframes.forEach((item) => {
+        if (item.data.type) relationTypes.push(item.data.type);
+        if (item.data.name) nodes.push(item);
+    });
     relationTypes.forEach((relationType) => {
-        console.log(JSON.stringify(relationType));
-        const color = getColor(relationType, COLORS, relationsColorMap);
+        const relationColor = RELATION_COLORS[relationType];
         style.push(...[{
             selector: `edge[type = '${relationType}']`,
             style: {
                 width: 2,
-                'line-color': color,
+                'curve-style': 'bezier',
+                'line-color': relationColor,
                 'line-style': 'solid',
-                opacity: 0.8,
+                opacity: 0.4,
             },
         }]);
     });
-    style.push({
-        selector: 'node',
-        style: {
-            'background-color': 'orange',
-            width: '20px',
-            height: '20px',
-            'background-opacity': 0.6,
-            label: 'data(name)',
-            color: 'white',
-        },
+    let colorCounter = 0;
+    let blackenCounter = 0;
+    nodes.forEach((node) => {
+        const background = getNodeColor(colorCounter, blackenCounter);
+        style.push({
+            selector: `node[id = "${node.data.id}"]`,
+            style: {
+                'background-color': background.color,
+                'background-blacken': -0.5,
+                width: '20px',
+                height: '20px',
+                'background-opacity': 0.7,
+                label: 'data(name)',
+                color: background.color,
+                opacity: 0.9,
+            },
+        });
+        colorCounter += 1;
+        if (colorCounter === NODE_COLORS.length) {
+            colorCounter = 0;
+            blackenCounter += 1;
+        }
     });
+
+    cy.on('mouseover', 'edge', (event) => {
+        const edge = event.target;
+        cy.style().selector(`edge[id = '${edge.id()}']`).style({
+            opacity: 1,
+            label: 'data(type)',
+            color: 'white',
+            'text-rotation': 'autorotate',
+            'text-margin-y': '-15px',
+        }).update();
+    });
+    cy.on('mouseout', 'edge', (event) => {
+        const edge = event.target;
+        cy.style().selector(`edge[id = '${edge.id()}']`).style({ opacity: 0.4, label: '' }).update();
+    });
+    cy.on('mouseover', 'node', (event) => {
+        const edge = event.target;
+        cy.style().selector(`node[id = '${edge.id()}']`).style({
+            opacity: 1,
+            // color: 'white',
+        }).update();
+    });
+    cy.on('mouseout', 'node', (event) => {
+        const edge = event.target;
+        cy.style().selector(`node[id = '${edge.id()}']`).style({ opacity: 0.9 }).update();
+    });
+
     cy.style().fromJson(style).update();
 
     cy.layout({
@@ -65,19 +121,21 @@ function displayCluster(cytoframes) {
   // Whether to fit the network view after when done
         fit: true,
   // Padding on fit
-        padding: 10,
+        padding: 30,
   // Whether to enable incremental mode
         randomize: false,
   // Node repulsion (non overlapping) multiplier
-        nodeRepulsion: 4500,
-  // nodeRepulsion: 45000,
+        nodeRepulsion: 100000,
+  // nodeRepulsion: 4500,
   // Ideal (intra-graph) edge length
-        idealEdgeLength: 50,
+        idealEdgeLength: 150,
   // idealEdgeLength: 100,
   // Divisor to compute edge forces
         edgeElasticity: 0.45,
+        // edgeElasticity: 0.1,
   // Nesting factor (multiplier) to compute ideal edge length for inter-graph edges
         nestingFactor: 0.1,
+        // nestingFactor: 100,
   // Gravity force (constant)
         gravity: 0.25,
   // Maximum number of iterations to perform
