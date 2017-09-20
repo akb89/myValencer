@@ -93,17 +93,23 @@ function displayCluster(cytoframes) {
         cy.style().selector(`edge[id = '${edge.id()}']`).style({ opacity: 0.4, label: '' }).update();
     });
     cy.on('mouseover', 'node', (event) => {
-        const edge = event.target;
-        cy.style().selector(`node[id = '${edge.id()}']`).style({
+        const node = event.target;
+        cy.style().selector(`node[id = '${node.id()}']`).style({
+            'background-opacity': 1,
+            opacity: 1,
+        }).update();
+    });
+    cy.on('mouseout', 'node', (event) => {
+        const node = event.target;
+        cy.style().selector(`node[id = '${node.id()}']`).style({ 'background-opacity': 0.7, opacity: 0.9 }).update();
+    });
+    cy.on('tap', 'node', (event) => {
+        const node = event.target;
+        cy.style().selector(`node[id = '${node.id()}']`).style({
             opacity: 1,
             // color: 'white',
         }).update();
     });
-    cy.on('mouseout', 'node', (event) => {
-        const edge = event.target;
-        cy.style().selector(`node[id = '${edge.id()}']`).style({ opacity: 0.9 }).update();
-    });
-
     cy.style().fromJson(style).update();
 
     cy.layout({
