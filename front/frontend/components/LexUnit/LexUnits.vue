@@ -15,7 +15,7 @@
       </div>
       <div v-if="!$store.state.lexunit.loading">
           <fn-lexunit
-          v-for="item in state.content"
+          v-for="item in $store.state.lexunit.content"
           :key="item._id"
           :id="item._id"
           :name="item.name"

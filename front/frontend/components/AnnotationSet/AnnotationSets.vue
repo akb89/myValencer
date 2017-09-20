@@ -13,10 +13,10 @@
     <div v-if="$store.state.annoset.loading" class="columns is-centered">
         <loader></loader>
     </div>
-    <div v-if="!$store.state.annoset.loading && state.content.length > 0">
+    <div v-if="!$store.state.annoset.loading">
         <fn-annoset
         v-if="$store.state.display.subtype === 'RAW' && !$store.state.annoset.loading"
-        v-for="item in state.content"
+        v-for="item in $store.state.annoset.content"
         :key="item._id"
         :sentence="item.sentence"
         :labels="item.labels"
@@ -25,7 +25,7 @@
         </fn-annoset>
         <fn-annoset-ent
         v-if="$store.state.display.subtype === 'ENT' && !$store.state.annoset.loading"
-        v-for="item in state.content"
+        v-for="item in $store.state.annoset.content"
         :key="item._id"
         :labels="item.labels"
         :text="item.sentence.text"
