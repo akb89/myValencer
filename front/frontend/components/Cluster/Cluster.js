@@ -8,12 +8,12 @@ const RELATION_COLORS = {
     Inheritance: '#00d1b2',
     Subframe: '#fd9720',
     Using: '#43c6fc',
-    See_also: '#',
-    ReFraming_Mapping: '#8e7dff',
-    Inchoative_of: '#2fbbab',
-    Causative_of: '#ffcc00',
-    Precedes: '#e00084',
-    Perspective_on: '#3366ff',
+    See_also: '#8e7dff',
+    ReFraming_Mapping: '#2fbbab',
+    Inchoative_of: '#ffcc00',
+    Causative_of: '#e00084',
+    Precedes: '#3366ff',
+    Perspective_on: '#a6e22d',
     Metaphor: '#ff0033',
 };
 
@@ -30,6 +30,9 @@ function getNodeColor(colorCounter, blackenCounter) {
 }
 
 function displayCluster(cytoframes) {
+    if (cytoframes.length === 0) {
+        return;
+    }
     const cy = cytoscape({
         container: document.getElementById('cy'), // container to render in
     });
@@ -105,9 +108,11 @@ function displayCluster(cytoframes) {
     });
     cy.on('tap', 'node', (event) => {
         const node = event.target;
+        // this.$store.dispatch('cytolexunit/call_api', { method: 'GET',
+        //     path: StringUtils.format_with_obj(APIRoutes.CYTOLEXUNITS,
+        //                   { id: this.state.input }) });
         cy.style().selector(`node[id = '${node.id()}']`).style({
             opacity: 1,
-            // color: 'white',
         }).update();
     });
     cy.style().fromJson(style).update();
