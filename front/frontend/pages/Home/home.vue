@@ -30,7 +30,7 @@
 <div v-else class="container is-fluid">
     <div class="columns is-multiline is-mobile is-centered is-vcentered">
       <div class="column is-2">
-        <div class="image">
+        <div class="image is-pointer" @click="gohome">
             <img src='/public/front/img/logo_colors_16by9_tiny.png' alt='myValencer Logo' />
         </div>
       </div>

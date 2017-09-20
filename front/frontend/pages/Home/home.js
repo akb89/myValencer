@@ -9,6 +9,13 @@ module.exports = {
         };
     },
     methods: {
+        gohome(e) {
+            e.preventDefault();
+            this.$store.commit('update_query', '');
+            this.$store.commit('annoset/reset_state');
+            this.$store.commit('frame/reset_state');
+            this.$store.commit('lexunit/reset_state');
+        },
         update_input(e) {
             const input = e.target.value;
             this.$store.commit('update_query', input);
