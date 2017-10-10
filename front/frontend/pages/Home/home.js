@@ -49,9 +49,9 @@ module.exports = {
             this.$store.dispatch('lexunit/call_api', { method: 'GET',
                 path: StringUtils.format_with_obj(APIRoutes.LEXUNITS,
                   { id: this.$store.state.queries.current, skip, limit }) });
-            this.$store.dispatch('cytolexunit/call_api', { method: 'GET',
-                path: StringUtils.format_with_obj(APIRoutes.CYTOLEXUNITS,
-                              { id: this.$store.state.queries.current }) });
+            // this.$store.dispatch('cytolexunit/call_api', { method: 'GET',
+            //     path: StringUtils.format_with_obj(APIRoutes.CYTOLEXUNITS,
+            //                   { id: this.$store.state.queries.current }) });
         },
         is_id_type_query(input) {
             if (Utils.is_numeric(input) || Utils.is_oid(input)) {

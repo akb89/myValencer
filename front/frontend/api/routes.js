@@ -15,5 +15,5 @@ module.exports = {
     ANNOSETS: `${API_PATH}/annoSets/,/sentence,labels,lexUnit,pattern,lexUnit.frame,pattern.valenceUnits,pattern.valenceUnits.FE?vp={id}&skip={skip}&limit={limit}`,
     LEXUNIT: `${API_PATH}/lexUnit/{id}/,/frame,semTypes`,
     LEXUNITS: `${API_PATH}/lexUnits/,/frame,semTypes?vp={id}&skip={skip}&limit={limit}`,
-    CYTOLEXUNITS: `${API_PATH}/lexUnits?vp={id}&format=cytoscape`,
+    CYTOLEXUNITS: `${API_PATH}/cluster/lexUnits?vp={id}&frameID={frameID}`,
 };

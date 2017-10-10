@@ -97,7 +97,7 @@
     <fn-annosets v-if="$store.state.display.type === 'ANNOSET'"></fn-annosets>
     <fn-frames v-if="$store.state.display.type === 'FRAME'"></fn-frames>
     <fn-lexunits v-if="$store.state.display.type === 'LEXUNIT'"></fn-lexunits>
-    <fn-cluster v-if="$store.state.display.type === 'CLUSTER'"></fn-cluster>
+    <fn-cluster v-if="$store.state.display.type === 'CLUSTER'" :lexunits=this.$store.state.cytolexunit.content />
     </div>
   </div>
 </div>
