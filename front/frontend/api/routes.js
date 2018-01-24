@@ -1,7 +1,7 @@
-const Config = require('../../../app/config');
+const config = require('../../../app/config');
 
-const PREFIX = Config.api_host;
-const VERSION = 'v4';
+const PREFIX = config.api_host;
+const VERSION = 'v5';
 const LANG = 'en';
 const FN = '170';
 const API_PATH = `${PREFIX}/${VERSION}/${LANG}/${FN}`;
