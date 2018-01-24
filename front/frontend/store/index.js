@@ -10,8 +10,7 @@ const mstate = require('./module_store/state');
 
 Vue.use(Vuex);
 
-const modules_list = ['annoset', 'entannoset',
-    'frame', 'cytoframe', 'lexunit', 'cytolexunit'];
+const modules_list = ['annoset', 'frame', 'cytoframe', 'lexunit'];
 
 const module_template = {
     namespaced: true,
