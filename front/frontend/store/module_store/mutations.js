@@ -26,5 +26,11 @@ module.exports = {
     reset_state: (state) => {
         state.skip = 0;
         state.total = 0;
+        state.feColorMap = {};
+        state.colorIndex = 1;
+    },
+    add_entry_to_map: (state, payload) => {
+        state.feColorMap[payload.feName] = payload.color;
+        state.colorIndex += 1;
     },
 };

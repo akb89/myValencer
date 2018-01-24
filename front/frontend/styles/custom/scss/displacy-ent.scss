@@ -2,11 +2,28 @@
 //- Based on 💥 DISPLACY ENT
 //- ----------------------------------
 
-$labels: (f1: #00d1b2, f2: #ffdd57, f3: #43c6fc, f4: #8e7dff, f5: #fd9720,
-f6: #a6e22d, f7: #999, f8: #ff3860);
+$labels: (f0: #ff3860, f1: #00d1b2, f2: #ffdd57, f3: #43c6fc, f4: #8e7dff, f5: #fd9720,
+f6: #a6e22d, f7: #999);
 
-// $labels: (f1: #a6e22d, f2: #fd9720, f3: #43c6fc, f4: #8e7dff, f5: #2fbbab,
-// f6: #ffcc00, f7: #999, f8: #e00084);
+@for $i from 1 through 20 {
+  @if $i % 2 == 0 {
+    $labels: map-merge($labels, (f#{7*$i+1}: darken(#00d1b2, 20%)));
+    $labels: map-merge($labels, (f#{7*$i+2}: darken(#ffdd57, 20%)));
+    $labels: map-merge($labels, (f#{7*$i+3}: darken(#43c6fc, 20%)));
+    $labels: map-merge($labels, (f#{7*$i+4}: darken(#8e7dff, 20%)));
+    $labels: map-merge($labels, (f#{7*$i+5}: darken(#fd9720, 20%)));
+    $labels: map-merge($labels, (f#{7*$i+6}: darken(#a6e22d, 20%)));
+    $labels: map-merge($labels, (f#{7*$i+7}: darken(#999, 20%)));
+  } else {
+    $labels: map-merge($labels, (f#{7*$i+1}: lighten(#00d1b2, 20%)));
+    $labels: map-merge($labels, (f#{7*$i+2}: lighten(#ffdd57, 20%)));
+    $labels: map-merge($labels, (f#{7*$i+3}: lighten(#43c6fc, 20%)));
+    $labels: map-merge($labels, (f#{7*$i+4}: lighten(#8e7dff, 20%)));
+    $labels: map-merge($labels, (f#{7*$i+5}: lighten(#fd9720, 20%)));
+    $labels: map-merge($labels, (f#{7*$i+6}: lighten(#a6e22d, 20%)));
+    $labels: map-merge($labels, (f#{7*$i+7}: lighten(#999, 20%)));
+  }
+}
 
 .fnlabels {
   line-height: 2;
