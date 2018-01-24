@@ -59,9 +59,6 @@ module.exports = {
             this.$store.dispatch('lexunit/call_api', { method: 'GET',
                 path: StringUtils.format_with_obj(APIRoutes.LEXUNITS,
                   { id: this.$store.state.queries.current, skip, limit }) });
-            // this.$store.dispatch('cytolexunit/call_api', { method: 'GET',
-            //     path: StringUtils.format_with_obj(APIRoutes.CYTOLEXUNITS,
-            //                   { id: this.$store.state.queries.current }) });
         },
         is_id_type_query(input) {
             if (Utils.is_numeric(input) || Utils.is_oid(input)) {
@@ -70,6 +67,7 @@ module.exports = {
             return false;
         },
         fetch_trying_data(e) {
+           // TODO: fall back to fetch_data
             const q = Utils.choice(this.$store.state.queries.default);
             this.$store.commit('update_query', q);
             if (this.is_id_type_query(q)) {

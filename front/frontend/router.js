@@ -1,6 +1,6 @@
 const Vue = require('vue');
 const Router = require('vue-router');
-const Home = require('./pages/Home/home.vue');
+const Home = require('./pages/home/home.vue');
 
 Vue.use(Router);
 
