@@ -1,9 +1,6 @@
-const _ = require('lodash');
-const StringUtils = require('../../utils/strings');
-
 module.exports = {
     name: 'AnnotationSet',
-    props: ['sentence', 'labels', 'lexUnit', 'pattern'],
+    props: ['labels', 'frame', 'text', 'pattern'],
     methods: {
         format_pattern(pattern) {
             if (!('valenceUnits' in pattern)) {
@@ -18,81 +15,44 @@ module.exports = {
                 return array;
             }, []).join(' ');
         },
-        format_fe_pt_gf(valence) {
-            let name = '';
-            if ('FE' in valence) {
-                name += `${valence.FE.name}.`;
-            } else {
-                name += '*.';
-            }
-
-            if ('PT' in valence) {
-                name += `${valence.PT.name}.`;
-            } else {
-                name += '*.';
-            }
-
-            if ('GF' in valence) {
-                name += valence.GF.name;
-            } else {
-                name += '*';
-            }
-
-            return name;
-        },
-        format_sentence(sentence, labels, frame) {
-            const valences = labels.reduce((obj, label) => {
-                const name = label.name;
-                const start = label.startPos;
-                const end = label.endPos;
-                if (start === end) {
-                    return obj;
+        display_annotation(text, labels) {
+            const container = document.createElement('div');
+            let offset = 0;
+            const merged_labels = labels.reduce((filtered, label) => {
+                if (label.type === 'FE' && Object.prototype.hasOwnProperty.call(label, 'start') && Object.prototype.hasOwnProperty.call(label, 'end')) {
+                    filtered.push(label);
+                } else if (label.type === 'Target' && Object.prototype.hasOwnProperty.call(label, 'start') && Object.prototype.hasOwnProperty.call(label, 'end')) {
+                    filtered.push(label);
                 }
-
-                if (!(start in obj)) {
-                    obj[start] = {};
+                return filtered;
+            }, []).sort((a, b) => a.start - b.start);
+            let j = 1;
+            merged_labels.forEach((label) => {
+                const labeled_text = text.slice(label.start, label.end + 1);
+                const fragments = text.slice(offset, label.start).split('\n');
+                fragments.forEach((fragment, i) => {
+                    container.appendChild(document.createTextNode(fragment));
+                    if (fragments.length > 1 && i !== fragments.length - 1) {
+                        container.appendChild(document.createElement('br'));
+                    }
+                });
+                if (label.type === 'FE') {
+                    const mark = document.createElement('mark');
+                    mark.setAttribute('label-format', `f${j}`);
+                    mark.setAttribute('fe-name', label.name);
+                    mark.appendChild(document.createTextNode(labeled_text));
+                    container.appendChild(mark);
+                    j += 1;
+                } else if (label.type === 'Target') {
+                    const mark = document.createElement('mark');
+                    mark.setAttribute('label-format', 'f8');
+                    mark.appendChild(document.createTextNode(labeled_text));
+                    container.appendChild(mark);
                 }
-                obj[start][label.type] = { end, name };
-                return obj;
-            }, {});
-
-            const new_labels = _.reduce(valences, (array, valence, start) => {
-                if (!('Target' in valence) &&
-                        !('FE' in valence) &&
-                        !('PT' in valence) &&
-                        !('GF' in valence)) {
-                    return array;
-                }
-                if ('FE' in valence) {
-                    array.push({
-                        text: '[',
-                        pos: parseInt(start, 10),
-                    });
-                    array.push({
-                        text: `]<sub>${this.format_fe_pt_gf(valence)}</sub>`,
-                        pos: valence.FE.end + 1,
-                    });
-                } else {
-                    array.push({
-                        text: '<strong>',
-                        pos: parseInt(start, 10),
-                    });
-                    array.push({
-                        text: `</strong><em><sub>${frame.name}</sub></em>`,
-                        pos: valence.Target.end + 1,
-                    });
-                }
-                return array;
-            }, []);
-
-            new_labels.sort((a, b) => (b.pos - a.pos));
-
-            return new_labels.reduce((s, label) => {
-                const pos = label.pos;
-                const text = label.text;
-                s = StringUtils.splice(s, pos, 0, text);
-                return s;
-            }, sentence.text);
+                offset = label.end + 1;
+            });
+            container.appendChild(document.createTextNode(text.slice(offset, text.length)));
+            return container.innerHTML;
         },
     },
 };

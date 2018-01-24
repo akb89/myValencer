@@ -1,7 +1,7 @@
-const Config = require('../../../app/config');
+const config = require('../../../app/config');
 
-const PREFIX = Config.api_host;
-const VERSION = 'v4';
+const PREFIX = config.api_host;
+const VERSION = 'v5';
 const LANG = 'en';
 const FN = '170';
 const API_PATH = `${PREFIX}/${VERSION}/${LANG}/${FN}`;
@@ -15,5 +15,5 @@ module.exports = {
     ANNOSETS: `${API_PATH}/annoSets/,/sentence,labels,lexUnit,pattern,lexUnit.frame,pattern.valenceUnits,pattern.valenceUnits.FE?vp={id}&skip={skip}&limit={limit}`,
     LEXUNIT: `${API_PATH}/lexUnit/{id}/,/frame,semTypes`,
     LEXUNITS: `${API_PATH}/lexUnits/,/frame,semTypes?vp={id}&skip={skip}&limit={limit}`,
-    CYTOLEXUNITS: `${API_PATH}/lexUnits?vp={id}&format=cytoscape`,
+    CYTOLEXUNITS: `${API_PATH}/cluster/lexUnits?vp={id}&frameID={frameID}`,
 };

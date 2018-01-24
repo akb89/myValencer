@@ -3,7 +3,6 @@ const router = require('./router');
 const store = require('./store');
 const AnnotationSet = require('./components/AnnotationSet/AnnotationSet.vue');
 const AnnotationSets = require('./components/AnnotationSet/AnnotationSets.vue');
-const AnnotationSetEnt = require('./components/AnnotationSet/AnnotationSetEnt.vue');
 const Cluster = require('./components/Cluster/Cluster.vue');
 const Frame = require('./components/Frame/Frame.vue');
 const Frames = require('./components/Frame/Frames.vue');
@@ -14,7 +13,6 @@ const Paginator = require('./components/Paginator/Paginator.vue');
 
 Vue.component('fn-annoset', AnnotationSet);
 Vue.component('fn-annosets', AnnotationSets);
-Vue.component('fn-annoset-ent', AnnotationSetEnt);
 Vue.component('fn-cluster', Cluster);
 Vue.component('fn-frame', Frame);
 Vue.component('fn-frames', Frames);

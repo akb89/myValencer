@@ -22,7 +22,7 @@
           <div class="content is-small">
             <h1>Frame Elements</h1>
             <ul>
-                <li v-for="item in frameElements">{{item.name}}</li>
+                <li v-for="item in frameElements">{{item.name}} -- {{item.coreType}}</li>
             </ul>
           </div>
         </div>
