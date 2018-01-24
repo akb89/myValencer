@@ -1,7 +1,7 @@
 {
   "name": "myValencer",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Valencer Pattern Search Engine for FrameNet: Web client for the Valencer API",
   "keywords": [],
   "author": "YoosF",
   "license": "MIT",
