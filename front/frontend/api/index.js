@@ -10,7 +10,6 @@ async function fetch(object) {
     if (body != null && Object.keys(body).length > 0) {
         super_request = super_request.send(object.body);
     }
-
     try {
         const res = await super_request;
         return {
@@ -19,6 +18,7 @@ async function fetch(object) {
             header: res.header,
         };
     } catch (err) {
+        // FIXME do not assign error to content
         return {
             type: Messages.FAILURE,
             content: err.response != null ? err.response.body : err,
