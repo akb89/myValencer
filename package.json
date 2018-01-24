@@ -2,7 +2,7 @@
   "name": "myValencer",
   "version": "1.0.0",
   "description": "A Valencer Pattern Search Engine for FrameNet: Web client for the Valencer API",
-  "keywords": [],
+  "keywords": ["FrameNet", "Vue.js", "Search Engine", "Valence Pattern"],
   "author": "YoosF",
   "license": "MIT",
   "main": "app/app.js",
