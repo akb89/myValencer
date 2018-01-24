@@ -4,3 +4,7 @@
 *.o
 *.zip
 *.log
+node_modules/
+build/
+public/
+package-lock.json
