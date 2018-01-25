@@ -1,6 +1,7 @@
 module.exports = {
     display_tab: (state, payload) => {
         // TODO HACK HACK HACK, should use tabs as well
+        // TODO REMOVE ALL THIS
         if (payload.display === 'type') {
             if (payload.name === 'ANNOSET') {
                 state.display.subtype = 'ENT';
