@@ -1,6 +1,6 @@
 {
   "name": "myValencer",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A Valencer Pattern Search Engine for FrameNet: Web client for the Valencer API",
   "keywords": [
     "FrameNet",
@@ -28,7 +28,7 @@
     "watch": "./node_modules/.bin/nodemon -e js,jsx,less,css,scss -w 'app/**/*.*' -w 'public/**/*.*' -x 'npm run dev'"
   },
   "dependencies": {
-    "bulma": "^0.5.1",
+    "bulma": "^0.6.2",
     "cytoscape": "^3.2.8",
     "cytoscape-cola": "^2.0.0",
     "cytoscape-cose-bilkent": "^4.0.0",
