@@ -2,10 +2,23 @@
   "name": "myValencer",
   "version": "1.0.0",
   "description": "A Valencer Pattern Search Engine for FrameNet: Web client for the Valencer API",
-  "keywords": ["FrameNet", "Vue.js", "Search Engine", "Valence Pattern"],
+  "keywords": [
+    "FrameNet",
+    "Vue.js",
+    "Search Engine",
+    "Valence Pattern"
+  ],
   "author": "YoosF",
   "license": "MIT",
   "main": "app/app.js",
+  "homepage": "https://github.com/akb89/myvalencer#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akb89/myvalencer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akb89/myvalencer/issues"
+  },
   "scripts": {
     "dev": "NODE_ENV=development node --harmony app/app.js",
     "build": "NODE_ENV=production gulp default",
