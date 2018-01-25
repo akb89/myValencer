@@ -65,19 +65,19 @@ class GulpFrontend {
         });
 
         return appBundler
-        .transform(envify({
-            NODE_ENV: process.env.NODE_ENV || 'development',
-        }))
-        .transform(vueify)
-        .transform('babelify', {
-            presets: ['es2015'],
-            plugins: ['transform-runtime', 'transform-async-to-generator'],
-        })
-        .bundle()
-        .on('error', gutil.log)
-        .pipe(source('bundle.js'))
+            .transform(envify({
+                NODE_ENV: process.env.NODE_ENV || 'development',
+            }))
+            .transform(vueify)
+            .transform('babelify', {
+                presets: ['env'],
+                plugins: ['transform-runtime', 'transform-async-to-generator'],
+            })
+            .bundle()
+            .on('error', gutil.log)
+            .pipe(source('bundle.js'))
         // .pipe(gulpif(this.isProduction, uglify({ mangle: true })))
-        .pipe(gulp.dest(this.PUB_LOCATIONS.js));
+            .pipe(gulp.dest(this.PUB_LOCATIONS.js));
     }
 
     bundleVendors() {
@@ -85,19 +85,19 @@ class GulpFrontend {
             require: this.dependencies,
             debug: true,
         })
-        .bundle()
-        .on('error', gutil.log)
-        .pipe(source('vendors.js'))
+            .bundle()
+            .on('error', gutil.log)
+            .pipe(source('vendors.js'))
         // .pipe(gulpif(this.isProduction, uglify({ mangle: true })))
-        .pipe(gulp.dest(this.PUB_LOCATIONS.js));
+            .pipe(gulp.dest(this.PUB_LOCATIONS.js));
     }
 
     createExternalVendors() {
         gulp
-        .src(this.external_dependencies)
-        .pipe(concat('vendors.external.js'))
+            .src(this.external_dependencies)
+            .pipe(concat('vendors.external.js'))
         // .pipe(gulpif(this.isProduction, uglify({ mangle: true })))
-        .pipe(gulp.dest(this.PUB_LOCATIONS.js));
+            .pipe(gulp.dest(this.PUB_LOCATIONS.js));
     }
 
     watch() {
@@ -109,27 +109,27 @@ class GulpFrontend {
 
     createVendorStyles() {
         gulp
-        .src(['./front/frontend/styles/vendors.scss',
-            './front/frontend/styles/vendors.less', ...this.vendors_css_files])
-        .pipe(plumber())
-        .pipe(gulpif('*.less', less()))
-        .pipe(gulpif('*.scss', sass()))
-        .pipe(concat('vendors.css'))
-        .pipe(autoprefixer())
-        .pipe(gulpif(this.isProduction, cssmin()))
-        .pipe(gulp.dest(this.PUB_LOCATIONS.css));
+            .src(['./front/frontend/styles/vendors.scss',
+                './front/frontend/styles/vendors.less', ...this.vendors_css_files])
+            .pipe(plumber())
+            .pipe(gulpif('*.less', less()))
+            .pipe(gulpif('*.scss', sass()))
+            .pipe(concat('vendors.css'))
+            .pipe(autoprefixer())
+            .pipe(gulpif(this.isProduction, cssmin()))
+            .pipe(gulp.dest(this.PUB_LOCATIONS.css));
     }
 
     createStyles() {
         gulp
-        .src(['./front/frontend/styles/front.less', './front/frontend/styles/front.scss', ...this.css_files])
-        .pipe(plumber())
-        .pipe(gulpif('*.less', less()))
-        .pipe(gulpif('*.scss', sass()))
-        .pipe(concat('front.css'))
-        .pipe(autoprefixer())
-        .pipe(gulpif(this.isProduction, cssmin()))
-        .pipe(gulp.dest(this.PUB_LOCATIONS.css));
+            .src(['./front/frontend/styles/front.less', './front/frontend/styles/front.scss', ...this.css_files])
+            .pipe(plumber())
+            .pipe(gulpif('*.less', less()))
+            .pipe(gulpif('*.scss', sass()))
+            .pipe(concat('front.css'))
+            .pipe(autoprefixer())
+            .pipe(gulpif(this.isProduction, cssmin()))
+            .pipe(gulp.dest(this.PUB_LOCATIONS.css));
     }
 
     copyFonts() {
@@ -138,7 +138,7 @@ class GulpFrontend {
             `${font_awesome}/fontawesome-webfont.*`,
             `${font_awesome}/FontAwesome.otf`,
         ])
-        .pipe(gulp.dest(this.PUB_LOCATIONS.fonts));
+            .pipe(gulp.dest(this.PUB_LOCATIONS.fonts));
     }
 
     copyImgs() {
@@ -146,7 +146,7 @@ class GulpFrontend {
         return gulp.src([
             `${imgs}/*`,
         ])
-        .pipe(gulp.dest(this.PUB_LOCATIONS.imgs));
+            .pipe(gulp.dest(this.PUB_LOCATIONS.imgs));
     }
 
     copyViews() {
@@ -214,8 +214,8 @@ class GulpFrontend {
         js.reverse();
 
         return gulp.src(`${this.PUB_LOCATIONS.views}/front.html`)
-        .pipe(htmlreplace({ css, js }))
-        .pipe(gulp.dest(this.PUB_LOCATIONS.views));
+            .pipe(htmlreplace({ css, js }))
+            .pipe(gulp.dest(this.PUB_LOCATIONS.views));
     }
 
     gzip() {
