@@ -8,6 +8,7 @@ regCose(cytoscape); // register extension
 
 const FRAME_LAYOUT = {
     name: 'cose-bilkent',
+    // name: 'cose',
     // Called on `layoutready`
     ready() {
     },
@@ -61,6 +62,7 @@ const FRAME_LAYOUT = {
 };
 
 const LEXUNIT_LAYOUT = {
+    // name: 'cose',
     name: 'cose-bilkent',
     // Called on `layoutready`
     ready() {
@@ -97,8 +99,7 @@ const LEXUNIT_LAYOUT = {
     // Whether to tile disconnected nodes
     tile: true,
     // Type of layout animation. The option set is {'during', 'end', false}
-    animate: false,
-    // animate: 'end',
+    animate: 'end',
     // Amount of vertical space to put between degree zero nodes during tiling (can also be a function)
     tilingPaddingVertical: 10,
     // Amount of horizontal space to put between degree zero nodes during tiling (can also be a function)
@@ -114,7 +115,7 @@ const LEXUNIT_LAYOUT = {
     initialEnergyOnIncremental: 0.8,
 };
 
-
+// TODO: make distinct colors from node_colors
 const RELATION_COLORS = {
     Inheritance: '#00d1b2',
     Subframe: '#fd9720',
@@ -191,44 +192,44 @@ function displayCluster(cytoframes) {
             blackenCounter += 1;
         }
     });
-
-    cy.on('mouseover', 'edge', (event) => {
-        const edge = event.target;
-        cy.style().selector(`edge[id = '${edge.id()}']`).style({
-            opacity: 1,
-            label: 'data(type)',
-            color: 'white',
-            'text-rotation': 'autorotate',
-            'text-margin-y': '-15px',
-        }).update();
-    });
-    cy.on('mouseout', 'edge', (event) => {
-        const edge = event.target;
-        cy.style().selector(`edge[id = '${edge.id()}']`).style({ opacity: 0.4, label: '' }).update();
-    });
-    cy.on('mouseover', 'node', (event) => {
-        const node = event.target;
-        cy.style().selector(`node[id = '${node.id()}']`).style({
-            'background-opacity': 1,
-            opacity: 1,
-        }).update();
-    });
-    cy.on('mouseout', 'node', (event) => {
-        const node = event.target;
-        cy.style().selector(`node[id = '${node.id()}']`).style({ 'background-opacity': 0.7, opacity: 0.9 }).update();
-    });
-    cy.on('tap', 'node', (event) => {
-        const node = event.target;
-        this.state.frameID = node.id();
-        console.log(node.id());
-        this.$store.dispatch('cytolexunit/call_api', {
-            method: 'GET',
-            path: StringUtils.format_with_obj(
-                APIRoutes.CYTOLEXUNITS,
-                { id: this.$store.state.queries.current, frameID: node.id() },
-            ),
-        });
-    });
+    // TODO remove mouseover when too many nodes. Also remove tap
+    // cy.on('mouseover', 'edge', (event) => {
+    //     const edge = event.target;
+    //     cy.style().selector(`edge[id = '${edge.id()}']`).style({
+    //         opacity: 1,
+    //         label: 'data(type)',
+    //         color: 'white',
+    //         'text-rotation': 'autorotate',
+    //         'text-margin-y': '-15px',
+    //     }).update();
+    // });
+    // cy.on('mouseout', 'edge', (event) => {
+    //     const edge = event.target;
+    //     cy.style().selector(`edge[id = '${edge.id()}']`).style({ opacity: 0.4, label: '' }).update();
+    // });
+    // cy.on('mouseover', 'node', (event) => {
+    //     const node = event.target;
+    //     cy.style().selector(`node[id = '${node.id()}']`).style({
+    //         'background-opacity': 1,
+    //         opacity: 1,
+    //     }).update();
+    // });
+    // cy.on('mouseout', 'node', (event) => {
+    //     const node = event.target;
+    //     cy.style().selector(`node[id = '${node.id()}']`).style({ 'background-opacity': 0.7, opacity: 0.9 }).update();
+    // });
+    // cy.on('tap', 'node', (event) => {
+    //     const node = event.target;
+    //     this.state.frameID = node.id();
+    //     console.log(node.id());
+    //     this.$store.dispatch('cytolexunit/call_api', {
+    //         method: 'GET',
+    //         path: StringUtils.format_with_obj(
+    //             APIRoutes.CYTOLEXUNITS,
+    //             { id: this.$store.state.queries.current, frameID: node.id() },
+    //         ),
+    //     });
+    // });
     cy.style().fromJson(style).update();
     cy.layout(FRAME_LAYOUT).run();
     this.state.cy = cy;
