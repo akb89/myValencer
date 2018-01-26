@@ -11,7 +11,7 @@
         <div class="column is-6">
             <div class="field">
                 <div class="control">
-                    <input v-focus :value="$store.state.queries.current" @input="update_input" @keyup.enter="fetch_data" class="input" type="text" placeholder="Type in a valence pattern to search..." />
+                    <input v-focus :value="$store.state.queries.current" @input="update_input" @keyup.enter="fetch_data" class="input is-primary" type="text" placeholder="Type in a valence pattern to search..." />
                 </div>
             </div>
         </div>
@@ -26,6 +26,28 @@
             </div>
         </div>
     </div>
+    <div class="container">
+      <div class="content has-text-centered">
+        <em> New to myValencer?
+          <a href="https://github.com/akb89/valencer">Check out our manual</a> or
+          click on <a @click="fetch_trying_data">Try me out!</a> </em>
+      </div>
+    </div>
+    <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered is-small">
+      <a href="https://bulma.io">
+          <img src='/public/front/img/made-with-bulma.png' alt="Made with Bulma" width="128" height="24">
+      </a>
+      <p>
+        Powered by the <a href="https://github.com/akb89/valencer">Valencer API</a>
+        <br>
+        Report bugs and request features on
+        <a href="https://github.com/akb89/myValencer/issues">GitHub <i class="fa fa-github"></i></a>
+      </p>
+    </div>
+  </div>
+</footer>
 </div>
 <div v-else class="container is-fluid">
     <div class="columns is-multiline is-mobile is-centered is-vcentered">
@@ -37,7 +59,7 @@
       <div class="column is-8">
         <div class="field">
           <p class="control has-icons-right">
-            <input v-focus :value="$store.state.queries.current" @input="update_input" @keyup.enter="fetch_data" class="input" type="text" placeholder="Type your fantastic query" >
+            <input v-focus :value="$store.state.queries.current" @input="update_input" @keyup.enter="fetch_data" class="input is-primary" type="text" placeholder="Type your fantastic query" >
             <span class="icon is-small is-right">
               <i class="fa fa-search" aria-hidden="false"></i>
             </span>

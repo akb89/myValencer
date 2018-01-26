@@ -1,1 +1,12 @@
+// 1. Import the initial variables
+@import '../../../node_modules/bulma/sass/utilities/initial-variables';
+@import '../../../node_modules/bulma/sass/utilities/functions';
+
+$footer-background-color: #FFF;
+$link: $turquoise;
+
 @import '../../../node_modules/bulma/bulma';
+
+a:hover {
+  color: hsl(171, 100%, 47%);
+}

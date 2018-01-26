@@ -1,4 +1,4 @@
-# Welcome to myValencer's tutorial
+# Welcome to myValencer's manual!
 
 myValencer is a web application to query valence patterns in [FrameNet](https://framenet.icsi.berkeley.edu/fndrupal/)
 

@@ -1,10 +1,19 @@
 site_name: myValencer
 pages:
   - Home: index.md
-theme: 'material'
-
-extra:
+theme:
+  name: null
+  custom_dir: material
+  language: en
+  direction: ltr
+  feature:
+     tabs: false
   palette:
-    primary: 'cyan'
-    accent: 'light blue'
-  logo: 'images/logo_colors_square.jpg'
+    primary: turquoise
+    accent: turquoise
+  font:
+     text: Roboto
+     code: Roboto Mono
+  favicon: assets/images/favicon.png
+  logo:
+    icon: "\uE80C"
