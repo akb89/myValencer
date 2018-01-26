@@ -6,6 +6,7 @@
 [![MIT License][license-image]][license-url]
 
 Welcome to **myValencer**, the valence pattern search engine for FrameNet!
+
 **myValencer** is a web application powered by the [Valencer API](https://github.com/akb89/valencer)
 
 #### Are you using us in your work? Please cite us!

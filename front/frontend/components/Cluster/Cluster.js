@@ -8,109 +8,109 @@ regCose(cytoscape); // register extension
 
 const FRAME_LAYOUT = {
     name: 'cose-bilkent',
-// Called on `layoutready`
+    // Called on `layoutready`
     ready() {
     },
-// Called on `layoutstop`
+    // Called on `layoutstop`
     stop() {
     },
-// Whether to include labels in node dimensions. Useful for avoiding label overlap
+    // Whether to include labels in node dimensions. Useful for avoiding label overlap
     nodeDimensionsIncludeLabels: true,
-// number of ticks per frame; higher is faster but more jerky
+    // number of ticks per frame; higher is faster but more jerky
     refresh: 30,
-// Whether to fit the network view after when done
+    // Whether to fit the network view after when done
     fit: true,
-// Padding on fit
+    // Padding on fit
     padding: 30,
-// Whether to enable incremental mode
+    // Whether to enable incremental mode
     randomize: false,
-// Node repulsion (non overlapping) multiplier
+    // Node repulsion (non overlapping) multiplier
     nodeRepulsion: 100000,
-// nodeRepulsion: 4500,
-// Ideal (intra-graph) edge length
+    // nodeRepulsion: 4500,
+    // Ideal (intra-graph) edge length
     idealEdgeLength: 150,
-// idealEdgeLength: 100,
-// Divisor to compute edge forces
+    // idealEdgeLength: 100,
+    // Divisor to compute edge forces
     edgeElasticity: 0.45,
     // edgeElasticity: 0.1,
-// Nesting factor (multiplier) to compute ideal edge length for inter-graph edges
+    // Nesting factor (multiplier) to compute ideal edge length for inter-graph edges
     nestingFactor: 0.1,
     // nestingFactor: 100,
-// Gravity force (constant)
+    // Gravity force (constant)
     gravity: 0.25,
-// Maximum number of iterations to perform
+    // Maximum number of iterations to perform
     numIter: 2500,
-// Whether to tile disconnected nodes
+    // Whether to tile disconnected nodes
     tile: true,
-// Type of layout animation. The option set is {'during', 'end', false}
-// animate: 'end'
+    // Type of layout animation. The option set is {'during', 'end', false}
+    // animate: 'end'
     animate: false,
-// Amount of vertical space to put between degree zero nodes during tiling (can also be a function)
+    // Amount of vertical space to put between degree zero nodes during tiling (can also be a function)
     tilingPaddingVertical: 10,
-// Amount of horizontal space to put between degree zero nodes during tiling (can also be a function)
+    // Amount of horizontal space to put between degree zero nodes during tiling (can also be a function)
     tilingPaddingHorizontal: 10,
-// Gravity range (constant) for compounds
+    // Gravity range (constant) for compounds
     gravityRangeCompound: 1.5,
-// Gravity force (constant) for compounds
+    // Gravity force (constant) for compounds
     gravityCompound: 1.0,
-// gravityCompound: 0.1,
-// Gravity range (constant)
+    // gravityCompound: 0.1,
+    // Gravity range (constant)
     gravityRange: 3.8,
-// Initial cooling factor for incremental layout
+    // Initial cooling factor for incremental layout
     initialEnergyOnIncremental: 0.8,
 };
 
 const LEXUNIT_LAYOUT = {
     name: 'cose-bilkent',
-// Called on `layoutready`
+    // Called on `layoutready`
     ready() {
     },
-// Called on `layoutstop`
+    // Called on `layoutstop`
     stop() {
     },
-// Whether to include labels in node dimensions. Useful for avoiding label overlap
+    // Whether to include labels in node dimensions. Useful for avoiding label overlap
     nodeDimensionsIncludeLabels: true,
-// number of ticks per frame; higher is faster but more jerky
+    // number of ticks per frame; higher is faster but more jerky
     refresh: 30,
-// Whether to fit the network view after when done
+    // Whether to fit the network view after when done
     fit: true,
-// Padding on fit
+    // Padding on fit
     padding: 30,
-// Whether to enable incremental mode
+    // Whether to enable incremental mode
     randomize: false,
-// Node repulsion (non overlapping) multiplier
+    // Node repulsion (non overlapping) multiplier
     nodeRepulsion: 4500,
-// nodeRepulsion: 4500,
-// Ideal (intra-graph) edge length
+    // nodeRepulsion: 4500,
+    // Ideal (intra-graph) edge length
     idealEdgeLength: 50,
-// idealEdgeLength: 100,
-// Divisor to compute edge forces
+    // idealEdgeLength: 100,
+    // Divisor to compute edge forces
     edgeElasticity: 0.45,
     // edgeElasticity: 0.1,
-// Nesting factor (multiplier) to compute ideal edge length for inter-graph edges
+    // Nesting factor (multiplier) to compute ideal edge length for inter-graph edges
     nestingFactor: 0.1,
     // nestingFactor: 100,
-// Gravity force (constant)
+    // Gravity force (constant)
     gravity: 0.25,
-// Maximum number of iterations to perform
+    // Maximum number of iterations to perform
     numIter: 2500,
-// Whether to tile disconnected nodes
+    // Whether to tile disconnected nodes
     tile: true,
-// Type of layout animation. The option set is {'during', 'end', false}
-// animate: 'end'
-    animate: 'end',
-// Amount of vertical space to put between degree zero nodes during tiling (can also be a function)
+    // Type of layout animation. The option set is {'during', 'end', false}
+    animate: false,
+    // animate: 'end',
+    // Amount of vertical space to put between degree zero nodes during tiling (can also be a function)
     tilingPaddingVertical: 10,
-// Amount of horizontal space to put between degree zero nodes during tiling (can also be a function)
+    // Amount of horizontal space to put between degree zero nodes during tiling (can also be a function)
     tilingPaddingHorizontal: 10,
-// Gravity range (constant) for compounds
+    // Gravity range (constant) for compounds
     gravityRangeCompound: 1.5,
-// Gravity force (constant) for compounds
+    // Gravity force (constant) for compounds
     gravityCompound: 1.0,
-// gravityCompound: 0.1,
-// Gravity range (constant)
+    // gravityCompound: 0.1,
+    // Gravity range (constant)
     gravityRange: 3.8,
-// Initial cooling factor for incremental layout
+    // Initial cooling factor for incremental layout
     initialEnergyOnIncremental: 0.8,
 };
 
@@ -221,9 +221,13 @@ function displayCluster(cytoframes) {
         const node = event.target;
         this.state.frameID = node.id();
         console.log(node.id());
-        this.$store.dispatch('cytolexunit/call_api', { method: 'GET',
-            path: StringUtils.format_with_obj(APIRoutes.CYTOLEXUNITS,
-                          { id: this.$store.state.queries.current, frameID: node.id() }) });
+        this.$store.dispatch('cytolexunit/call_api', {
+            method: 'GET',
+            path: StringUtils.format_with_obj(
+                APIRoutes.CYTOLEXUNITS,
+                { id: this.$store.state.queries.current, frameID: node.id() },
+            ),
+        });
     });
     cy.style().fromJson(style).update();
     cy.layout(FRAME_LAYOUT).run();
@@ -268,8 +272,10 @@ module.exports = {
     },
     watch: {
         lexunits(newLexunits) {
-            updateCytolexunits(newLexunits,
-          this.state.cy, this.state.frameID);
+            updateCytolexunits(
+                newLexunits,
+                this.state.cy, this.state.frameID,
+            );
         },
     },
     mounted() { displayCluster.bind(this)(this.$store.state.cytoframe.content); },
