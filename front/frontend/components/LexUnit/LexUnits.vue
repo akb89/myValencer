@@ -2,11 +2,11 @@
 <div>
     <div class="columns">
         <div class="column is-12">
-            <paginator 
-            display="LEXUNIT" 
-            :items-per-page=this.$store.state.queries.items
-            :number-of-items=this.$store.state.lexunit.total
-            :skip=this.$store.state.lexunit.skip
+            <paginator
+            display="LEXUNIT"
+            :items-per-page="$store.state.queries.items"
+            :number-of-items="$store.state.lexunit.total"
+            :skip="$store.state.lexunit.skip"
             />
         </div>
     </div>
@@ -27,11 +27,11 @@
       </div>
     <div class="columns">
         <div class="column is-12">
-            <paginator 
-            display="LEXUNIT" 
-            :items-per-page=this.$store.state.queries.items
-            :number-of-items=this.$store.state.lexunit.total
-            :skip=this.$store.state.lexunit.skip
+            <paginator
+            display="LEXUNIT"
+            :items-per-page="$store.state.queries.items"
+            :number-of-items="$store.state.lexunit.total"
+            :skip="$store.state.lexunit.skip"
             />
         </div>
     </div>
