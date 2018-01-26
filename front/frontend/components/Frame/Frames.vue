@@ -2,11 +2,11 @@
 <div>
     <div class="columns">
         <div class="column is-12">
-            <paginator 
-            display="FRAME" 
-            :items-per-page=this.$store.state.queries.items
-            :number-of-items=this.$store.state.frame.total
-            :skip=this.$store.state.frame.skip
+            <paginator
+            display="FRAME"
+            :items-per-page="$store.state.queries.items"
+            :number-of-items="$store.state.frame.total"
+            :skip="$store.state.frame.skip"
             />
         </div>
     </div>
@@ -25,11 +25,11 @@
         </fn-frame>
     <div class="columns">
         <div class="column is-12">
-            <paginator 
-            display="FRAME" 
-            :items-per-page=this.$store.state.queries.items
-            :number-of-items=this.$store.state.frame.total
-            :skip=this.$store.state.frame.skip
+            <paginator
+            display="FRAME"
+            :items-per-page="$store.state.queries.items"
+            :number-of-items="$store.state.frame.total"
+            :skip="$store.state.frame.skip"
             />
         </div>
     </div>
