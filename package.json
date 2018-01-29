@@ -33,6 +33,7 @@
     "cytoscape-cola": "^2.0.0",
     "cytoscape-cose-bilkent": "^4.0.0",
     "font-awesome": "^4.7.0",
+    "jsdom": "^11.6.1",
     "kcors": "^2.2.1",
     "koa": "^2.3.0",
     "koa-qs": "^2.0.0",

@@ -19,49 +19,28 @@
               </div>
             </div>
           </section>
+          <div class="tile is-parent">
+            <article class="tile is-child">
+              <h1 class="title is-6 low-margin-bottom">Definition</h1>
+              <!-- <div class="content is-small fnlabels" v-html="format_definition(definition)"></div> -->
+              <div class="content is-small fnlabels" v-html="definition"></div>
+            </article>
+          </div>
             <div class="tile is-vertical is-12">
               <div class="tile">
-                <div class="tile is-parent is-vertical is-8">
-                  <article class="tile is-child">
-                    <h1 class="title is-6 low-margin-bottom">Definition</h1>
-                    <div class="content is-small">{{definition}}</div>
-                  </article>
+                <div class="tile is-parent is-vertical is-4">
                   <article class="tile is-child">
                     <h1 class="title is-6 low-margin-bottom">Lexical Units</h1>
+                    <div class="content is-small">
+                      <span v-for="lu in lexUnits">
+                        {{lu.name}},
+                      </span>
+                    </div>
                   </article>
                 </div>
             <div class="tile is-parent">
               <article class="tile is-child">
                 <h1 class="title is-6 low-margin-bottom">Frame Relations</h1>
-                <div class="field is-grouped is-grouped-multiline">
-                  <div class="control">
-                    <div class="tags has-addons">
-                      <span class="tag is-black">npm</span>
-                      <span class="tag is-info">0.5.0</span>
-                    </div>
-                  </div>
-                  <div class="control">
-                    <div class="tags has-addons">
-                      <span class="tag is-dark">build</span>
-                      <span class="tag is-success">passing</span>
-                    </div>
-                  </div>
-
-                  <div class="control">
-                    <div class="tags has-addons">
-                      <span class="tag is-dark">chat</span>
-                      <span class="tag is-primary">on gitter</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="tags has-addons">
-                  <span class="tag is-primary">inherits_from</span>
-                  <span class="tag">frame</span>
-                </div>
-                <div class="tags has-addons">
-                  <span class="tag">is_inherited_by</span>
-                  <span class="tag is-primary">frame</span>
-                </div>
               </article>
             </div>
           </div>
@@ -81,7 +60,8 @@
               <tr v-for="fe in orderedFrameElements">
                 <td class="content is-small">{{fe.name}}</td>
                 <td class="content is-small">{{fe.coreType}}</td>
-                <td class="content is-small">{{fe.definition}}</td>
+                <!-- <td class="content is-small fnlabels" v-html="format_definition(fe.definition)"></td> -->
+                <td class="content is-small fnlabels" v-html="fe.definition"></td>
               </tr>
             </tbody>
           </table>
