@@ -38,9 +38,8 @@
               >
                 {{item.name}}
               </div>
-              <pre :slot="`body-${idx}`">
-                Mon texte
-              </pre>
+              <pre :slot="`body-${idx}`">{{display_fehierarchy_tree(item)}}</pre>
+
             </template>
             </collapsible>
           </div>
