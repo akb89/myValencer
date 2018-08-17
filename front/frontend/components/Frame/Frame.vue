@@ -9,7 +9,7 @@
                 <h2 class="subtitle">
                   <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
                     <ul>
-                      <li><a href="#">Path</a></li>
+                      <li v-for="item in $store.state.framehierarchy.content"><a href="#">{{item.name}}</a></li>
                       <li><a href="#">To</a></li>
                       <li><a href="#">The</a></li>
                       <li class="is-active"><a href="#" aria-current="page">Frame</a></li>

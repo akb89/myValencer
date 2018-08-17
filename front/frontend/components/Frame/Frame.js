@@ -1,5 +1,7 @@
 const _ = require('lodash');
 const jsdom = require('jsdom');
+const StringUtils = require('../../utils/strings');
+const APIRoutes = require('../../api/routes');
 
 const { JSDOM } = jsdom;
 
@@ -78,5 +80,14 @@ module.exports = {
             }
             return container.innerHTML;
         },
+    },
+    beforeMount() {
+        this.$store.dispatch('framehierarchy/call_api', {
+            method: 'GET',
+            path: StringUtils.format_with_obj(
+                APIRoutes.FRAMEHIERARCHY,
+                { id: this.name },
+            ),
+        });
     },
 };
