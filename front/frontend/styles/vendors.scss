@@ -6,6 +6,7 @@ $footer-background-color: #FFF;
 $link: $turquoise;
 
 @import '../../../node_modules/bulma/bulma';
+@import '../../../node_modules/bulma-accordion/dist/css/bulma-accordion';
 
 a:hover {
   color: hsl(171, 100%, 47%);

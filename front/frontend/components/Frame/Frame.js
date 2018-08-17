@@ -23,11 +23,11 @@ module.exports = {
                     container.appendChild(document.createTextNode(child.textContent));
                 } else if (child.tagName === 'FEN') {
                     const mark = document.createElement('mark');
-                    if (child.textContent in this.$store.state.annoset.feColorMap) {
-                        mark.setAttribute('label-format', this.$store.state.annoset.feColorMap[child.textContent]);
+                    if (child.textContent in this.$store.state.feColorMap) {
+                        mark.setAttribute('fename-format', this.$store.state.feColorMap[child.textContent]);
                     } else {
-                        this.$store.commit('annoset/add_entry_to_map', { feName: child.textContent, color: `f${this.$store.state.annoset.colorIndex}` });
-                        mark.setAttribute('label-format', `f${this.$store.state.annoset.colorIndex}`);
+                        this.$store.commit('add_entry_to_map', { feName: child.textContent, color: `f${this.$store.state.colorIndex}` });
+                        mark.setAttribute('label-format', `f${this.$store.state.colorIndex}`);
                     }
                     mark.appendChild(document.createTextNode(child.textContent));
                     container.appendChild(mark);
@@ -44,11 +44,11 @@ module.exports = {
                         } else if (exchild.tagName === 'FEX') {
                             const mark = document.createElement('mark');
                             mark.setAttribute('fe-name', exchild.getAttribute('name'));
-                            if (exchild.getAttribute('name') in this.$store.state.annoset.feColorMap) {
-                                mark.setAttribute('label-format', this.$store.state.annoset.feColorMap[exchild.getAttribute('name')]);
+                            if (exchild.getAttribute('name') in this.$store.state.feColorMap) {
+                                mark.setAttribute('label-format', this.$store.state.feColorMap[exchild.getAttribute('name')]);
                             } else {
-                                this.$store.commit('annoset/add_entry_to_map', { feName: exchild.getAttribute('name'), color: `f${this.$store.state.annoset.colorIndex}` });
-                                mark.setAttribute('label-format', `f${this.$store.state.annoset.colorIndex}`);
+                                this.$store.commit('add_entry_to_map', { feName: exchild.getAttribute('name'), color: `f${this.$store.state.colorIndex}` });
+                                mark.setAttribute('label-format', `f${this.$store.state.colorIndex}`);
                             }
                             mark.appendChild(document.createTextNode(exchild.textContent));
                             li.appendChild(mark);

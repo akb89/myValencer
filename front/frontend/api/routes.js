@@ -10,6 +10,8 @@ module.exports = {
     FRAME: `${API_PATH}/frame/{id}/,/lexUnits,frameElements,semTypes`,
     FRAMES: `${API_PATH}/frames/,/lexUnits,frameElements,semTypes?vp={id}&skip={skip}&limit={limit}`,
     CYTOFRAMES: `${API_PATH}/cluster/frames?vp={id}`,
+    FEHIERARCHY: `${API_PATH}/feHierarchy/name,children?vp={id}`,
+    FRAMEHIERARCHY: `${API_PATH}/frameHierarchy/name,parents?frameName={id}`,
     FRAMERELATIONS: `${API_PATH}/frameRelations/{id}/,/type`,
     ANNOSET: `${API_PATH}/annoSet/{id}/,/sentence,labels,lexUnit,pattern,lexUnit.frame,pattern.valenceUnits,pattern.valenceUnits.FE`,
     ANNOSETS: `${API_PATH}/annoSets/,/sentence,labels,lexUnit,pattern,lexUnit.frame,pattern.valenceUnits,pattern.valenceUnits.FE?vp={id}&skip={skip}&limit={limit}`,

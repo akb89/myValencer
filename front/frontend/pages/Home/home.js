@@ -12,6 +12,7 @@ module.exports = {
         gohome(e) {
             e.preventDefault();
             this.$store.commit('update_query', '');
+            this.$store.commit('reset_state');
             this.$store.commit('annoset/reset_state');
             this.$store.commit('frame/reset_state');
             this.$store.commit('lexunit/reset_state');
@@ -21,7 +22,8 @@ module.exports = {
             this.$store.commit('update_query', input);
         },
         fetch_data(e) {
-            e.preventDefault();
+            e.preventDefault
+            this.$store.commit('reset_state');
             this.$store.commit('annoset/reset_state');
             this.$store.commit('frame/reset_state');
             this.$store.commit('lexunit/reset_state');
@@ -64,6 +66,13 @@ module.exports = {
                 path: StringUtils.format_with_obj(
                     APIRoutes.ANNOSETS,
                     { id: this.$store.state.queries.current, skip, limit },
+                ),
+            });
+            this.$store.dispatch('fehierarchy/call_api', {
+                method: 'GET',
+                path: StringUtils.format_with_obj(
+                    APIRoutes.FEHIERARCHY,
+                    { id: this.$store.state.queries.current },
                 ),
             });
             this.$store.dispatch('frame/call_api', {

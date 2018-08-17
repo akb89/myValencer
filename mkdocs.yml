@@ -17,3 +17,5 @@ theme:
   favicon: assets/images/favicon.png
   logo:
     icon: "\uE80C"
+markdown_extensions:
+  - admonition

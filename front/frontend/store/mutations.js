@@ -14,4 +14,12 @@ module.exports = {
     update_query: (state, input) => {
         state.queries.current = input;
     },
+    reset_state: (state) => {
+        state.feColorMap = {};
+        state.colorIndex = 1;
+    },
+    add_entry_to_map: (state, payload) => {
+        state.feColorMap[payload.feName] = payload.color;
+        state.colorIndex += 1;
+    },
 };

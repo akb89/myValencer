@@ -15,7 +15,7 @@
     </div>
     <div v-if="!$store.state.annoset.loading">
         <div class="columns is-centered">
-          <div class="column is-8">
+          <div class="column is-10">
             <fn-annoset
             v-if="!$store.state.annoset.loading"
             v-for="item in $store.state.annoset.content"
@@ -27,21 +27,21 @@
             </fn-annoset>
           </div>
           <div class="column is-2">
-            <div class="content is-small">
-              This is a tree
-              <pre>
-bootstrap/
-├── less/
-├── js/
-├── fonts/
-├── dist/
-│   ├── css/
-│   ├── js/
-│   └── fonts/
-└── docs/
-    └── examples/
+            <accordion
+            v-if="$store.state.fehierarchy.content && $store.state.fehierarchy.content.length > 0"
+            :number-of-items="Object.keys($store.state.fehierarchy.content[0]).length">
+              <template v-for="(item, _, idx) in $store.state.fehierarchy.content[0]">
+              <div :slot="`title-${idx}`"
+                :label-format="$store.state.feColorMap[item.name]"
+              >
+                {{item.name}}
+              </div>
+              <pre :slot="`body-${idx}`">
+                Mon texte
               </pre>
-            </div>
+            </template>
+
+            </accordion>
           </div>
         </div>
     </div>
