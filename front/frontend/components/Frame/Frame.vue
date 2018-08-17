@@ -23,7 +23,6 @@
             <article class="tile is-child">
               <h1 class="title is-6 low-margin-bottom">Definition</h1>
               <div class="content is-small fnlabels" v-html="format_definition(definition)"></div>
-              <!-- <div class="content is-small fnlabels" v-html="definition"></div> -->
             </article>
           </div>
             <div class="tile is-vertical is-12">
@@ -58,10 +57,10 @@
             </thead>
             <tbody>
               <tr v-for="fe in orderedFrameElements">
-                <td class="content is-small">{{fe.name}}</td>
+                <!-- <td class="content is-small">{{fe.name}}</td> -->
+                <td class="content is-small" v-html="format_fename(fe.name)"></td>
                 <td class="content is-small">{{fe.coreType}}</td>
-                <!-- <td class="content is-small fnlabels" v-html="format_definition(fe.definition)"></td> -->
-                <td class="content is-small fnlabels" v-html="fe.definition"></td>
+                <td class="content is-small fnlabels" v-html="format_definition(fe.definition)"></td>
               </tr>
             </tbody>
           </table>

@@ -12,6 +12,19 @@ module.exports = {
         },
     },
     methods: {
+        format_fename(fename) {
+            const container = document.createElement('div');
+            const mark = document.createElement('mark');
+            if (fename in this.$store.state.feColorMap) {
+                mark.setAttribute('fename-format', this.$store.state.feColorMap[fename]);
+            } else {
+                this.$store.commit('add_entry_to_map', { feName: fename, color: `f${this.$store.state.colorIndex}` });
+                mark.setAttribute('fename-format', this.$store.state.feColorMap[fename]);
+            }
+            mark.appendChild(document.createTextNode(fename));
+            container.appendChild(mark);
+            return container.innerHTML;
+        },
         format_definition(rawHtmlDefinition) {
             const container = document.createElement('div');
             const dom = new JSDOM(rawHtmlDefinition);
@@ -27,7 +40,7 @@ module.exports = {
                         mark.setAttribute('fename-format', this.$store.state.feColorMap[child.textContent]);
                     } else {
                         this.$store.commit('add_entry_to_map', { feName: child.textContent, color: `f${this.$store.state.colorIndex}` });
-                        mark.setAttribute('label-format', `f${this.$store.state.colorIndex}`);
+                        mark.setAttribute('fename-format', `f${this.$store.state.colorIndex}`);
                     }
                     mark.appendChild(document.createTextNode(child.textContent));
                     container.appendChild(mark);
