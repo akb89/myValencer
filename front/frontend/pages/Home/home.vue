@@ -110,10 +110,29 @@
     <div class="column is-12">
       <div class="tabs is-centered">
         <ul>
-          <li v-bind:class="{ 'is-active': $store.state.display.type === 'ANNOSET'}" @click="display_tab('ANNOSET')"><a>Annotations</a></li>
-          <li v-bind:class="{ 'is-active': $store.state.display.type === 'FRAME' }" @click="display_tab('FRAME')"><a>Frames</a></li>
-          <li v-bind:class="{ 'is-active': $store.state.display.type === 'LEXUNIT'}" @click="display_tab('LEXUNIT')"><a>Lexical units</a></li>
-          <li v-bind:class="{ 'is-active': $store.state.display.type === 'CLUSTER'}" @click="display_tab('CLUSTER')"><a>Cluster</a></li>
+            <li :class="{ 'is-active': $store.state.display.type === 'ANNOSET'}" @click="display_tab('ANNOSET')">
+            <a>
+                <span>Annotations</span>
+                <span v-if="$store.state.annoset && $store.state.annoset.total" class="is-tab-tag tag is-primary">{{$store.state.annoset.total}}</span>
+            </a>
+            </li>
+            <li :class="{ 'is-active': $store.state.display.type === 'FRAME' }" @click="display_tab('FRAME')">
+                <a>
+                    <span>Frames</span>
+                    <span v-if="$store.state.frame && $store.state.frame.total" class="is-tab-tag tag is-primary">{{$store.state.frame.total}}</span>
+                </a>
+            </li>
+            <li :class="{ 'is-active': $store.state.display.type === 'LEXUNIT'}" @click="display_tab('LEXUNIT')">
+                <a>
+                    <span>Lexical units</span>
+                    <span v-if="$store.state.lexunit && $store.state.lexunit.total" class="is-tab-tag tag is-primary">{{$store.state.lexunit.total}}</span>
+                </a>
+            </li>
+            <li :class="{ 'is-active': $store.state.display.type === 'CLUSTER'}" @click="display_tab('CLUSTER')">
+                <a>
+                    <span>Cluster</span>
+                </a>
+            </li>
         </ul>
     </div>
     <fn-annosets v-if="$store.state.display.type === 'ANNOSET'"></fn-annosets>
