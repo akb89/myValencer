@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="columns">
-        <div class="column is-12">
+        <div class="column is-9">
             <paginator
             display="ANNOSET"
             :items-per-page="$store.state.queries.items"
@@ -15,7 +15,7 @@
     </div>
     <div v-if="!$store.state.annoset.loading">
         <div class="columns is-centered">
-          <div class="column is-10">
+          <div class="column is-9">
             <fn-annoset
             v-if="!$store.state.annoset.loading"
             v-for="item in $store.state.annoset.content"
@@ -26,7 +26,7 @@
             :pattern="item.pattern">
             </fn-annoset>
           </div>
-          <div class="column is-2">
+          <div class="column is-3">
             <collapsible
                 v-if="$store.state.fehierarchy.content && $store.state.fehierarchy.content.length > 0"
                 :number-of-items="Object.keys($store.state.fehierarchy.content[0]).length"
