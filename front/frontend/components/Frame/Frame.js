@@ -12,6 +12,18 @@ module.exports = {
         orderedFrameElements() {
             return _.orderBy(this.frameElements, ['coreType', 'name']);
         },
+        collapsed_path() {
+            const content = this.$store.state.framehierarchy.content || {};
+            let hcontent = null;
+            if (this.name in content) {
+                [hcontent] = content[this.name];
+            }
+
+            if (hcontent == null) {
+                return [];
+            }
+            return this.merge_paths(hcontent);
+        },
     },
     methods: {
         format_fename(fename) {
@@ -80,14 +92,43 @@ module.exports = {
             }
             return container.innerHTML;
         },
+        merge_paths(root) {
+            let queue = [root];
+            const levels = [];
+            while (queue.length > 0) {
+                const level = [];
+                levels.push(level);
+                queue.forEach((node) => {
+                    level.push(node.name);
+                    queue = queue.concat(node.parents || []);
+                    queue.shift();
+                });
+            }
+
+            return levels.map((level) => {
+                if (level.length > 1) {
+                    return `{${level.join(', ')}}`;
+                }
+                return level[0];
+            });
+        },
+        execute_request_if_need() {
+            const content = this.$store.state.framehierarchy.content || {};
+            if (this.name in content) {
+                return;
+            }
+            this.$store.dispatch('framehierarchy/call_api', {
+                method: 'GET',
+                path: StringUtils.format_with_obj(
+                    APIRoutes.FRAMEHIERARCHY,
+                    { id: this.name },
+                ),
+                multi: true,
+                request_name: this.name,
+            });
+        },
     },
     beforeMount() {
-        this.$store.dispatch('framehierarchy/call_api', {
-            method: 'GET',
-            path: StringUtils.format_with_obj(
-                APIRoutes.FRAMEHIERARCHY,
-                { id: this.name },
-            ),
-        });
+        this.execute_request_if_need();
     },
 };

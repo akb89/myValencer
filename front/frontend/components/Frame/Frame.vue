@@ -7,14 +7,22 @@
               <div class="container">
                 <h1 class="title">{{name}}</h1>
                 <h2 class="subtitle">
-                  <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
-                    <ul>
-                      <li v-for="item in $store.state.framehierarchy.content"><a href="#">{{item.name}}</a></li>
-                      <li><a href="#">To</a></li>
-                      <li><a href="#">The</a></li>
-                      <li class="is-active"><a href="#" aria-current="page">Frame</a></li>
-                    </ul>
-                  </nav>
+                    <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+                        <loader 
+                            color="white" background-color="turquoise" 
+                            size="small" 
+                            v-if="$store.state.loading && $store.state.loading[name]"
+                        />
+                        <ul v-else>
+                            <li 
+                                v-for="(item, idx) in collapsed_path.reverse()"
+                                class="is-active"
+                            >
+                                <a href='#' aria-current="page" v-if="idx === collapsed_path.length-1">{{item}}</a>
+                                <a href='#' v-else>{{item}}</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </h2>
               </div>
             </div>

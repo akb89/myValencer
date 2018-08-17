@@ -3,8 +3,10 @@ const Messages = require('./messages');
 
 
 async function fetch(object) {
-    const { method, path, body, commit } = object;
-    commit(Messages.LOADING);
+    const {
+        method, path, body, commit, multi, request_name,
+    } = object;
+    commit(Messages.LOADING, { multi, request_name });
 
     let super_request = Request[method.toLowerCase()](path);
     if (body != null && Object.keys(body).length > 0) {
