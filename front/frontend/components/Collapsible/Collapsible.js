@@ -14,13 +14,9 @@ module.exports = {
     methods: {
         toggle(idx) {
             if (this.state.items[idx]) {
-                // Ask to close
-                // Just close
                 this.$set(this.state.items, idx, false);
             } else {
-                // Ask to open
-                // Open the one we want to open
-                this.state.items[idx] = true;
+                this.$set(this.state.items, idx, true);
             }
         },
     },
