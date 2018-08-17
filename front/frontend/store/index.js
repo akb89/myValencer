@@ -11,7 +11,7 @@ const mstate = require('./module_store/state');
 Vue.use(Vuex);
 
 const modules_list = ['annoset', 'frame', 'cytoframe', 'cytolexunit',
-                      'fehierarchy', 'lexunit'];
+    'fehierarchy', 'lexunit', 'framehierarchy'];
 
 const module_template = {
     namespaced: true,

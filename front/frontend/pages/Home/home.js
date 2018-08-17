@@ -74,7 +74,7 @@ module.exports = {
                     APIRoutes.FEHIERARCHY,
                     { id: this.$store.state.queries.current },
                 ),
-            });
+            });            
             this.$store.dispatch('frame/call_api', {
                 method: 'GET',
                 path: StringUtils.format_with_obj(

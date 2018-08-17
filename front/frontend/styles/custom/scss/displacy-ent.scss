@@ -51,40 +51,6 @@ f6: #a6e22d, f7: #999);
   }
 }
 
-[light-label-format] {
-  padding: 0.25em 0.35em;
-  margin: 0 0.25em;
-  line-height: 1;
-  display: inline-block;
-  border-radius: 0.25em;
-  border: 1px solid;
-
-  &:after {
-    box-sizing: border-box;
-    content: attr(fe-name);
-    font-size: 0.6em;
-    line-height: 1;
-    padding: 0.35em 0.35em;
-    border-radius: 0.35em;
-    text-transform: uppercase;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 0 0.1rem 0.5rem;
-  }
-
-  @each $label, $color in $labels {
-    &[light-label-format="#{$label}"] {
-      background: rgba($color, 0.2);
-      border-color: $color;
-
-      &:after {
-        background: $color;
-      }
-
-    }
-  }
-}
-
 [label-format] {
   padding: 0.25em 0.35em;
   margin: 0 0.25em;
