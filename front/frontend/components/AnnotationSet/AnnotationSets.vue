@@ -27,9 +27,11 @@
             </fn-annoset>
           </div>
           <div class="column is-2">
-            <accordion
-            v-if="$store.state.fehierarchy.content && $store.state.fehierarchy.content.length > 0"
-            :number-of-items="Object.keys($store.state.fehierarchy.content[0]).length">
+            <collapsible
+                v-if="$store.state.fehierarchy.content && $store.state.fehierarchy.content.length > 0"
+                :number-of-items="Object.keys($store.state.fehierarchy.content[0]).length"
+                :open-by-default="true"
+            >
               <template v-for="(item, _, idx) in $store.state.fehierarchy.content[0]">
               <div :slot="`title-${idx}`"
                 :label-format="$store.state.feColorMap[item.name]"
@@ -40,8 +42,7 @@
                 Mon texte
               </pre>
             </template>
-
-            </accordion>
+            </collapsible>
           </div>
         </div>
     </div>
