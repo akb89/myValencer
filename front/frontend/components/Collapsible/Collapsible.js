@@ -2,11 +2,12 @@ module.exports = {
     props: {
         numberOfItems: { type: Number, required: true },
         showNthElement: { type: Number, default: -1 },
+        openByDefault: { type: Boolean, default: false },
     },
     data() {
         return {
             state: {
-                items: Array(this.numberOfItems).fill(false),
+                items: Array(this.numberOfItems).fill(this.openByDefault),
             },
         };
     },
@@ -18,8 +19,6 @@ module.exports = {
                 this.$set(this.state.items, idx, false);
             } else {
                 // Ask to open
-                // Close everything
-                this.state.items = this.state.items.map(it => false);
                 // Open the one we want to open
                 this.state.items[idx] = true;
             }

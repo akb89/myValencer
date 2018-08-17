@@ -14,5 +14,5 @@
 </template>
 
 <script>
-    module.exports = require('./Accordion');
+    module.exports = require('./Collapsible');
 </script>
