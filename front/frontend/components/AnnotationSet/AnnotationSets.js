@@ -1,5 +1,8 @@
+const StoreMixin = require('../../mixins/StoreMixin');
+
 module.exports = {
     name: 'AnnotationSets',
+    mixins: [StoreMixin],
     data() {
         return {
             state: {
@@ -20,6 +23,9 @@ module.exports = {
             return this.$store.state.fehierarchy.content
                 && this.$store.state.fehierarchy.content.length > 0
                 && Object.keys(this.$store.state.fehierarchy.content[0]).length > 0;
+        },
+        has_request_annoset_error() {
+            return this.has_request_error('annoset');
         },
     },
     methods: {

@@ -3,6 +3,7 @@ const regCose = require('cytoscape-cose-bilkent');
 
 const StringUtils = require('../../utils/strings');
 const APIRoutes = require('../../api/routes');
+const StoreMixin = require('../../mixins/StoreMixin');
 
 const cutils = require('../../utils/constants');
 
@@ -272,6 +273,7 @@ function updateCytolexunits(cytolexunits, cy, frameID) {
 
 module.exports = {
     name: 'Cluster',
+    mixins: [StoreMixin],
     props: ['lexunits'],
     data() {
         return {
@@ -280,6 +282,11 @@ module.exports = {
                 frameID: undefined,
             },
         };
+    },
+    computed: {
+        has_request_cytoframe_error() {
+            return this.has_request_error('cytoframe');
+        },
     },
     watch: {
         lexunits(newLexunits) {

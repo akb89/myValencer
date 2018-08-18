@@ -20,10 +20,9 @@ async function fetch(object) {
             header: res.header,
         };
     } catch (err) {
-        // FIXME do not assign error to content
         return {
             type: Messages.FAILURE,
-            content: err.response != null ? err.response.body : err,
+            error: err.response != null ? err.response.text : err,
         };
     }
 }

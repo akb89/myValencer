@@ -16,8 +16,14 @@
     <div v-if="!$store.state.annoset.loading">
         <div class="columns is-centered">
         <div :class="['column', {'is-9': has_fe_hierarchy, 'is-12': !has_fe_hierarchy}]">
+            <article v-if="has_request_annoset_error" class="message is-danger">
+                <div class="message-body has-text-centered">
+                    <span>An error occurred: </span>
+                    <span v-html="request_error_message('annoset')" />
+                </div>
+            </article>
             <fn-annoset
-            v-if="!$store.state.annoset.loading"
+            v-else 
             v-for="item in $store.state.annoset.content"
             :key="item._id"
             :labels="item.labels"

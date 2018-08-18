@@ -4,4 +4,5 @@ module.exports = {
     content: [],
     total: 0,
     skip: 0,
+    error: null,
 };
