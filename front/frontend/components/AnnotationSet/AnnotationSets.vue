@@ -27,31 +27,33 @@
             </fn-annoset>
           </div>
           <div class="column is-3">
-            <collapsible
-                v-if="$store.state.fehierarchy.content && $store.state.fehierarchy.content.length > 0"
-                :number-of-items="Object.keys($store.state.fehierarchy.content[0]).length"
-                :open-by-default="true"
-                class="fe-hierarchy"
-            >
-            <template v-for="(item, _, idx) in $store.state.fehierarchy.content[0]">
-
-                    <template :slot="`title-${idx}`">
+                <section class="accordions fe-hierarchy">
+                    <collapsible
+                        v-for="(item, _, idx) in $store.state.fehierarchy.content[0]"
+                        v-if="$store.state.fehierarchy.content && $store.state.fehierarchy.content.length > 0"
+                        :open="hierarchy(idx)"
+                        v-on:collapsible-toggle="(val) => change_hierarchy_tab(idx, val)"
+                        :key="idx"
+                    >
                         <div
                             :fe-hierarchy-header="$store.state.feColorMap[item.name]"
-                            class="accordion-header"
+                            class="accordion-header is-pointer"
+                            slot="title"
                         > 
                             {{item.name}}
-                            <!--<span class="is-pulled-right">
-                                <i class="fa fa-caret-down" v-if="open"></i>
+                            <span class="is-pulled-right">
+                                <i class="fa fa-caret-down" v-if="hierarchy(idx)"></i>
                                 <i class="fa fa-caret-up" v-else></i>
-                            </span>-->
+                            </span>
                         </div>
-                    </template>
-                    <div class="accordion-content" :fe-hierarchy-content="$store.state.feColorMap[item.name]" :slot="`body-${idx}`">
-                        <pre>{{display_fehierarchy_tree(item)}}</pre>
-                    </div>
-                </template>
-            </collapsible>
+                        <div class="accordion-content" 
+                            :fe-hierarchy-content="$store.state.feColorMap[item.name]" 
+                            slot="body"
+                        >
+                            <pre>{{display_fehierarchy_tree(item)}}</pre>
+                        </div>
+                    </collapsible>
+                </section>
           </div>
         </div>
     </div>
