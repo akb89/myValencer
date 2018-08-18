@@ -6,6 +6,13 @@ module.exports = {
     name: 'Home',
     data() {
         return {
+            state: {
+                frame: {
+                    queries: {
+                        items: 5,
+                    },
+                },
+            },
         };
     },
     methods: {
@@ -22,7 +29,7 @@ module.exports = {
             this.$store.commit('update_query', input);
         },
         fetch_data(e) {
-            e.preventDefault
+            e.preventDefault;
             this.$store.commit('reset_state');
             this.$store.commit('annoset/reset_state');
             this.$store.commit('frame/reset_state');
@@ -74,12 +81,16 @@ module.exports = {
                     APIRoutes.FEHIERARCHY,
                     { id: this.$store.state.queries.current },
                 ),
-            });            
+            });
             this.$store.dispatch('frame/call_api', {
                 method: 'GET',
                 path: StringUtils.format_with_obj(
                     APIRoutes.FRAMES,
-                    { id: this.$store.state.queries.current, skip, limit },
+                    {
+                        id: this.$store.state.queries.current,
+                        skip,
+                        limit: this.state.frame.queries.items,
+                    },
                 ),
             });
             this.$store.dispatch('cytoframe/call_api', {

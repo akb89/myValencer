@@ -11,7 +11,7 @@
                         <loader 
                             color="white" background-color="turquoise" 
                             size="small" 
-                            v-if="$store.state.framehierarchy.loading && $store.state.framehiearchy.loading[name]"
+                            v-if="$store.state.framehierarchy.loading && $store.state.framehierarchy.loading[name]"
                         />
                         <ul v-else>
                             <li 
