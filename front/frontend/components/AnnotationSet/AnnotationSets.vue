@@ -31,22 +31,32 @@
                 v-if="$store.state.fehierarchy.content && $store.state.fehierarchy.content.length > 0"
                 :number-of-items="Object.keys($store.state.fehierarchy.content[0]).length"
                 :open-by-default="true"
+                class="fe-hierarchy"
             >
-              <template v-for="(item, _, idx) in $store.state.fehierarchy.content[0]">
-              <div :slot="`title-${idx}`"
-                :label-format="$store.state.feColorMap[item.name]"
-              >
-                {{item.name}}
-              </div>
-              <pre :slot="`body-${idx}`">{{display_fehierarchy_tree(item)}}</pre>
+            <template v-for="(item, _, idx) in $store.state.fehierarchy.content[0]">
 
-            </template>
+                    <template :slot="`title-${idx}`">
+                        <div
+                            :fe-hierarchy-header="$store.state.feColorMap[item.name]"
+                            class="accordion-header"
+                        > 
+                            {{item.name}}
+                            <!--<span class="is-pulled-right">
+                                <i class="fa fa-caret-down" v-if="open"></i>
+                                <i class="fa fa-caret-up" v-else></i>
+                            </span>-->
+                        </div>
+                    </template>
+                    <div class="accordion-content" :fe-hierarchy-content="$store.state.feColorMap[item.name]" :slot="`body-${idx}`">
+                        <pre>{{display_fehierarchy_tree(item)}}</pre>
+                    </div>
+                </template>
             </collapsible>
           </div>
         </div>
     </div>
     <div class="columns">
-        <div class="column is-12">
+        <div class="column is-9">
             <paginator
             display="ANNOSET"
             :items-per-page="$store.state.queries.items"

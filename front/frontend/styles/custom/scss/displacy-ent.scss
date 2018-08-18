@@ -29,10 +29,30 @@ f6: #a6e22d, f7: #999);
   line-height: 2;
 }
 
+[fe-hierarchy-header]{
+    @each $label, $color in $labels {
+        &[fe-hierarchy-header="#{$label}"] {
+            background-color: $color !important;
+        }
+    }
+}
+  
+[fe-hierarchy-content]{
+    @each $label, $color in $labels {
+        &[fe-hierarchy-content="#{$label}"] {
+            //background-color: rgba($color, 0.2) !important;
+            pre {
+                background-color: rgba($color, 0.2) !important;
+            }
+        }
+    }
+}
+
 @each $label, $color in $labels {
   [fe-style="#{$label}"] {
     background-color: rgba($color, 0.2);
   }
+
 }
 
 [fename-format] {

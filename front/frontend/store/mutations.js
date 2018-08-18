@@ -1,3 +1,5 @@
+const Vue = require('vue');
+
 module.exports = {
     display_tab: (state, payload) => {
         // TODO HACK HACK HACK, should use tabs as well
@@ -19,7 +21,7 @@ module.exports = {
         state.colorIndex = 1;
     },
     add_entry_to_map: (state, payload) => {
-        state.feColorMap[payload.feName] = payload.color;
+        Vue.set(state.feColorMap, payload.feName, payload.color);
         state.colorIndex += 1;
     },
 };

@@ -12,8 +12,8 @@ module.exports = {
             if (node.children.length > 0) {
                 depth += 1;
             }
-            node.children.sort((a, b) => a.name.localeCompare(b.name));
-            node.children.forEach((child, idx) => {
+            const children = node.children.concat().sort((a, b) => a.name.localeCompare(b.name));
+            children.forEach((child, idx) => {
                 const tab = '|   '.repeat(depth);
                 if (idx !== node.children.length - 1) {
                     output_tree = `${output_tree}${tab}├── ${child.name}\n`;
@@ -26,8 +26,8 @@ module.exports = {
         },
         display_fehierarchy_tree(fe_hier_node) {
             let output_tree = '';
-            fe_hier_node.children.sort((a, b) => a.name.localeCompare(b.name));
-            fe_hier_node.children.forEach((child, idx) => {
+            const children = fe_hier_node.children.concat().sort((a, b) => a.name.localeCompare(b.name));
+            children.forEach((child, idx) => {
                 if (idx !== fe_hier_node.children.length - 1) {
                     output_tree = `${output_tree}├── ${child.name}\n`;
                 } else {
