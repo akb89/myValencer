@@ -13,7 +13,7 @@
                             size="small" 
                             v-if="$store.state.framehierarchy.loading && $store.state.framehierarchy.loading[name]"
                         />
-                        <ul v-else>
+                        <ul v-else-if="collapsed_path.length > 1">
                             <li 
                                 v-for="(item, idx) in collapsed_path.reverse()"
                                 class="is-active"
@@ -35,7 +35,8 @@
           </div>
             <div class="tile is-vertical is-12">
               <div class="tile">
-                <div class="tile is-parent is-vertical is-4">
+                  <!--<div class="tile is-parent is-vertical is-4">-->
+                  <div class="tile is-parent is-vertical is-12">
                   <article class="tile is-child">
                     <h1 class="title is-6 low-margin-bottom">Lexical Units</h1>
                     <div class="content is-small">
@@ -45,11 +46,11 @@
                     </div>
                   </article>
                 </div>
-            <div class="tile is-parent">
+            <!--<div class="tile is-parent">
               <article class="tile is-child">
                 <h1 class="title is-6 low-margin-bottom">Frame Relations</h1>
               </article>
-            </div>
+          </div>-->
           </div>
         </div>
       <div class="tile is-parent">

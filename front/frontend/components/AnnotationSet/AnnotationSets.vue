@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="columns">
-        <div class="column is-9">
+        <div :class="['column', {'is-9': has_fe_hierarchy, 'is-12': !has_fe_hierarchy}]">
             <paginator
             display="ANNOSET"
             :items-per-page="$store.state.queries.items"
@@ -15,7 +15,7 @@
     </div>
     <div v-if="!$store.state.annoset.loading">
         <div class="columns is-centered">
-          <div class="column is-9">
+        <div :class="['column', {'is-9': has_fe_hierarchy, 'is-12': !has_fe_hierarchy}]">
             <fn-annoset
             v-if="!$store.state.annoset.loading"
             v-for="item in $store.state.annoset.content"
@@ -26,11 +26,12 @@
             :pattern="item.pattern">
             </fn-annoset>
           </div>
-          <div class="column is-3">
+          <div class="column is-3"
+            v-if="has_fe_hierarchy"
+          >
                 <section class="accordions fe-hierarchy">
                     <collapsible
                         v-for="(item, _, idx) in $store.state.fehierarchy.content[0]"
-                        v-if="$store.state.fehierarchy.content && $store.state.fehierarchy.content.length > 0"
                         :open="hierarchy(idx)"
                         v-on:collapsible-toggle="(val) => change_hierarchy_tab(idx, val)"
                         :key="idx"
@@ -58,7 +59,7 @@
         </div>
     </div>
     <div class="columns">
-        <div class="column is-9">
+        <div :class="['column', {'is-9': has_fe_hierarchy, 'is-12': !has_fe_hierarchy}]">
             <paginator
             display="ANNOSET"
             :items-per-page="$store.state.queries.items"

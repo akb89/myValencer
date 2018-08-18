@@ -16,6 +16,11 @@ module.exports = {
                 return this.state.hierarchy[`${idx}`];
             };
         },
+        has_fe_hierarchy() {
+            return this.$store.state.fehierarchy.content
+                && this.$store.state.fehierarchy.content.length > 0
+                && Object.keys(this.$store.state.fehierarchy.content[0]).length > 0;
+        },
     },
     methods: {
         change_hierarchy_tab(idx, val) {
