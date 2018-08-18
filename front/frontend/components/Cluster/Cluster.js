@@ -4,6 +4,8 @@ const regCose = require('cytoscape-cose-bilkent');
 const StringUtils = require('../../utils/strings');
 const APIRoutes = require('../../api/routes');
 
+const cutils = require('../../utils/constants');
+
 regCose(cytoscape); // register extension
 
 const FRAME_LAYOUT = {
@@ -193,42 +195,53 @@ function displayCluster(cytoframes) {
         }
     });
     // TODO remove mouseover when too many nodes. Also remove tap
-    // cy.on('mouseover', 'edge', (event) => {
-    //     const edge = event.target;
-    //     cy.style().selector(`edge[id = '${edge.id()}']`).style({
-    //         opacity: 1,
-    //         label: 'data(type)',
-    //         color: 'white',
-    //         'text-rotation': 'autorotate',
-    //         'text-margin-y': '-15px',
-    //     }).update();
-    // });
-    // cy.on('mouseout', 'edge', (event) => {
-    //     const edge = event.target;
-    //     cy.style().selector(`edge[id = '${edge.id()}']`).style({ opacity: 0.4, label: '' }).update();
-    // });
-    // cy.on('mouseover', 'node', (event) => {
-    //     const node = event.target;
-    //     cy.style().selector(`node[id = '${node.id()}']`).style({
-    //         'background-opacity': 1,
-    //         opacity: 1,
-    //     }).update();
-    // });
-    // cy.on('mouseout', 'node', (event) => {
-    //     const node = event.target;
-    //     cy.style().selector(`node[id = '${node.id()}']`).style({ 'background-opacity': 0.7, opacity: 0.9 }).update();
-    // });
+    cy.on('mouseover', 'edge', (event) => {
+        if (cytoframes.length < cutils.CYTO_MOUSE_LIMIT) {
+            const edge = event.target;
+            cy.style().selector(`edge[id = '${edge.id()}']`).style({
+                opacity: 1,
+                label: 'data(type)',
+                color: 'white',
+                'text-rotation': 'autorotate',
+                'text-margin-y': '-15px',
+            }).update();
+        }
+    });
+    cy.on('mouseout', 'edge', (event) => {
+        if (cytoframes.length < cutils.CYTO_MOUSE_LIMIT) {
+            const edge = event.target;
+            cy.style().selector(`edge[id = '${edge.id()}']`).style({ opacity: 0.4, label: '' }).update();
+        }
+    });
+    cy.on('mouseover', 'node', (event) => {
+        if (cytoframes.length < cutils.CYTO_MOUSE_LIMIT) {
+            const node = event.target;
+            cy.style().selector(`node[id = '${node.id()}']`).style({
+                'background-opacity': 1,
+                opacity: 1,
+            }).update();
+        }
+    });
+    cy.on('mouseout', 'node', (event) => {
+        if (cytoframes.length < cutils.CYTO_MOUSE_LIMIT) {
+            const node = event.target;
+            cy.style().selector(`node[id = '${node.id()}']`).style({ 'background-opacity': 0.7, opacity: 0.9 }).update();
+        }
+        const node = event.target;
+        cy.style().selector(`node[id = '${node.id()}']`).style({ 'background-opacity': 0.7, opacity: 0.9 }).update();
+    });
     // cy.on('tap', 'node', (event) => {
-    //     const node = event.target;
-    //     this.state.frameID = node.id();
-    //     console.log(node.id());
-    //     this.$store.dispatch('cytolexunit/call_api', {
-    //         method: 'GET',
-    //         path: StringUtils.format_with_obj(
-    //             APIRoutes.CYTOLEXUNITS,
-    //             { id: this.$store.state.queries.current, frameID: node.id() },
-    //         ),
-    //     });
+    //     if (cytoframes.length < cutils.CYTO_TAP_LIMIT) {
+    //         const node = event.target;
+    //         this.state.frameID = node.id();
+    //         this.$store.dispatch('cytolexunit/call_api', {
+    //             method: 'GET',
+    //             path: StringUtils.format_with_obj(
+    //                 APIRoutes.CYTOLEXUNITS,
+    //                 { id: this.$store.state.queries.current, frameID: node.id() },
+    //             ),
+    //         });
+    //     }
     // });
     cy.style().fromJson(style).update();
     cy.layout(FRAME_LAYOUT).run();
@@ -236,9 +249,7 @@ function displayCluster(cytoframes) {
 }
 
 function updateCytolexunits(cytolexunits, cy, frameID) {
-    console.log('Updating cytolexunits!!');
     cy.add(cytolexunits);
-    console.log(cy.style().selector(`node[id = ${frameID}]`)[0]);
     cy.style().selector(`node[frame = ${frameID}]`).style({
         'background-color': 'orange',
         'background-blacken': -0.5,
@@ -256,7 +267,6 @@ function updateCytolexunits(cytolexunits, cy, frameID) {
         opacity: 0.4,
     }).update();
     // const style = cy.style().selector(`edge[type = 'frame' && source = ${frameID}]`);
-    // console.log(style);
     cy.layout(LEXUNIT_LAYOUT).run();
 }
 
