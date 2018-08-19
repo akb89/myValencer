@@ -12,10 +12,14 @@ or requesting features on Github or by contacting us at contact at valencer.io.
 
 myValencer currently supports the following functionalities:
 
-* **Annotations**
-* **Frames**
-* **Lexical units**
-* **Cluster**
+* **Annotations**: displays all annotated sentences exemplifying the input valence pattern.
+* **Frames**: displays all frames which contain at least one lexical unit which arguments are
+realized in the specified input valence pattern.
+* **Lexical units**: displays all lexical units which arguments are realized in the specified
+input valence pattern.
+* **Cluster**: displays the cluster of frames matching the input valence pattern, with their respective (frame) relations.
+
+For more details regarding the output of the application, check out the [Output section]().
 
 ## What is a *valence pattern*?
 
@@ -78,7 +82,31 @@ prepositional phrase with any kind of grammatical function.
 
 ## Use cases
 
+Below are some possible use case for the myValencer application:
 
+### Accessing *hidden* FrameNet data
+
+### Analyzing the *semantic scope* of syntactic constructions
+myValencer can be used to analyze the 'semantic scope' of a given syntactic construction by
+querying for frames or lexical units matching the corresponding (syntactic) valence pattern.
+For example, querying for the lexical units matching the
+*prepositional indirect object construction* `NP.Ext NP.Obj NP.Dep` will return
+349 unique lexical units found in 207 unique frames.
+
+### Paraphrasing
+myValencer can be used to search for paraphrasing candidates by querying lexical units
+matching a given valence pattern, as FrameNet is characterized by relatively narrow-scope
+frames and frame elements. For examples, querying for the lexical units matching
+the vp `Fluid.NP.Ext Goal.PP.Dep Source.PP.Dep` corresponding to sentences such as
+*Some of the wine spilled from the bottle to the floor*, will return lexical units
+such as `drip.v`, `leak.v`, `splash.v` or `trickle.v`.
+
+### Concordancing
+myValencer can be used to extend the capabilities of traditional concordancers by enabling
+searching for complex combinations of semantic and syntactic patterns, not bounded by specific
+lexical items. Querying for annotations returns a list of annotated sentences matching a
+given valence pattern, with the corresponding labels as well as all the relevant information
+pertaining to the lexical unit and its frame
 
 ## Options
 ### withExtraCoreFEs
