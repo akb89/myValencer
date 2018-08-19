@@ -280,8 +280,18 @@ module.exports = {
             state: {
                 cy: undefined,
                 frameID: undefined,
+                height: 0,
             },
         };
+    },
+    methods: {
+        compute_height(w) {
+            const total_height = w.innerHeight;
+            const other_components_height = document.getElementById('header').scrollHeight
+                + document.getElementById('tabs').scrollHeight;
+            const MARGIN = 50;
+            return total_height - other_components_height - MARGIN;
+        },
     },
     computed: {
         has_request_cytoframe_error() {
@@ -296,8 +306,20 @@ module.exports = {
             );
         },
     },
-    mounted() { displayCluster.bind(this)(this.$store.state.cytoframe.content); },
+    beforeMount() {
+        window.addEventListener('resize', (event) => {
+            const w = event.currentTarget;
+            this.state.height = this.compute_height(w);
+        });
+    },
+    mounted() {
+        this.state.height = this.compute_height(window);
+        displayCluster.bind(this)(this.$store.state.cytoframe.content);
+    },
     updated() {
         displayCluster.bind(this)(this.$store.state.cytoframe.content);
+    },
+    beforeDestroy() {
+        window.removeEventListener('resize');
     },
 };

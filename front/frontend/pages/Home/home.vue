@@ -1,6 +1,6 @@
 <template>
 <div v-if="$store.state.queries.current.length === 0" class="container is-fluid">
-    <div class="columns is-centered">
+    <div class="columns is-centered" id="header">
         <div class="column is-6">
             <div class="figure is-16by9">
                 <img src='/public/front/img/logo_colors.png' alt='Valencer Logo' />
@@ -50,7 +50,7 @@
 </footer>
 </div>
 <div v-else class="container is-fluid">
-    <div class="columns is-multiline is-mobile is-centered is-vcentered">
+    <div class="columns is-multiline is-mobile is-centered is-vcentered" id="header">
       <div class="column is-2">
         <div class="image is-pointer" @click.prevent="gohome">
             <img src='/public/front/img/logo_colors_16by9_tiny.png' alt='myValencer Logo' />
@@ -108,7 +108,7 @@
   </div> -->
   <div class="columns is-mobile">
     <div class="column is-12">
-      <div class="tabs is-centered">
+      <div class="tabs is-centered" id="tabs">
         <ul>
             <li :class="{ 'is-active': $store.state.display.type === 'ANNOSET'}" @click="display_tab('ANNOSET')">
             <a>

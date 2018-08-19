@@ -13,7 +13,7 @@
         </div>
   </div>
   <div v-else class="columns is-centered">
-      <div id="cy"></div>
+      <div id="cy" :style="{height: state.height + 'px'}"></div>
   </div>
 </template>
 
