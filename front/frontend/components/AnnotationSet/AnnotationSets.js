@@ -1,10 +1,37 @@
+const StoreMixin = require('../../mixins/StoreMixin');
+
 module.exports = {
     name: 'AnnotationSets',
+    mixins: [StoreMixin],
     data() {
         return {
+            state: {
+                hierarchy: {},
+            },
         };
     },
+    computed: {
+        hierarchy() {
+            return (idx) => {
+                if (!(`${idx}` in this.state.hierarchy)) {
+                    this.$set(this.state.hierarchy, `${idx}`, true);
+                }
+                return this.state.hierarchy[`${idx}`];
+            };
+        },
+        has_fe_hierarchy() {
+            return this.$store.state.fehierarchy.content
+                && this.$store.state.fehierarchy.content.length > 0
+                && Object.keys(this.$store.state.fehierarchy.content[0]).length > 0;
+        },
+        has_request_annoset_error() {
+            return this.has_request_error('annoset');
+        },
+    },
     methods: {
+        change_hierarchy_tab(idx, val) {
+            this.$set(this.state.hierarchy, `${idx}`, val);
+        },
         display_tab(tab_name) {
             this.$store.commit('display_tab', { name: tab_name, display: 'subtype' });
         },

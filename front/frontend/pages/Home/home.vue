@@ -1,6 +1,6 @@
 <template>
 <div v-if="$store.state.queries.current.length === 0" class="container is-fluid">
-    <div class="columns is-centered">
+    <div class="columns is-centered" id="header">
         <div class="column is-6">
             <div class="figure is-16by9">
                 <img src='/public/front/img/logo_colors.png' alt='Valencer Logo' />
@@ -20,8 +20,8 @@
         <div class="column is-8">
             <div class="field">
                 <div class="control has-text-centered">
-                    <button @click="fetch_data" class="button is-primary">Search</button>
-                    <button @click="fetch_trying_data" class="button is-primary">Try me out!</button>
+                    <button @click.prevent="fetch_data" class="button is-primary">Search</button>
+                    <button @click.prevent="fetch_trying_data" class="button is-primary">Try me out!</button>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
       <div class="content has-text-centered">
         <em> New to myValencer?
           <a href="https://github.com/akb89/valencer">Check out our manual</a> or
-          click on <a @click="fetch_trying_data">Try me out!</a> </em>
+          click on <a @click.prevent="fetch_trying_data">Try me out!</a> </em>
       </div>
     </div>
     <footer class="footer">
@@ -50,9 +50,9 @@
 </footer>
 </div>
 <div v-else class="container is-fluid">
-    <div class="columns is-multiline is-mobile is-centered is-vcentered">
+    <div class="columns is-multiline is-mobile is-centered is-vcentered" id="header">
       <div class="column is-2">
-        <div class="image is-pointer" @click="gohome">
+        <div class="image is-pointer" @click.prevent="gohome">
             <img src='/public/front/img/logo_colors_16by9_tiny.png' alt='myValencer Logo' />
         </div>
       </div>
@@ -67,7 +67,7 @@
         </div>
       </div>
       <div class="column is-2">
-        <button @click="fetch_data" class="button is-primary">Search</button>
+        <button @click.prevent="fetch_data" class="button is-primary">Search</button>
       </div>
   </div>
   <!-- <div class="columns is-multiline is-mobile">
@@ -108,7 +108,7 @@
   </div> -->
   <div class="columns is-mobile">
     <div class="column is-12">
-      <div class="tabs is-centered">
+      <div class="tabs is-centered" id="tabs">
         <ul>
             <li :class="{ 'is-active': $store.state.display.type === 'ANNOSET'}" @click="display_tab('ANNOSET')">
             <a>

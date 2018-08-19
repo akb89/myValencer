@@ -19,6 +19,7 @@ module.exports = {
     reset_state: (state) => {
         state.feColorMap = {};
         state.colorIndex = 1;
+        state.display.type = 'ANNOSET';
     },
     add_entry_to_map: (state, payload) => {
         Vue.set(state.feColorMap, payload.feName, payload.color);

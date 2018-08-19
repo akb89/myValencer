@@ -3,6 +3,7 @@ const regCose = require('cytoscape-cose-bilkent');
 
 const StringUtils = require('../../utils/strings');
 const APIRoutes = require('../../api/routes');
+const StoreMixin = require('../../mixins/StoreMixin');
 
 const cutils = require('../../utils/constants');
 
@@ -272,14 +273,30 @@ function updateCytolexunits(cytolexunits, cy, frameID) {
 
 module.exports = {
     name: 'Cluster',
+    mixins: [StoreMixin],
     props: ['lexunits'],
     data() {
         return {
             state: {
                 cy: undefined,
                 frameID: undefined,
+                height: 0,
             },
         };
+    },
+    methods: {
+        compute_height(w) {
+            const total_height = w.innerHeight;
+            const other_components_height = document.getElementById('header').scrollHeight
+                + document.getElementById('tabs').scrollHeight;
+            const MARGIN = 50;
+            return total_height - other_components_height - MARGIN;
+        },
+    },
+    computed: {
+        has_request_cytoframe_error() {
+            return this.has_request_error('cytoframe');
+        },
     },
     watch: {
         lexunits(newLexunits) {
@@ -289,8 +306,20 @@ module.exports = {
             );
         },
     },
-    mounted() { displayCluster.bind(this)(this.$store.state.cytoframe.content); },
+    beforeMount() {
+        window.addEventListener('resize', (event) => {
+            const w = event.currentTarget;
+            this.state.height = this.compute_height(w);
+        });
+    },
+    mounted() {
+        this.state.height = this.compute_height(window);
+        displayCluster.bind(this)(this.$store.state.cytoframe.content);
+    },
     updated() {
         displayCluster.bind(this)(this.$store.state.cytoframe.content);
+    },
+    beforeDestroy() {
+        window.removeEventListener('resize');
     },
 };

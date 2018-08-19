@@ -5,7 +5,7 @@
 $labels: (f0: #ff3860, f1: #00d1b2, f2: #ffdd57, f3: #43c6fc, f4: #8e7dff, f5: #fd9720,
 f6: #a6e22d, f7: #999);
 
-@for $i from 1 through 20 {
+@for $i from 1 through 25 {
   @if $i % 2 == 0 {
     $labels: map-merge($labels, (f#{7*$i+1}: darken(#00d1b2, 20%)));
     $labels: map-merge($labels, (f#{7*$i+2}: darken(#ffdd57, 20%)));
