@@ -36,6 +36,11 @@ module.exports = {
             this.$store.commit('annoset/reset_state');
             this.$store.commit('frame/reset_state');
             this.$store.commit('lexunit/reset_state');
+
+            if (this._get_key_from_qs('tn')) {
+                this.display_tab(this._get_key_from_qs('tn'));
+            }
+
             if (this.is_id_type_query(this.$store.state.queries.current)) {
                 this.fetch_id_data();
             } else {
