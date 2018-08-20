@@ -144,7 +144,9 @@ Similarly, we have added, under each frame name on the `Frame` tab, the list of
 the frame's *parents* (the frames with which the current frame is in an
 `Inheritance` Frame-to-Frame relationship).
 
-For example,
+For example, rendering the frame `Giving` will show that it inherits
+from `Lose_possession` and `Intentionally_act`, one (or more) of which inherits from
+`Eventive_affective` which itself inherits from `Event`.
 ![Screenshot](img/giving.png)
 
 ## PT GF overview
@@ -161,3 +163,9 @@ For example,
 | Appos | Appositive | | |
 
 ## Mapping to UD and PENN
+
+!!! warning
+    This mapping is tentative and currently here to illustrate the potential
+    for using myValencer with various PT.GF nomenclatures.
+    If you would like to contribute, please join our
+    [discussion](https://github.com/akb89/valencer/issues/47).
