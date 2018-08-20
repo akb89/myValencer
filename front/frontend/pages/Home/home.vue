@@ -29,7 +29,7 @@
     <div class="container">
       <div class="content has-text-centered">
         <em> New to myValencer?
-          <a href="https://akb89.github.io/myvalencer/">Check out our manual</a> or
+          <a href="https://akb89.github.io/myValencer/">Check out our manual</a> or
           click on <a @click.prevent="fetch_trying_data">Try me out!</a> </em>
       </div>
     </div>
@@ -106,42 +106,6 @@
         </div>
       </div>
   </div>
-  <!--<div class="columns is-multiline is-mobile">
-    <div class="column is-8 is-offset-2">
-      <div class="field">
-        <div class="control">
-          <div class="select is-small">
-            <select>
-              <option>Language</option>
-              <option>en</option>
-            </select>
-        </div>
-          <div class="select is-small">
-            <select>
-              <option>Dataset</option>
-              <option>1.5</option>
-              <option>1.6</option>
-              <option>1.7</option>
-            </select>
-        </div>
-          <div class="select is-small">
-            <select>
-              <option>Extra Core FEs</option>
-              <option>yes</option>
-              <option>no</option>
-            </select>
-          </div>
-          <div class="select is-small">
-            <select>
-              <option>Strict VU matching</option>
-              <option>yes</option>
-              <option>no</option>
-            </select>
-          </div>
-        </div>
-      </div>
-  </div>
-  </div>-->
   <div class="columns is-mobile">
     <div class="column is-12">
       <div class="tabs is-centered" id="tabs">
