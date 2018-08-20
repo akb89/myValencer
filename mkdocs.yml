@@ -1,5 +1,5 @@
 site_name: myValencer
-pages:
+nav:
   - Home: index.md
 theme:
   name: null

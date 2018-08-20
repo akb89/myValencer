@@ -1,25 +1,26 @@
 # Welcome to myValencer's manual!
 
-myValencer is a web application to query valence patterns in FrameNet.
+myValencer is a free and opensource web application to query valence patterns in FrameNet.
 
-myValencer is free and opensource. Help us improve it by reporting bugs
-or requesting features on Github or by contacting us at contact at valencer.io.
-
-!!! warning
-    This manual is intendend for myValencer's users. It may contain errors or
-    approximations regarding FrameNet. Please always refer to the
-    [FrameNet book](framenet_book.pdf).
+Help us improve it by reporting bugs
+or requesting features on [Github](https://github.com/akb89/myValencer/issues)
+or by contacting us via [email](https://aemail.com/lE1).
 
 myValencer currently supports the following functionalities:
 
-* **Annotations**: displays all annotated sentences exemplifying the input valence pattern.
+* **Annotations**: displays all annotated sentences exemplifying an input valence pattern.
 * **Frames**: displays all frames which contain at least one lexical unit which arguments are
-realized in the specified input valence pattern.
-* **Lexical units**: displays all lexical units which arguments are realized in the specified
+realized in a specified input valence pattern.
+* **Lexical units**: displays all lexical units which arguments are realized in a specified
 input valence pattern.
-* **Cluster**: displays the cluster of frames matching the input valence pattern, with their respective (frame) relations.
+* **Cluster**: displays the cluster of frames matching an input valence pattern, with their respective (frame) relations.
 
-For more details regarding the output of the application, check out the [Output section]().
+!!! warning
+    This manual contains references to FrameNet concepts
+    necessary to use myValencer.
+    Details regarding those concepts -- as reproduced in this manual -- may contain errors or approximations.
+    For an accurate and exhaustive overview of FrameNet concepts, always refer to the
+    [FrameNet book](framenet_book.pdf).
 
 ## What is a *valence pattern*?
 
@@ -90,7 +91,7 @@ Below are some possible use case for the myValencer application:
 myValencer can be used to analyze the 'semantic scope' of a given syntactic construction by
 querying for frames or lexical units matching the corresponding (syntactic) valence pattern.
 For example, querying for the lexical units matching the
-*prepositional indirect object construction* `NP.Ext NP.Obj NP.Dep` will return
+*prepositional indirect object construction* `NP.Ext NP.Obj NP.Dep` returns
 349 unique lexical units found in 207 unique frames.
 
 ### Paraphrasing
@@ -98,7 +99,7 @@ myValencer can be used to search for paraphrasing candidates by querying lexical
 matching a given valence pattern, as FrameNet is characterized by relatively narrow-scope
 frames and frame elements. For examples, querying for the lexical units matching
 the vp `Fluid.NP.Ext Goal.PP.Dep Source.PP.Dep` corresponding to sentences such as
-*Some of the wine spilled from the bottle to the floor*, will return lexical units
+*Some of the wine spilled from the bottle to the floor*, returns lexical units
 such as `drip.v`, `leak.v`, `splash.v` or `trickle.v`.
 
 ### Concordancing
@@ -106,20 +107,14 @@ myValencer can be used to extend the capabilities of traditional concordancers b
 searching for complex combinations of semantic and syntactic patterns, not bounded by specific
 lexical items. Querying for annotations returns a list of annotated sentences matching a
 given valence pattern, with the corresponding labels as well as all the relevant information
-pertaining to the lexical unit and its frame
+pertaining to the lexical unit and its frame.
 
 ## Options
 ### withExtraCoreFEs
 ### strictVUmatching
 
-## Output
-### Annotations
+## Hierarchy
 
-### Frames
-
-### Lexical Units
-
-### Cluster
 
 ## PT GF overview
 ### PT labels
