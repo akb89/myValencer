@@ -75,7 +75,7 @@
         <div class="columns is-mobile">
             <div class="column is-3">
                 <div class="field is-grouped">
-                    <label class="label is-small has-small-margin-right">Extra Core FEs:</label>
+                    <label class="label is-small has-small-margin-right">With Extra Core FEs:</label>
                     <div class="control">
                         <label class="radio is-small">
                             <input type="radio" name="core_fe" value="true" v-model="state.core_fe">
@@ -141,7 +141,7 @@
         </div>
       </div>
   </div>
-  </div>--> 
+  </div>-->
   <div class="columns is-mobile">
     <div class="column is-12">
       <div class="tabs is-centered" id="tabs">
