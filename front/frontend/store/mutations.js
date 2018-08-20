@@ -1,4 +1,5 @@
 const Vue = require('vue');
+const _ = require('lodash');
 
 module.exports = {
     display_tab: (state, payload) => {
@@ -13,8 +14,8 @@ module.exports = {
         }
         state.display[payload.display] = payload.name;
     },
-    update_query: (state, input) => {
-        state.queries.current = input;
+    update_query: (state, payload) => {
+        state.queries.current = _.merge({}, state.queries.current, payload);
     },
     reset_state: (state) => {
         state.feColorMap = {};

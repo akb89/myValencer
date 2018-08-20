@@ -21,7 +21,7 @@ module.exports = {
     },
     methods: {
         gohome() {
-            this.$store.commit('update_query', '');
+            this.$store.commit('update_query', {});
             this.$store.commit('reset_state');
             this.$store.commit('annoset/reset_state');
             this.$store.commit('frame/reset_state');
@@ -30,8 +30,22 @@ module.exports = {
         },
         update_input(e) {
             const input = e.target.value;
-            this.$store.commit('update_query', input);
+            this.$store.commit('update_query', { input });
             this._add_to_qs('s', input);
+        },
+        update_strict_vu(e) {
+            const val = e.target.value === 'true';
+            this.state.strict_vu = val;
+            this.$store.commit('update_query', {
+                strictVUMatching: val,
+            });
+        },
+        update_core_fe(e) {
+            const val = e.target.value === 'true';
+            this.state.core_fe = val;
+            this.$store.commit('update_query', {
+                withExtraCoreFEs: val,
+            });
         },
         fetch_data() {
             this.$store.commit('reset_state');
@@ -43,7 +57,7 @@ module.exports = {
                 this.display_tab(this._get_key_from_qs('tn'));
             }
 
-            if (this.is_id_type_query(this.$store.state.queries.current)) {
+            if (this.is_id_type_query(this.$store.state.queries.current.input)) {
                 this.fetch_id_data();
             } else {
                 this.fetch_vp_data();
@@ -54,21 +68,21 @@ module.exports = {
                 method: 'GET',
                 path: StringUtils.format_with_obj(
                     APIRoutes.ANNOSET,
-                    { id: this.$store.state.queries.current },
+                    { id: this.$store.state.queries.current.input },
                 ),
             });
             this.$store.dispatch('frame/call_api', {
                 method: 'GET',
                 path: StringUtils.format_with_obj(
                     APIRoutes.FRAME,
-                    { id: this.$store.state.queries.current },
+                    { id: this.$store.state.queries.current.input },
                 ),
             });
             this.$store.dispatch('lexunit/call_api', {
                 method: 'GET',
                 path: StringUtils.format_with_obj(
                     APIRoutes.LEXUNIT,
-                    { id: this.$store.state.queries.current },
+                    { id: this.$store.state.queries.current.input },
                 ),
             });
         },
@@ -80,7 +94,7 @@ module.exports = {
                 path: StringUtils.format_with_obj(
                     APIRoutes.ANNOSETS,
                     {
-                        id: this.$store.state.queries.current,
+                        id: this.$store.state.queries.current.input,
                         skip,
                         limit,
                         strictVUMatching: this.state.strict_vu,
@@ -92,7 +106,7 @@ module.exports = {
                 method: 'GET',
                 path: StringUtils.format_with_obj(
                     APIRoutes.FEHIERARCHY,
-                    { id: this.$store.state.queries.current },
+                    { id: this.$store.state.queries.current.input },
                 ),
             });
             this.$store.dispatch('frame/call_api', {
@@ -100,7 +114,7 @@ module.exports = {
                 path: StringUtils.format_with_obj(
                     APIRoutes.FRAMES,
                     {
-                        id: this.$store.state.queries.current,
+                        id: this.$store.state.queries.current.input,
                         skip,
                         limit: this.state.frame.queries.items,
                         strictVUMatching: this.state.strict_vu,
@@ -113,7 +127,7 @@ module.exports = {
                 path: StringUtils.format_with_obj(
                     APIRoutes.CYTOFRAMES,
                     {
-                        id: this.$store.state.queries.current,
+                        id: this.$store.state.queries.current.input,
                         strictVUMatching: this.state.strict_vu,
                         withExtraCoreFEs: this.state.core_fe,
                     },
@@ -124,7 +138,7 @@ module.exports = {
                 path: StringUtils.format_with_obj(
                     APIRoutes.LEXUNITS,
                     {
-                        id: this.$store.state.queries.current,
+                        id: this.$store.state.queries.current.input,
                         skip,
                         limit,
                         strictVUMatching: this.state.strict_vu,
@@ -142,7 +156,7 @@ module.exports = {
         fetch_trying_data() {
             // TODO: fall back to fetch_data
             const q = Utils.choice(this.$store.state.queries.default);
-            this.$store.commit('update_query', q);
+            this.$store.commit('update_query', { input: q });
             this._add_to_qs('s', q);
             if (this.is_id_type_query(q)) {
                 this.fetch_id_data();
@@ -155,9 +169,15 @@ module.exports = {
             this._add_to_qs('tn', tab_name);
         },
     },
+    beforeMount() {
+        this.$store.commit('update_query', {
+            withExtraCoreFEs: this.state.core_fe,
+            strictVUMatching: this.state.strict_vu,
+        });
+    },
     mounted() {
         if (this._get_key_from_qs('s')) {
-            this.$store.commit('update_query', this._get_key_from_qs('s'));
+            this.$store.commit('update_query', { input: this._get_key_from_qs('s') });
             this.fetch_data();
         }
         if (this._get_key_from_qs('tn')) {
