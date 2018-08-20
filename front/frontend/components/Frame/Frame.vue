@@ -40,9 +40,7 @@
                   <article class="tile is-child">
                     <h1 class="title is-6 low-margin-bottom">Lexical Units</h1>
                     <div class="content is-small">
-                      <span v-for="lu in lexUnits">
-                        {{lu.name}},
-                      </span>
+                        {{lexUnits.map(lu => lu.name).join(', ')}}
                     </div>
                   </article>
                 </div>

@@ -9,6 +9,8 @@ module.exports = {
     data() {
         return {
             state: {
+                core_fe: true,
+                strict_vu: false,
                 frame: {
                     queries: {
                         items: 5,
@@ -77,7 +79,13 @@ module.exports = {
                 method: 'GET',
                 path: StringUtils.format_with_obj(
                     APIRoutes.ANNOSETS,
-                    { id: this.$store.state.queries.current, skip, limit },
+                    {
+                        id: this.$store.state.queries.current,
+                        skip,
+                        limit,
+                        strictVUMatching: this.state.strict_vu,
+                        withExtraCoreFEs: this.state.core_fe,
+                    },
                 ),
             });
             this.$store.dispatch('fehierarchy/call_api', {
@@ -95,6 +103,8 @@ module.exports = {
                         id: this.$store.state.queries.current,
                         skip,
                         limit: this.state.frame.queries.items,
+                        strictVUMatching: this.state.strict_vu,
+                        withExtraCoreFEs: this.state.core_fe,
                     },
                 ),
             });
@@ -102,14 +112,24 @@ module.exports = {
                 method: 'GET',
                 path: StringUtils.format_with_obj(
                     APIRoutes.CYTOFRAMES,
-                    { id: this.$store.state.queries.current },
+                    {
+                        id: this.$store.state.queries.current,
+                        strictVUMatching: this.state.strict_vu,
+                        withExtraCoreFEs: this.state.core_fe,
+                    },
                 ),
             });
             this.$store.dispatch('lexunit/call_api', {
                 method: 'GET',
                 path: StringUtils.format_with_obj(
                     APIRoutes.LEXUNITS,
-                    { id: this.$store.state.queries.current, skip, limit },
+                    {
+                        id: this.$store.state.queries.current,
+                        skip,
+                        limit,
+                        strictVUMatching: this.state.strict_vu,
+                        withExtraCoreFEs: this.state.core_fe,
+                    },
                 ),
             });
         },
