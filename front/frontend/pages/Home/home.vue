@@ -29,7 +29,7 @@
     <div class="container">
       <div class="content has-text-centered">
         <em> New to myValencer?
-          <a href="https://akb89.github.io/myvalencer/">Check out our manual</a> or
+          <a href="https://akb89.github.io/myValencer/">Check out our manual</a> or
           click on <a @click.prevent="fetch_trying_data">Try me out!</a> </em>
       </div>
     </div>
