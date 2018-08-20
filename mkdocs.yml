@@ -19,3 +19,5 @@ theme:
     icon: "\uE80C"
 markdown_extensions:
   - admonition
+extra_css:
+    - css/custom.css
