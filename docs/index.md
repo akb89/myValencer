@@ -40,7 +40,7 @@ Here, the `Fluid` FE is realized as the subject `Ext` of a noun phrase `NP`,
 and the `Goal` and `Source` FEs are realized as objects `Dep` of prepositional
 phrases `PP`.
 
-You can find [a summary of FrameNet's PT and GF below]().
+You can find [a summary of FrameNet's PT and GF below](#pt-gf-overview).
 For a detailed account, refer to the [FrameNet book](framenet_book.pdf).
 For a detailed
 account of Frame Elements, you can browse the
@@ -76,16 +76,14 @@ three elements per valence, such as:
 ```
 Goal Fluid.Ext Source.PP
 ```
-The above query will search for annotation sets containing a `Goal` FE in any
+The above query will search for annotations containing a `Goal` FE in any
 possible syntactic realization (PT.GF), a `Fluid` FE realized as an external
 argument in any kind of phrase type, and a `Source` FE realized in a
 prepositional phrase with any kind of grammatical function.
 
 ## Use cases
 
-Below are some possible use case for the myValencer application:
-
-### Accessing *hidden* FrameNet data
+Below are some possible use case for myValencer:
 
 ### Analyzing the *semantic scope* of syntactic constructions
 myValencer can be used to analyze the 'semantic scope' of a given syntactic construction by
@@ -110,11 +108,44 @@ given valence pattern, with the corresponding labels as well as all the relevant
 pertaining to the lexical unit and its frame.
 
 ## Options
-### withExtraCoreFEs
-### strictVUmatching
+There are two options than can be checked for each query:
+
+### withExtraCoreFEs (default `true`)
+Specifies whether or not valence patterns
+containing other non-core frame elements beside those specified in input should
+be included in the output results. Setting this option to `false` will return
+only valence patterns containing the specified FE as core FEs, and only
+non-core FEs as extra FEs.
+
+### strictVUmatching (default `false`)
+Specifies whether or not a *strict*
+matching of valence units should be applied, tolerating extra non-core FEs or not.
+Setting this option to `true` will not tolerate other non-core FEs and will
+return only valence patterns matching exactly the specified valence units specified in input.
 
 ## Hierarchy
+For users not necessarily familiar with the rich taxonomy of FrameNet frames
+and frame elements, we have added two important features to the application:
 
+### Frame Element Hierarchy
+When querying for a given valence pattern containing a set of specified frame elements,
+the `Annotations` tab will display on the right a toggle of frame element hierarchy
+trees specifying, for each input frame element, the tree of its *children* (the
+frame elements in an `Inheritance` FE-to-FE relationship with it).
+
+For example, querying for `Donor.NP.Ext Recipient.PP.Dep` will display the
+following trees for both the `Donor` and the `Recipient` FEs:
+
+![Screenshot](img/fetrees.png)
+
+
+### Frame Hierarchy
+Similarly, we have added, under each frame name on the `Frame` tab, the list of
+the frame's *parents* (the frames with which the current frame is in an
+`Inheritance` Frame-to-Frame relationship).
+
+For example,
+![Screenshot](img/giving.png)
 
 ## PT GF overview
 ### PT labels
