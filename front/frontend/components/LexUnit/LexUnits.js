@@ -1,8 +1,16 @@
+const StoreMixin = require('../../mixins/StoreMixin');
+
 module.exports = {
     name: 'LexUnits',
+    mixins: [StoreMixin],
     data() {
         return {
         };
+    },
+    computed: {
+        has_request_lexunit_error() {
+            return this.has_request_error('lexunit');
+        },
     },
     methods: {
         display_tab(tab_name) {

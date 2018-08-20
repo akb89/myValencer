@@ -23,7 +23,7 @@ Welcome to **myValencer**, the valence pattern search engine for FrameNet!
 ```
 
 ## Documentation
-Check out [myValencer's manual]()
+Check out [myValencer's manual](https://akb89.github.io/myvalencer/)
 
 ## HowTo &ndash; Start myValencer
 

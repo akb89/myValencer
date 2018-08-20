@@ -13,4 +13,6 @@ module.exports = {
         type: 'ANNOSET',
         subtype: 'ENT',
     },
+    feColorMap: {},
+    colorIndex: 1,
 };

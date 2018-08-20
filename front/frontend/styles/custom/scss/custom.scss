@@ -1,2 +1,12 @@
 @import './loaders';
 @import './displacy-ent';
+
+.low-margin-bottom{
+  margin-bottom: .5em !important;
+}
+
+.fnlabels {
+  li {
+     margin-bottom: .8em !important;
+  }
+}

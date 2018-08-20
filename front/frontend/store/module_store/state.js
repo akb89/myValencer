@@ -4,6 +4,5 @@ module.exports = {
     content: [],
     total: 0,
     skip: 0,
-    feColorMap: {},
-    colorIndex: 1,
+    error: null,
 };

@@ -5,7 +5,7 @@
 $labels: (f0: #ff3860, f1: #00d1b2, f2: #ffdd57, f3: #43c6fc, f4: #8e7dff, f5: #fd9720,
 f6: #a6e22d, f7: #999);
 
-@for $i from 1 through 20 {
+@for $i from 1 through 25 {
   @if $i % 2 == 0 {
     $labels: map-merge($labels, (f#{7*$i+1}: darken(#00d1b2, 20%)));
     $labels: map-merge($labels, (f#{7*$i+2}: darken(#ffdd57, 20%)));
@@ -27,6 +27,48 @@ f6: #a6e22d, f7: #999);
 
 .fnlabels {
   line-height: 2;
+}
+
+[fe-hierarchy-header]{
+    @each $label, $color in $labels {
+        &[fe-hierarchy-header="#{$label}"] {
+            background-color: $color !important;
+        }
+    }
+}
+  
+[fe-hierarchy-content]{
+    @each $label, $color in $labels {
+        &[fe-hierarchy-content="#{$label}"] {
+            //background-color: rgba($color, 0.2) !important;
+            pre {
+                background-color: rgba($color, 0.2) !important;
+            }
+        }
+    }
+}
+
+@each $label, $color in $labels {
+  [fe-style="#{$label}"] {
+    background-color: rgba($color, 0.2);
+  }
+
+}
+
+[fename-format] {
+  padding: 0.25em 0.35em;
+  margin: 0 0.25em;
+  line-height: 1;
+  display: inline-block;
+  border-radius: 0.25em;
+  border: 1px solid;
+
+  @each $label, $color in $labels {
+    &[fename-format="#{$label}"] {
+      background: white;
+      border-color: $color;
+    }
+  }
 }
 
 [label-format] {

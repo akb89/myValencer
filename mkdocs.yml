@@ -1,5 +1,5 @@
 site_name: myValencer
-pages:
+nav:
   - Home: index.md
 theme:
   name: null
@@ -17,3 +17,7 @@ theme:
   favicon: assets/images/favicon.png
   logo:
     icon: "\uE80C"
+markdown_extensions:
+  - admonition
+extra_css:
+    - css/custom.css

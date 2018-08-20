@@ -42,11 +42,11 @@ module.exports = {
                 if (label.type === 'FE') {
                     const mark = document.createElement('mark');
                     mark.setAttribute('fe-name', label.name);
-                    if (label.name in this.$store.state.annoset.feColorMap) {
-                        mark.setAttribute('label-format', this.$store.state.annoset.feColorMap[label.name]);
+                    if (label.name in this.$store.state.feColorMap) {
+                        mark.setAttribute('label-format', this.$store.state.feColorMap[label.name]);
                     } else {
-                        this.$store.commit('annoset/add_entry_to_map', { feName: label.name, color: `f${this.$store.state.annoset.colorIndex}` });
-                        mark.setAttribute('label-format', `f${this.$store.state.annoset.colorIndex}`);
+                        this.$store.commit('add_entry_to_map', { feName: label.name, color: `f${this.$store.state.colorIndex}` });
+                        mark.setAttribute('label-format', `f${this.$store.state.colorIndex}`);
                     }
                     mark.appendChild(document.createTextNode(labeled_text));
                     container.appendChild(mark);
