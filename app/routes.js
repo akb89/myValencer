@@ -8,8 +8,14 @@ function initialize_routes() {
         await ctx.render('front/views/front');
     });
 
+
+    const send_opts = {
+        root: config.root,
+        maxage: config._env !== 'production' ? 0 : 1000 * 60 * 60 * 24 * 7, // 7 days;
+    };
+
     router.get('/public/*', async (ctx) => {
-        await send(ctx, ctx.path, { root: config.root });
+        await send(ctx, ctx.path, send_opts);
     });
     return router;
 }

@@ -1,6 +1,6 @@
 {
   "name": "myValencer",
-  "version": "1.0.2",
+  "version": "1.0.7",
   "description": "A Valencer Pattern Search Engine for FrameNet: Web client for the Valencer API",
   "keywords": [
     "FrameNet",
@@ -21,7 +21,7 @@
   },
   "scripts": {
     "dev": "NODE_ENV=development node --harmony app/app.js",
-    "build": "NODE_ENV=production gulp default",
+    "build": "rm -rf public/* && NODE_ENV=production gulp build",
     "buildev": "NODE_ENV=development gulp default",
     "start": "NODE_ENV=production ./node_modules/.bin/pm2 start app/app.js --name myValencer --env production",
     "stop": "./node_modules/.bin/pm2 stop myValencer",
@@ -80,8 +80,8 @@
     "gulp-less": "^3.3.0",
     "gulp-plumber": "^1.1.0",
     "gulp-rev": "^8.1.1",
+    "gulp-uglify-es": "^1.0.4",
     "gulp-sass": "^3.1.0",
-    "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
     "istanbul": "^0.4.5",
     "merge-stream": "^1.0.1",
@@ -89,6 +89,7 @@
     "nodemon": "^1.18.3",
     "nyc": "^11.0.2",
     "rewire": "^3.0.2",
+    "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "vueify": "^9.4.1"
   }
