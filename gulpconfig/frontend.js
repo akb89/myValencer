@@ -17,8 +17,9 @@ const revision = require('gulp-rev');
 const gzip = require('gulp-gzip');
 const htmlreplace = require('gulp-html-replace');
 const clean = require('gulp-clean');
-const uglify = require('gulp-uglify');
+const uglify = require('gulp-uglify-es').default;
 const vueify = require('vueify');
+const buffer = require('vinyl-buffer');
 
 class GulpFrontend {
     constructor(production) {
@@ -74,9 +75,10 @@ class GulpFrontend {
                 plugins: ['transform-runtime', 'transform-async-to-generator'],
             })
             .bundle()
-            .on('error', gutil.log)
             .pipe(source('bundle.js'))
-        // .pipe(gulpif(this.isProduction, uglify({ mangle: true })))
+            .pipe(buffer())
+            .pipe(gulpif(this.isProduction, uglify({ mangle: true })))
+            .on('error', gutil.log)
             .pipe(gulp.dest(this.PUB_LOCATIONS.js));
     }
 
@@ -86,9 +88,10 @@ class GulpFrontend {
             debug: true,
         })
             .bundle()
-            .on('error', gutil.log)
             .pipe(source('vendors.js'))
-        // .pipe(gulpif(this.isProduction, uglify({ mangle: true })))
+            .pipe(buffer())
+            .pipe(gulpif(this.isProduction, uglify({ mangle: true })))
+            .on('error', gutil.log)
             .pipe(gulp.dest(this.PUB_LOCATIONS.js));
     }
 
@@ -96,7 +99,8 @@ class GulpFrontend {
         gulp
             .src(this.external_dependencies)
             .pipe(concat('vendors.external.js'))
-        // .pipe(gulpif(this.isProduction, uglify({ mangle: true })))
+            .pipe(buffer())
+            .pipe(gulpif(this.isProduction, uglify({ mangle: true })))
             .pipe(gulp.dest(this.PUB_LOCATIONS.js));
     }
 

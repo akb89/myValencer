@@ -17,5 +17,5 @@ try {
     // process.exit(1);
 }
 
-const config = _.merge(baseConfig, tmp);
+const config = _.merge({ _env: env }, baseConfig, tmp);
 module.exports = config;
