@@ -21,7 +21,7 @@ module.exports = {
     },
     methods: {
         gohome() {
-            this.$store.commit('update_query', {});
+            this.$store.commit('update_query', { input: '' });
             this.$store.commit('reset_state');
             this.$store.commit('annoset/reset_state');
             this.$store.commit('frame/reset_state');
