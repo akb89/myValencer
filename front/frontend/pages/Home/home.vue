@@ -56,21 +56,57 @@
             <img src='/public/front/img/logo_colors_16by9_tiny.png' alt='myValencer Logo' />
         </div>
       </div>
-      <div class="column is-8">
-        <div class="field">
-          <p class="control has-icons-right">
-            <input v-focus :value="$store.state.queries.current" @input="update_input" @keyup.enter="fetch_data" class="input is-primary" type="text" placeholder="Type your fantastic query" >
-            <span class="icon is-small is-right">
-              <i class="fa fa-search" aria-hidden="false"></i>
-            </span>
-          </p>
+      <div class="column is-10">
+        <div class="columns is-mobile has-no-margin-bottom">
+            <div class="column is-10">
+                <div class="field">
+                  <p class="control has-icons-right">
+                    <input v-focus :value="$store.state.queries.current" @input="update_input" @keyup.enter="fetch_data" class="input is-primary" type="text" placeholder="Type your fantastic query" >
+                    <span class="icon is-small is-right">
+                      <i class="fa fa-search" aria-hidden="false"></i>
+                    </span>
+                  </p>
+                </div>
+            </div>
+            <div class="column is-2">
+                <button @click.prevent="fetch_data" class="button is-primary">Search</button>
+            </div>
+        </div>
+        <div class="columns is-mobile">
+            <div class="column is-3">
+                <div class="field is-grouped">
+                    <label class="label is-small has-small-margin-right">Extra Core FEs:</label>
+                    <div class="control">
+                        <label class="radio is-small">
+                            <input type="radio" name="core_fe" value="true" v-model="state.core_fe">
+                            Yes
+                        </label>
+                        <label class="radio is-small">
+                            <input type="radio" name="core_fe" value="false" v-model="state.core_fe">
+                            No
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-3">
+                <div class="field is-grouped">
+                    <label class="label is-small has-small-margin-right">Strict VU matching: </label>
+                    <div class="control">
+                        <label class="radio is-small">
+                            <input class="is-small" type="radio" value="true" name="strict_vu" v-model="state.strict_vu">
+                            Yes
+                        </label>
+                        <label class="radio is-small">
+                            <input class="is-small" type="radio" value="false" name="strict_vu" v-model="state.strict_vu">
+                            No
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
       </div>
-      <div class="column is-2">
-        <button @click.prevent="fetch_data" class="button is-primary">Search</button>
-      </div>
   </div>
-  <!-- <div class="columns is-multiline is-mobile">
+  <!--<div class="columns is-multiline is-mobile">
     <div class="column is-8 is-offset-2">
       <div class="field">
         <div class="control">
@@ -79,7 +115,7 @@
               <option>Language</option>
               <option>en</option>
             </select>
-          </div>
+        </div>
           <div class="select is-small">
             <select>
               <option>Dataset</option>
@@ -87,7 +123,7 @@
               <option>1.6</option>
               <option>1.7</option>
             </select>
-          </div>
+        </div>
           <div class="select is-small">
             <select>
               <option>Extra Core FEs</option>
@@ -104,8 +140,8 @@
           </div>
         </div>
       </div>
-    </div>
-  </div> -->
+  </div>
+  </div>--> 
   <div class="columns is-mobile">
     <div class="column is-12">
       <div class="tabs is-centered" id="tabs">
