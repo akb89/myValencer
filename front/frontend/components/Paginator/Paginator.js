@@ -29,11 +29,19 @@ module.exports = {
         goto(page, e) {
             e.preventDefault();
             this.state.currentPage = page;
-            this.$store.dispatch(`${this.display.toLowerCase()}/call_api`, { method: 'GET',
-                path: StringUtils.format_with_obj(APIRoutes[`${this.display}S`],
-                    { id: this.$store.state.queries.current,
+            this.$store.dispatch(`${this.display.toLowerCase()}/call_api`, {
+                method: 'GET',
+                path: StringUtils.format_with_obj(
+                    APIRoutes[`${this.display}S`],
+                    {
+                        id: this.$store.state.queries.current.input,
+                        strictVUMatching: this.$store.state.queries.current.strictVUMatching,
+                        withExtraCoreFEs: this.$store.state.queries.current.withExtraCoreFEs,
                         skip: (this.state.currentPage - 1) * this.itemsPerPage,
-                        limit: this.itemsPerPage }) });
+                        limit: this.itemsPerPage,
+                    },
+                ),
+            });
         },
     },
 };

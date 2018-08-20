@@ -6,7 +6,9 @@ module.exports = {
             'NP.Obj NP.Dep',
             'Sinterrog Topic',
         ],
-        current: '',
+        current: {
+            input: '',
+        },
         items: 20,
     },
     display: {

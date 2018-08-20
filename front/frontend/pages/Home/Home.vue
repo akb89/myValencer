@@ -1,5 +1,5 @@
 <template>
-<div v-if="$store.state.queries.current.length === 0" class="container is-fluid">
+<div v-if="$store.state.queries.current.input.length === 0" class="container is-fluid">
     <div class="columns is-centered" id="header">
         <div class="column is-6">
             <div class="figure is-16by9">
@@ -11,7 +11,7 @@
         <div class="column is-6">
             <div class="field">
                 <div class="control">
-                    <input v-focus :value="$store.state.queries.current" @input="update_input" @keyup.enter="fetch_data" class="input is-primary" type="text" placeholder="Type in a valence pattern to search..." />
+                    <input v-focus :value="$store.state.queries.current.input" @input="update_input" @keyup.enter="fetch_data" class="input is-primary" type="text" placeholder="Type in a valence pattern to search..." />
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
             <div class="column is-10">
                 <div class="field">
                   <p class="control has-icons-right">
-                    <input v-focus :value="$store.state.queries.current" @input="update_input" @keyup.enter="fetch_data" class="input is-primary" type="text" placeholder="Type your fantastic query" >
+                    <input v-focus :value="$store.state.queries.current.input" @input="update_input" @keyup.enter="fetch_data" class="input is-primary" type="text" placeholder="Type your fantastic query" >
                     <span class="icon is-small is-right">
                       <i class="fa fa-search" aria-hidden="false"></i>
                     </span>
@@ -78,11 +78,11 @@
                     <label class="label is-small has-small-margin-right">With Extra Core FEs:</label>
                     <div class="control">
                         <label class="radio is-small">
-                            <input type="radio" name="core_fe" value="true" v-model="state.core_fe">
+                            <input type="radio" name="core_fe" :checked="state.core_fe === true" value="true" @change="update_core_fe">
                             Yes
                         </label>
                         <label class="radio is-small">
-                            <input type="radio" name="core_fe" value="false" v-model="state.core_fe">
+                            <input type="radio" name="core_fe" value="false" :checked="state.core_fe === false"  @change="update_core_fe">
                             No
                         </label>
                     </div>
@@ -93,11 +93,11 @@
                     <label class="label is-small has-small-margin-right">Strict VU matching: </label>
                     <div class="control">
                         <label class="radio is-small">
-                            <input class="is-small" type="radio" value="true" name="strict_vu" v-model="state.strict_vu">
+                            <input type="radio" name="strict_vu" :checked="state.strict_vu === true" value="true" @change="update_strict_vu">
                             Yes
                         </label>
                         <label class="radio is-small">
-                            <input class="is-small" type="radio" value="false" name="strict_vu" v-model="state.strict_vu">
+                            <input type="radio" name="strict_vu" :checked="state.strict_vu === false" value="false" @change="update_strict_vu">
                             No
                         </label>
                     </div>
