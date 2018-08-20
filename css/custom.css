@@ -1,0 +1,11 @@
+.md-sidebar--primary {
+    display: none;
+}
+
+.md-content {
+    margin-left: 0 !important;
+}
+
+.md-typeset table:not([class]) th {
+    background-color: #00d1b2;
+}
