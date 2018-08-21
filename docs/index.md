@@ -191,7 +191,8 @@ from `Lose_possession` and `Intentionally_act`, one (or more) of which inherits 
 | Gen | Genitive determiner |
 | Appos | Appositive |
 
-## Mapping to UD
+## Mapping to Universal Dependencies
+
 !!! warning
     This mapping is tentative and currently in a proof-of-concept status.
     For suggesting changes and improvements, please join the
