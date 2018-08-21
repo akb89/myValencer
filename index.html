@@ -325,8 +325,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mapping-to-ud-and-penn" title="Mapping to UD and PENN" class="md-nav__link">
-    Mapping to UD and PENN
+  <a href="#mapping-to-universal-dependencies" title="Mapping to Universal Dependencies" class="md-nav__link">
+    Mapping to Universal Dependencies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cite-us" title="Cite us!" class="md-nav__link">
+    Cite us!
   </a>
   
 </li>
@@ -490,8 +497,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mapping-to-ud-and-penn" title="Mapping to UD and PENN" class="md-nav__link">
-    Mapping to UD and PENN
+  <a href="#mapping-to-universal-dependencies" title="Mapping to Universal Dependencies" class="md-nav__link">
+    Mapping to Universal Dependencies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cite-us" title="Cite us!" class="md-nav__link">
+    Cite us!
   </a>
   
 </li>
@@ -636,63 +650,219 @@ from <code>Lose_possession</code> and <code>Intentionally_act</code>, one (or mo
 <img alt="Screenshot" src="img/giving.png" /></p>
 <h2 id="pt-gf-overview">PT GF overview</h2>
 <h3 id="pt-labels">PT labels</h3>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Poss</td>
+<td>Possessive Noun Phrase</td>
+</tr>
+<tr>
+<td>N</td>
+<td>Non-maximal Nominal</td>
+</tr>
+<tr>
+<td>NP</td>
+<td>Standard Noun Phrase</td>
+</tr>
+<tr>
+<td>PP</td>
+<td>Prepositional Phrase</td>
+</tr>
+<tr>
+<td>PPing</td>
+<td>Preposition with gerund object</td>
+</tr>
+<tr>
+<td>PPinterrog</td>
+<td>Preposition governing a wh-interrogative claus</td>
+</tr>
+<tr>
+<td>PPadjP</td>
+<td>Preposition governing an adjective phrase</td>
+</tr>
+<tr>
+<td>VPfin</td>
+<td>Finite Verb Phrase</td>
+</tr>
+<tr>
+<td>VPbrst</td>
+<td>Bare Stem Verb Phrase</td>
+</tr>
+<tr>
+<td>VPto</td>
+<td>To-Marked Infinitive Verb Phrase</td>
+</tr>
+<tr>
+<td>VPtorel</td>
+<td>Verb Phrase Relatives</td>
+</tr>
+<tr>
+<td>VPed</td>
+<td>Participial Verb Phrase</td>
+</tr>
+<tr>
+<td>VPing</td>
+<td>Gerundive Verb Phrase</td>
+</tr>
+<tr>
+<td>Sfin</td>
+<td>Finite Clause (with or without that)</td>
+</tr>
+<tr>
+<td>Sinterrog</td>
+<td>Wh-Clause</td>
+</tr>
+<tr>
+<td>Swhether</td>
+<td>Whether/if-Clause</td>
+</tr>
+<tr>
+<td>Sing</td>
+<td>Gerundive Clause</td>
+</tr>
+<tr>
+<td>Srel</td>
+<td>Finite Relative Clause</td>
+</tr>
+<tr>
+<td>Sto</td>
+<td>To-marked Clause</td>
+</tr>
+<tr>
+<td>Sforto</td>
+<td>For-to-marked Clause</td>
+</tr>
+<tr>
+<td>Sbrst</td>
+<td>Bare Stem Clause</td>
+</tr>
+<tr>
+<td>Sub</td>
+<td>Subordinate Clause with subordinating conjunction</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Non-maximal Adjective</td>
+</tr>
+<tr>
+<td>AJP</td>
+<td>Standard Adjective Phrase</td>
+</tr>
+<tr>
+<td>AVP</td>
+<td>Adverb Phrase</td>
+</tr>
+<tr>
+<td>QUANT</td>
+<td>Quantifier Phrase</td>
+</tr>
+<tr>
+<td>QUO</td>
+<td>Quote</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gf-labels">GF labels</h3>
 <table>
 <thead>
 <tr>
 <th>Label</th>
 <th>Name</th>
-<th>Details</th>
-<th>Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Ext</td>
 <td>External Argument</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>Obj</td>
 <td>Object</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>Dep</td>
 <td>Dependent</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>Head</td>
 <td>Head noun modified by attributive adjective</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>Gen</td>
 <td>Genitive determiner</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>Appos</td>
 <td>Appositive</td>
-<td></td>
-<td></td>
 </tr>
 </tbody>
 </table>
-<h2 id="mapping-to-ud-and-penn">Mapping to UD and PENN</h2>
+<h2 id="mapping-to-universal-dependencies">Mapping to Universal Dependencies</h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This mapping is tentative and currently here to illustrate the potential
-for using myValencer with various PT.GF nomenclatures.
-If you would like to contribute, please join our
+<p>This mapping is tentative and currently in a proof-of-concept status.
+For suggesting changes and improvements, please join the
 <a href="https://github.com/akb89/valencer/issues/47">discussion</a>.</p>
 </div>
+<table>
+<thead>
+<tr>
+<th>UD</th>
+<th>PT</th>
+<th>GF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nsubj</td>
+<td>Poss, NP, AJP, AVP</td>
+<td>Ext</td>
+</tr>
+<tr>
+<td>obj</td>
+<td>Poss, NP, AJP, AVP</td>
+<td>Obj</td>
+</tr>
+<tr>
+<td>iobj</td>
+<td>Poss, NP, AJP, AVP</td>
+<td>Dep</td>
+</tr>
+<tr>
+<td>csubj</td>
+<td>Sfin, Sinterrog, Swhether, Sing, Srel, Sto, Sforto, Sbrst, Sub</td>
+<td>Ext</td>
+</tr>
+<tr>
+<td>ccomp</td>
+<td>Sfin, Sinterrog, Swhether, Sing, Srel, Sto, Sforto, Sbrst, Sub</td>
+<td>Obj</td>
+</tr>
+<tr>
+<td>xcomp</td>
+<td>Sfin, Sinterrog, Swhether, Sing, Srel, Sto, Sforto, Sbrst, Sub</td>
+<td>Dep</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cite-us">Cite us!</h2>
+<p>If you are using myValencer for research please cite:</p>
+<pre><code class="latex">@InProceedings{kabbach-ribeyre:2017:ELEX,
+  author    = {Kabbach, Alexandre  and  Ribeyre, Corentin},
+  title     = {myValencer: a Valence Patterns Search Engine for FrameNet},
+  booktitle = {eLex 2017 conference},
+  month     = {September},
+  year      = {2017},
+  address   = {Leiden, Netherlands},
+  url       = {https://elex.link/elex2017/}
+}
+</code></pre>
                 
                   
                 
