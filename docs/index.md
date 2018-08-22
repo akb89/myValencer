@@ -191,13 +191,22 @@ from `Lose_possession` and `Intentionally_act`, one (or more) of which inherits 
 | Gen | Genitive determiner |
 | Appos | Appositive |
 
-## Mapping to UD and PENN
+## Mapping to Universal Dependencies
 
 !!! warning
-    This mapping is tentative and currently here to illustrate the potential
-    for using myValencer with various PT.GF nomenclatures.
-    If you would like to contribute, please join our
+    This mapping is tentative and currently in a proof-of-concept status.
+    For suggesting changes and improvements, please join the
     [discussion](https://github.com/akb89/valencer/issues/47).
+
+| UD | PT | GF |
+| ------------- | ------------- | ------------- |
+| nsubj | Poss, NP, AJP, AVP | Ext |
+| obj | Poss, NP, AJP, AVP | Obj |
+| iobj | Poss, NP, AJP, AVP | Dep |
+| csubj | Sfin, Sinterrog, Swhether, Sing, Srel, Sto, Sforto, Sbrst, Sub | Ext |
+| ccomp | Sfin, Sinterrog, Swhether, Sing, Srel, Sto, Sforto, Sbrst, Sub | Obj |
+| xcomp | Sfin, Sinterrog, Swhether, Sing, Srel, Sto, Sforto, Sbrst, Sub | Dep |
+
 
 ## Cite us!
 If you are using myValencer for research please cite:
