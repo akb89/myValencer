@@ -9,6 +9,13 @@ const cutils = require('../../utils/constants');
 
 regCose(cytoscape); // register extension
 
+function resizeListener(event) {
+    window.addEventListener('resize', (event) => {
+        const w = event.currentTarget;
+        this.state.height = this.compute_height(w);
+    });
+}
+
 const FRAME_LAYOUT = {
     name: 'cose-bilkent',
     // name: 'cose',
@@ -307,10 +314,7 @@ module.exports = {
         },
     },
     beforeMount() {
-        window.addEventListener('resize', (event) => {
-            const w = event.currentTarget;
-            this.state.height = this.compute_height(w);
-        });
+        window.addEventListener('resize', resizeListener.bind(this));
     },
     mounted() {
         this.state.height = this.compute_height(window);
@@ -320,6 +324,6 @@ module.exports = {
         displayCluster.bind(this)(this.$store.state.cytoframe.content);
     },
     beforeDestroy() {
-        window.removeEventListener('resize');
+        window.removeEventListener('resize', resizeListener.bind(this));
     },
 };
