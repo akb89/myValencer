@@ -217,7 +217,7 @@ If you are using myValencer for research please cite:
   booktitle = {eLex 2017 conference},
   month     = {September},
   year      = {2017},
-  address   = {Leiden, Netherlands},
+  address   = {Leiden, The Netherlands},
   url       = {https://elex.link/elex2017/}
 }
 ```
