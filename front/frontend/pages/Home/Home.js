@@ -61,9 +61,12 @@ module.exports = {
                 this.$store.commit('frame/reset_state');
                 this.$store.commit('annoset/reset_state');
                 this.$store.commit('lexunit/reset_state');
-                CountlyUtils.add_custom_event(Countly, 'valencer-init-search', {
-                    query: this.$store.state.queries.current.input.trim(),
-                });
+
+                try {
+                    CountlyUtils.add_custom_event(Countly, 'valencer-init-search', {
+                        query: this.$store.state.queries.current.input.trim(),
+                    });
+                } catch (err) {}
             }
 
             if (this._get_key_from_qs('tn')) {

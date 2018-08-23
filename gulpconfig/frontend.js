@@ -154,9 +154,15 @@ class GulpFrontend {
     }
 
     copyViews() {
-        gulp.src([
-            './front/frontend/views/front.html',
-        ]).pipe(gulp.dest(this.PUB_LOCATIONS.views));
+        if (this.isProduction) {
+            gulp.src([
+                './front/frontend/views/prod/front.html',
+            ]).pipe(gulp.dest(this.PUB_LOCATIONS.views));
+        } else {
+            gulp.src([
+                './front/frontend/views/front.html',
+            ]).pipe(gulp.dest(this.PUB_LOCATIONS.views));
+        }
     }
 
     revisionClean() {
