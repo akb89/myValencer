@@ -1,13 +1,10 @@
 <template>
-  <div classclass="container is-fluid">
-    <div class="columns is-centered is-multiline is-mobile">
-        <div class="column is-10">
-          <section class="hero is-primary is-small">
-            <div class="hero-body">
-              <div class="container">
+    <div class="columns is-centered">
+        <div class="column is-10 is-mobile">
+            <div class="is-primary frame-box">
                 <h1 class="title">{{name}}</h1>
                 <h2 class="subtitle">
-                    <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+                    <nav class="valencer-breadcrumb has-arrow-separator" aria-label="breadcrumbs">
                         <loader 
                             color="white" background-color="turquoise" 
                             size="small" 
@@ -24,15 +21,13 @@
                         </ul>
                     </nav>
                 </h2>
-              </div>
             </div>
-          </section>
-          <div class="tile is-parent">
-            <article class="tile is-child">
-              <h1 class="title is-6 low-margin-bottom">Definition</h1>
-              <div class="content is-small fnlabels" v-html="format_definition(definition)"></div>
-            </article>
-          </div>
+              <div class="tile is-parent">
+                <article class="tile is-child">
+                  <h1 class="title is-6 low-margin-bottom">Definition</h1>
+                  <div class="content is-small fnlabels" v-html="format_definition(definition)"></div>
+                </article>
+              </div>
             <div class="tile is-vertical is-12">
               <div class="tile">
                   <!--<div class="tile is-parent is-vertical is-4">-->
@@ -75,7 +70,6 @@
       </div>
     </div>
     </div>
-  </div>
 </template>
 
 <script>

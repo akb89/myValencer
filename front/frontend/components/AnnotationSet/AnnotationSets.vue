@@ -3,11 +3,11 @@
     <div class="columns">
         <div :class="['column', {'is-9': has_fe_hierarchy, 'is-12': !has_fe_hierarchy}]">
             <paginator
-            display="ANNOSET"
-            :items-per-page="$store.state.queries.items"
-            :number-of-items="$store.state.annoset.total"
-            :skip="$store.state.annoset.skip">
-          </paginator>
+            :items-per-page="limit"
+            :number-of-items="total"
+            :skip="skip"
+            @page-change="on_page_change"
+            />
         </div>
     </div>
     <div v-if="$store.state.annoset.loading" class="columns is-centered">
@@ -67,11 +67,11 @@
     <div class="columns">
         <div :class="['column', {'is-9': has_fe_hierarchy, 'is-12': !has_fe_hierarchy}]">
             <paginator
-            display="ANNOSET"
-            :items-per-page="$store.state.queries.items"
-            :number-of-items="$store.state.annoset.total"
-            :skip="$store.state.annoset.skip">
-          </paginator>
+            :items-per-page="limit"
+            :number-of-items="total"
+            :skip="skip"
+            @page-change="on_page_change"
+            />
         </div>
     </div>
 </div>

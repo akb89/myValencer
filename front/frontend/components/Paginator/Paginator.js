@@ -1,9 +1,6 @@
-const APIRoutes = require('../../api/routes');
-const StringUtils = require('../../utils/strings');
-
 module.exports = {
     name: 'Paginator',
-    props: ['numberOfItems', 'itemsPerPage', 'display', 'skip'],
+    props: ['numberOfItems', 'itemsPerPage', 'skip'],
     data() {
         return {
             state: {
@@ -22,26 +19,16 @@ module.exports = {
             this.state.lastPage = Math.ceil(newNumber / this.itemsPerPage);
         },
         skip(newNumber) {
-            this.state.currentPage = parseInt((newNumber + this.itemsPerPage) / this.itemsPerPage, 10);
+            this.state.currentPage = parseInt((newNumber + this.itemsPerPage)
+                / this.itemsPerPage, 10);
         },
     },
     methods: {
         goto(page, e) {
             e.preventDefault();
             this.state.currentPage = page;
-            this.$store.dispatch(`${this.display.toLowerCase()}/call_api`, {
-                method: 'GET',
-                path: StringUtils.format_with_obj(
-                    APIRoutes[`${this.display}S`],
-                    {
-                        id: this.$store.state.queries.current.input,
-                        strictVUMatching: this.$store.state.queries.current.strictVUMatching,
-                        withExtraCoreFEs: this.$store.state.queries.current.withExtraCoreFEs,
-                        skip: (this.state.currentPage - 1) * this.itemsPerPage,
-                        limit: this.itemsPerPage,
-                    },
-                ),
-            });
+            const skip = (this.state.currentPage - 1) * this.itemsPerPage;
+            this.$emit('page-change', page, skip);
         },
     },
 };

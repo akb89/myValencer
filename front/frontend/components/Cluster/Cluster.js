@@ -1,8 +1,5 @@
 const cytoscape = require('cytoscape');
 const regCose = require('cytoscape-cose-bilkent');
-
-const StringUtils = require('../../utils/strings');
-const APIRoutes = require('../../api/routes');
 const StoreMixin = require('../../mixins/StoreMixin');
 
 const cutils = require('../../utils/constants');

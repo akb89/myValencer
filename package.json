@@ -25,7 +25,8 @@
     "buildev": "NODE_ENV=development gulp default",
     "start": "NODE_ENV=production ./node_modules/.bin/pm2 start app/app.js --name myValencer --env production",
     "stop": "./node_modules/.bin/pm2 stop myValencer",
-    "watch": "./node_modules/.bin/nodemon -e js,jsx,less,css,scss -w 'app/**/*.*' -w 'public/**/*.*' -x 'npm run dev'"
+    "watch": "./node_modules/.bin/nodemon -e js,jsx,less,css,scss -w 'app/**/*.*' -w 'public/**/*.*' -x 'npm run dev'",
+    "deploy": "npm install && npm run build && NODE_ENV=production ./node_modules/.bin/pm2 reload myValencer"
   },
   "dependencies": {
     "bulma": "^0.7.1",

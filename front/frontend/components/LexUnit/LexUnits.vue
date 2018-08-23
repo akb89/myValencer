@@ -3,10 +3,10 @@
     <div class="columns">
         <div class="column is-12">
             <paginator
-            display="LEXUNIT"
-            :items-per-page="$store.state.queries.items"
-            :number-of-items="$store.state.lexunit.total"
-            :skip="$store.state.lexunit.skip"
+            :items-per-page="limit"
+            :number-of-items="total"
+            :skip="skip"
+            @page-change="on_page_change"
             />
         </div>
     </div>
@@ -35,10 +35,10 @@
     <div class="columns">
         <div class="column is-12">
             <paginator
-            display="LEXUNIT"
-            :items-per-page="$store.state.queries.items"
-            :number-of-items="$store.state.lexunit.total"
-            :skip="$store.state.lexunit.skip"
+            :items-per-page="limit"
+            :number-of-items="total"
+            :skip="skip"
+            @page-change="on_page_change"
             />
         </div>
     </div>

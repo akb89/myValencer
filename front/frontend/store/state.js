@@ -1,5 +1,6 @@
 module.exports = {
     queries: {
+        items: 20,
         default: [
             'Donor.NP.Ext Theme.NP.Obj Recipient.PP.Dep',
             'Speaker Message Addressee',
@@ -9,7 +10,6 @@ module.exports = {
         current: {
             input: '',
         },
-        items: 20,
     },
     display: {
         type: 'ANNOSET',
