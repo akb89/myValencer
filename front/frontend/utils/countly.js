@@ -1,9 +1,6 @@
 
-function add_custom_event(key, segmentation) {
-    const Countly = Countly || {};
-    Countly.q = Countly.q || [];
-
-    Countly.q.push(['add_event', {
+function add_custom_event(_countly, key, segmentation) {
+    _countly.q.push(['add_event', {
         key,
         count: 1,
         segmentation,
