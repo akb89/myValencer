@@ -8,11 +8,9 @@ env:
 
 extends:
   - airbnb
-  - plugin:flowtype/recommended
 
 plugins:
   - import
-  - flowtype
 
 rules:
   #Allow _id on mongo id attributes and rewire __get__

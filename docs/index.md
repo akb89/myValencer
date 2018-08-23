@@ -151,21 +151,73 @@ from `Lose_possession` and `Intentionally_act`, one (or more) of which inherits 
 
 ## PT GF overview
 ### PT labels
+| Label  | Name |
+| ------------- | ------------- |
+| Poss | Possessive Noun Phrase |
+| N | Non-maximal Nominal |
+| NP  | Standard Noun Phrase  |
+| PP | Prepositional Phrase |
+| PPing | Preposition with gerund object |
+| PPinterrog | Preposition governing a wh-interrogative claus |
+| PPadjP | Preposition governing an adjective phrase |
+| VPfin | Finite Verb Phrase |
+| VPbrst | Bare Stem Verb Phrase |
+| VPto | To-Marked Infinitive Verb Phrase |
+| VPtorel | Verb Phrase Relatives |
+| VPed | Participial Verb Phrase |
+| VPing | Gerundive Verb Phrase |
+| Sfin | Finite Clause (with or without that) |
+| Sinterrog | Wh-Clause |
+| Swhether | Whether/if-Clause |
+| Sing | Gerundive Clause |
+| Srel | Finite Relative Clause |
+| Sto | To-marked Clause |
+| Sforto | For-to-marked Clause |
+| Sbrst | Bare Stem Clause |
+| Sub | Subordinate Clause with subordinating conjunction |
+| A | Non-maximal Adjective |
+| AJP | Standard Adjective Phrase |
+| AVP | Adverb Phrase |
+| QUANT | Quantifier Phrase |
+| QUO | Quote |
 
 ### GF labels
-| Label  | Name | Details | Example |
-| ------------- | ------------- | ------------- | ------------- |
-| Ext  | External Argument  | | |
-| Obj | Object | | |
-| Dep | Dependent | | |
-| Head | Head noun modified by attributive adjective | | |
-| Gen | Genitive determiner | | |
-| Appos | Appositive | | |
+| Label  | Name |
+| ------------- | ------------- |
+| Ext  | External Argument  |
+| Obj | Object |
+| Dep | Dependent |
+| Head | Head noun modified by attributive adjective |
+| Gen | Genitive determiner |
+| Appos | Appositive |
 
-## Mapping to UD and PENN
+## Mapping to Universal Dependencies
 
 !!! warning
-    This mapping is tentative and currently here to illustrate the potential
-    for using myValencer with various PT.GF nomenclatures.
-    If you would like to contribute, please join our
+    This mapping is tentative and currently in a proof-of-concept status.
+    For suggesting changes and improvements, please join the
     [discussion](https://github.com/akb89/valencer/issues/47).
+
+| UD | PT | GF |
+| ------------- | ------------- | ------------- |
+| nsubj | Poss, NP, AJP, AVP | Ext |
+| obj | Poss, NP, AJP, AVP | Obj |
+| iobj | Poss, NP, AJP, AVP | Dep |
+| csubj | Sfin, Sinterrog, Swhether, Sing, Srel, Sto, Sforto, Sbrst, Sub | Ext |
+| ccomp | Sfin, Sinterrog, Swhether, Sing, Srel, Sto, Sforto, Sbrst, Sub | Obj |
+| xcomp | Sfin, Sinterrog, Swhether, Sing, Srel, Sto, Sforto, Sbrst, Sub | Dep |
+
+
+## Cite us!
+If you are using myValencer for research please cite:
+```latex
+@InProceedings{kabbach-ribeyre:2017:ELEX,
+  author    = {Kabbach, Alexandre  and  Ribeyre, Corentin},
+  title     = {myValencer: a Valence Patterns Search Engine for FrameNet},
+  booktitle = {eLex 2017 conference},
+  month     = {September},
+  year      = {2017},
+  address   = {Leiden, The Netherlands},
+  url       = {https://elex.link/elex2017/}
+}
+```

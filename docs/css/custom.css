@@ -9,3 +9,15 @@
 .md-typeset table:not([class]) th {
     background-color: #00d1b2;
 }
+
+.md-header-nav__button {
+    display: none;
+}
+
+.md-header-nav__title[data-md-state=active] .md-header-nav__topic {
+    opacity: 1;
+}
+
+.md-header-nav__title[data-md-state="active"] .md-header-nav__topic + .md-header-nav__topic {
+    opacity: 0;
+}

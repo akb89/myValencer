@@ -1,6 +1,4 @@
-const StringUtils = require('../../utils/strings');
 const Utils = require('../../utils/utils');
-const APIRoutes = require('../../api/routes');
 const QueryStringMixin = require('../../mixins/QueryStringMixin');
 
 module.exports = {
@@ -11,9 +9,18 @@ module.exports = {
             state: {
                 core_fe: true,
                 strict_vu: false,
-                frame: {
-                    queries: {
-                        items: 5,
+                data: {
+                    frame: {
+                        skip: 0,
+                    },
+                    annoset: {
+                        skip: 0,
+                    },
+                    lexunit: {
+                        skip: 0,
+                    },
+                    cytoframe: {
+                        skip: 0,
                     },
                 },
             },
@@ -47,122 +54,35 @@ module.exports = {
                 withExtraCoreFEs: val,
             });
         },
-        fetch_data() {
-            this.$store.commit('reset_state');
-            this.$store.commit('annoset/reset_state');
-            this.$store.commit('frame/reset_state');
-            this.$store.commit('lexunit/reset_state');
+        fetch_data(modules = ['annoset', 'frame', 'lexunit', 'cytoframe'], reset_state = true) {
+            if (reset_state) {
+                this.$store.commit('reset_state');
+                this.$store.commit('frame/reset_state');
+                this.$store.commit('annoset/reset_state');
+                this.$store.commit('lexunit/reset_state');
+            }
 
             if (this._get_key_from_qs('tn')) {
                 this.display_tab(this._get_key_from_qs('tn'));
             }
 
-            if (this.is_id_type_query(this.$store.state.queries.current.input)) {
-                this.fetch_id_data();
-            } else {
-                this.fetch_vp_data();
-            }
-        },
-        fetch_id_data() {
-            this.$store.dispatch('annoset/call_api', {
-                method: 'GET',
-                path: StringUtils.format_with_obj(
-                    APIRoutes.ANNOSET,
-                    { id: this.$store.state.queries.current.input },
-                ),
+            modules.forEach((module) => {
+                let limit = this.$store.state.queries.items;
+                if ('queries' in this.$store.state[module]) {
+                    limit = this.$store.state[module].queries.items;
+                }
+                this.$store.dispatch('call_api', {
+                    module_name: module,
+                    skip: this.state.data[module].skip,
+                    limit,
+                });
             });
-            this.$store.dispatch('frame/call_api', {
-                method: 'GET',
-                path: StringUtils.format_with_obj(
-                    APIRoutes.FRAME,
-                    { id: this.$store.state.queries.current.input },
-                ),
-            });
-            this.$store.dispatch('lexunit/call_api', {
-                method: 'GET',
-                path: StringUtils.format_with_obj(
-                    APIRoutes.LEXUNIT,
-                    { id: this.$store.state.queries.current.input },
-                ),
-            });
-        },
-        fetch_vp_data() {
-            const skip = 0;
-            const limit = this.$store.state.queries.items;
-            this.$store.dispatch('annoset/call_api', {
-                method: 'GET',
-                path: StringUtils.format_with_obj(
-                    APIRoutes.ANNOSETS,
-                    {
-                        id: this.$store.state.queries.current.input,
-                        skip,
-                        limit,
-                        strictVUMatching: this.state.strict_vu,
-                        withExtraCoreFEs: this.state.core_fe,
-                    },
-                ),
-            });
-            this.$store.dispatch('fehierarchy/call_api', {
-                method: 'GET',
-                path: StringUtils.format_with_obj(
-                    APIRoutes.FEHIERARCHY,
-                    { id: this.$store.state.queries.current.input },
-                ),
-            });
-            this.$store.dispatch('frame/call_api', {
-                method: 'GET',
-                path: StringUtils.format_with_obj(
-                    APIRoutes.FRAMES,
-                    {
-                        id: this.$store.state.queries.current.input,
-                        skip,
-                        limit: this.state.frame.queries.items,
-                        strictVUMatching: this.state.strict_vu,
-                        withExtraCoreFEs: this.state.core_fe,
-                    },
-                ),
-            });
-            this.$store.dispatch('cytoframe/call_api', {
-                method: 'GET',
-                path: StringUtils.format_with_obj(
-                    APIRoutes.CYTOFRAMES,
-                    {
-                        id: this.$store.state.queries.current.input,
-                        strictVUMatching: this.state.strict_vu,
-                        withExtraCoreFEs: this.state.core_fe,
-                    },
-                ),
-            });
-            this.$store.dispatch('lexunit/call_api', {
-                method: 'GET',
-                path: StringUtils.format_with_obj(
-                    APIRoutes.LEXUNITS,
-                    {
-                        id: this.$store.state.queries.current.input,
-                        skip,
-                        limit,
-                        strictVUMatching: this.state.strict_vu,
-                        withExtraCoreFEs: this.state.core_fe,
-                    },
-                ),
-            });
-        },
-        is_id_type_query(input) {
-            if (Utils.is_numeric(input) || Utils.is_oid(input)) {
-                return true;
-            }
-            return false;
         },
         fetch_trying_data() {
-            // TODO: fall back to fetch_data
             const q = Utils.choice(this.$store.state.queries.default);
             this.$store.commit('update_query', { input: q });
             this._add_to_qs('s', q);
-            if (this.is_id_type_query(q)) {
-                this.fetch_id_data();
-            } else {
-                this.fetch_vp_data();
-            }
+            this.fetch_data();
         },
         display_tab(tab_name) {
             this.$store.commit('display_tab', { name: tab_name, display: 'type' });
@@ -174,6 +94,28 @@ module.exports = {
             withExtraCoreFEs: this.state.core_fe,
             strictVUMatching: this.state.strict_vu,
         });
+    },
+    watch: {
+        frame_skip() {
+            this.fetch_data(['frame'], false);
+        },
+        annoset_skip() {
+            this.fetch_data(['annoset'], false);
+        },
+        lexunit_skip() {
+            this.fetch_data(['lexunit'], false);
+        },
+    },
+    computed: {
+        frame_skip() {
+            return this.state.data.frame.skip;
+        },
+        annoset_skip() {
+            return this.state.data.annoset.skip;
+        },
+        lexunit_skip() {
+            return this.state.data.lexunit.skip;
+        },
     },
     mounted() {
         if (this._get_key_from_qs('s')) {

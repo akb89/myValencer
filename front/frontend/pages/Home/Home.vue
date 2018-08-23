@@ -50,7 +50,7 @@
 </footer>
 </div>
 <div v-else class="container is-fluid">
-    <div class="columns is-multiline is-mobile is-centered is-vcentered" id="header">
+    <div class="columns is-multiline is-centered is-vcentered" id="header">
       <div class="column is-2">
         <div class="image is-pointer" @click.prevent="gohome">
             <img src='/public/front/img/logo_colors_16by9_tiny.png' alt='myValencer Logo' />
@@ -58,7 +58,7 @@
       </div>
       <div class="column is-10">
         <div class="columns is-mobile has-no-margin-bottom">
-            <div class="column is-10">
+            <div class="column is-9">
                 <div class="field">
                   <p class="control has-icons-right">
                     <input v-focus :value="$store.state.queries.current.input" @input="update_input" @keyup.enter="fetch_data" class="input is-primary" type="text" placeholder="Type your fantastic query" >
@@ -68,11 +68,11 @@
                   </p>
                 </div>
             </div>
-            <div class="column is-2">
+            <div class="column is-3">
                 <button @click.prevent="fetch_data" class="button is-primary">Search</button>
             </div>
         </div>
-        <div class="columns is-mobile">
+        <div class="columns">
             <div class="column is-3">
                 <div class="field is-grouped">
                     <label class="label is-small has-small-margin-right">With Extra Core FEs:</label>
@@ -135,9 +135,24 @@
             </li>
         </ul>
     </div>
-    <fn-annosets v-if="$store.state.display.type === 'ANNOSET'"></fn-annosets>
-    <fn-frames v-if="$store.state.display.type === 'FRAME'"></fn-frames>
-    <fn-lexunits v-if="$store.state.display.type === 'LEXUNIT'"></fn-lexunits>
+    <fn-annosets 
+        v-if="$store.state.display.type === 'ANNOSET'"
+        :limit="$store.state.queries.items"
+        :skip.sync="state.data.annoset.skip"
+        :total="$store.state.annoset.total"
+    ></fn-annosets>
+    <fn-frames 
+        v-if="$store.state.display.type === 'FRAME'"
+        :limit="$store.state.frame.queries.items"
+        :skip.sync="state.data.frame.skip"
+        :total="$store.state.frame.total"
+    ></fn-frames>
+    <fn-lexunits 
+        v-if="$store.state.display.type === 'LEXUNIT'"
+        :limit="$store.state.queries.items"
+        :skip.sync="state.data.lexunit.skip"
+        :total="$store.state.lexunit.total"
+    ></fn-lexunits>
     <fn-cluster v-if="$store.state.display.type === 'CLUSTER'" :lexunits="$store.state.cytolexunit.content" ></fn-cluster>
     </div>
   </div>

@@ -10,8 +10,16 @@ function choice(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
+function is_id_type_query(input) {
+    if (is_numeric(input) || is_oid(input)) {
+        return true;
+    }
+    return false;
+}
+
 module.exports = {
     is_numeric,
     is_oid,
     choice,
+    is_id_type_query,
 };
