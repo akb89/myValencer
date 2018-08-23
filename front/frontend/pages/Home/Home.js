@@ -1,4 +1,5 @@
 const Utils = require('../../utils/utils');
+const CountlyUtils = require('../../utils/countly');
 const QueryStringMixin = require('../../mixins/QueryStringMixin');
 
 module.exports = {
@@ -60,6 +61,9 @@ module.exports = {
                 this.$store.commit('frame/reset_state');
                 this.$store.commit('annoset/reset_state');
                 this.$store.commit('lexunit/reset_state');
+                CountlyUtils.add_custom_event('valencer-init-search', {
+                    query: this.$store.state.queries.current.input.trim(),
+                });
             }
 
             if (this._get_key_from_qs('tn')) {
