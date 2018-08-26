@@ -75,11 +75,13 @@ module.exports = {
 
             if (modules.length === 1) {
                 try {
-                    CountlyUtils.add_custom_event(Countly, 'valencer-subsequent-search', {
+                    const body = {
                         query: this.$store.state.queries.current.input.trim(),
-                        type: this._get_key_from_qs('tn'),
+                        type: this._get_key_from_qs('tn') || 'ANNOSET',
                         skip: this.state.data[modules[0]].skip,
-                    });
+                    };
+                    body.all = `${body.query} | ${body.type} | ${body.skip}`;
+                    CountlyUtils.add_custom_event(Countly, 'valencer-subsequent-search', body);
                 } catch (err) {}
             }
 
@@ -104,6 +106,12 @@ module.exports = {
         display_tab(tab_name) {
             this.$store.commit('display_tab', { name: tab_name, display: 'type' });
             this._add_to_qs('tn', tab_name);
+
+            try {
+                CountlyUtils.add_custom_event(Countly, 'valencer-tab-changed', {
+                    tab: tab_name,
+                });
+            } catch (err) {}
         },
     },
     beforeMount() {
