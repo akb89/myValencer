@@ -110,14 +110,14 @@ pertaining to the lexical unit and its frame.
 ## Options
 There are two options than can be checked for each query:
 
-### withExtraCoreFEs (default `true`)
+### Extra (with extra core frame elements -- default `true`)
 Specifies whether or not valence patterns
 containing other non-core frame elements beside those specified in input should
 be included in the output results. Setting this option to `false` will return
 only valence patterns containing the specified FE as core FEs, and only
 non-core FEs as extra FEs.
 
-### strictVUmatching (default `false`)
+### Strict (strict valence unit matching -- default `false`)
 Specifies whether or not a *strict*
 matching of valence units should be applied, tolerating extra non-core FEs or not.
 Setting this option to `true` will not tolerate other non-core FEs and will
