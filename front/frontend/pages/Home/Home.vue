@@ -26,34 +26,34 @@
             </div>
         </div>
     </div>
-    <div class="container">
-      <div class="content has-text-centered">
+    <div class="columns is-centered">
+      <div class="column is-6 has-text-centered">
         <em> New to myValencer?
           <a href="https://akb89.github.io/myValencer/">Check out our manual</a> or
           click on <a @click.prevent="fetch_trying_data">Try me out!</a> </em>
       </div>
     </div>
-    <footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered is-small">
-      <a href="https://bulma.io">
-          <img src='/public/front/img/made-with-bulma.png' alt="Made with Bulma" width="128" height="24">
-      </a>
-      <p>
-        Powered by the <a href="https://github.com/akb89/valencer">Valencer API</a>
-        <br>
-        Report bugs and request features on
-        <a href="https://github.com/akb89/myValencer/issues">GitHub <i class="fa fa-github"></i></a>
-      </p>
+    <footer class="footer columns is-centered">
+    <div class="column is-6">
+        <div class="content has-text-centered is-small">
+            <a href="https://bulma.io">
+                <img src='/public/front/img/made-with-bulma.png' alt="Made with Bulma" width="128" height="24">
+            </a>
+            <p>
+            Powered by the <a href="https://github.com/akb89/valencer">Valencer API</a>
+            <br>
+            Report bugs and request features on
+            <a href="https://github.com/akb89/myValencer/issues">GitHub <i class="fa fa-github"></i></a>
+            </p>
+        </div>
     </div>
-  </div>
 </footer>
 </div>
 <div v-else class="container is-fluid">
     <div class="columns is-multiline is-centered is-vcentered" id="header">
       <div class="column is-2">
         <div class="image is-pointer" @click.prevent="gohome">
-            <img src='/public/front/img/logo_colors_16by9_tiny.png' alt='myValencer Logo' />
+            <img src='/public/front/img/logo_colors.png' alt='myValencer Logo' />
         </div>
       </div>
       <div class="column is-10">
@@ -73,9 +73,9 @@
             </div>
         </div>
         <div class="columns">
-            <div class="column is-3">
+            <div class="column is-2">
                 <div class="field is-grouped">
-                    <label class="label is-small has-small-margin-right">With Extra Core FEs:</label>
+                    <label class="label is-small has-small-margin-right">Extra:</label>
                     <div class="control">
                         <label class="radio is-small">
                             <input type="radio" name="core_fe" :checked="state.core_fe === true" value="true" @change="update_core_fe">
@@ -88,9 +88,9 @@
                     </div>
                 </div>
             </div>
-            <div class="column is-3">
+            <div class="column is-2">
                 <div class="field is-grouped">
-                    <label class="label is-small has-small-margin-right">Strict VU matching: </label>
+                    <label class="label is-small has-small-margin-right">Strict: </label>
                     <div class="control">
                         <label class="radio is-small">
                             <input type="radio" name="strict_vu" :checked="state.strict_vu === true" value="true" @change="update_strict_vu">

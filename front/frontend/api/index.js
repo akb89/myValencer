@@ -22,7 +22,7 @@ async function fetch(object) {
     } catch (err) {
         return {
             type: Messages.FAILURE,
-            error: err.response != null ? err.response.text : err,
+            error: err.response != null ? err.response.text : err.message,
             error_code: err.status,
         };
     }
