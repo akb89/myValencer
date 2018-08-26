@@ -20,6 +20,8 @@
                 <div class="message-body has-text-centered">
                     <span>An error occurred: </span>
                     <span v-html="request_error_message('annoset')" />
+                    <br />
+                    <div v-if="is_4xx_code('annoset')" v-html="error_4xx_msg" />
                 </div>
             </article>
             <fn-annoset
