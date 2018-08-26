@@ -5,4 +5,5 @@ module.exports = {
     total: 0,
     skip: 0,
     error: null,
+    error_code: null,
 };

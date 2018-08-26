@@ -4,7 +4,7 @@ module.exports = {
     methods: {
         format_pattern(pattern) {
             if (!('valenceUnits' in pattern)) {
-                return '';
+                return [];
             }
             return pattern.valenceUnits.reduce((array, vu) => {
                 if (vu.GF === undefined) {
@@ -13,7 +13,7 @@ module.exports = {
                     array.push(`${vu.FE.name}.${vu.PT}.${vu.GF}`);
                 }
                 return array;
-            }, []).join(' ');
+            }, []);
         },
         display_annotation(text, labels) {
             const container = document.createElement('div');

@@ -10,10 +10,10 @@
               <span class="tag is-white">{{frame.name}}</span>
             </div>
           </div>
-          <div class="control">
+          <div class="control no-flex-shrink">
             <div class="tags has-addons">
               <span class="tag">valence pattern</span>
-              <span class="tag is-white">{{format_pattern(pattern)}}</span>
+              <span class="tag is-white has-small-padding-left has-small-padding-right" v-for="p in format_pattern(pattern)">{{p}}</span>
             </div>
           </div>
           </div>

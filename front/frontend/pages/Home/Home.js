@@ -1,4 +1,5 @@
 const Utils = require('../../utils/utils');
+const CountlyUtils = require('../../utils/countly');
 const QueryStringMixin = require('../../mixins/QueryStringMixin');
 
 module.exports = {
@@ -54,16 +55,34 @@ module.exports = {
                 withExtraCoreFEs: val,
             });
         },
-        fetch_data(modules = ['annoset', 'frame', 'lexunit', 'cytoframe'], reset_state = true) {
+        fetch_data(e, modules = ['annoset', 'frame', 'lexunit', 'cytoframe'], reset_state = true) {
             if (reset_state) {
                 this.$store.commit('reset_state');
                 this.$store.commit('frame/reset_state');
                 this.$store.commit('annoset/reset_state');
                 this.$store.commit('lexunit/reset_state');
+
+                try {
+                    CountlyUtils.add_custom_event(Countly, 'valencer-init-search', {
+                        query: this.$store.state.queries.current.input.trim(),
+                    });
+                } catch (err) {}
             }
 
             if (this._get_key_from_qs('tn')) {
                 this.display_tab(this._get_key_from_qs('tn'));
+            }
+
+            if (modules.length === 1) {
+                try {
+                    const body = {
+                        query: this.$store.state.queries.current.input.trim(),
+                        type: this._get_key_from_qs('tn') || 'ANNOSET',
+                        skip: this.state.data[modules[0]].skip,
+                    };
+                    body.all = `${body.query} | ${body.type} | ${body.skip}`;
+                    CountlyUtils.add_custom_event(Countly, 'valencer-subsequent-search', body);
+                } catch (err) {}
             }
 
             modules.forEach((module) => {
@@ -87,6 +106,12 @@ module.exports = {
         display_tab(tab_name) {
             this.$store.commit('display_tab', { name: tab_name, display: 'type' });
             this._add_to_qs('tn', tab_name);
+
+            try {
+                CountlyUtils.add_custom_event(Countly, 'valencer-tab-changed', {
+                    tab: tab_name,
+                });
+            } catch (err) {}
         },
     },
     beforeMount() {
@@ -97,13 +122,13 @@ module.exports = {
     },
     watch: {
         frame_skip() {
-            this.fetch_data(['frame'], false);
+            this.fetch_data(null, ['frame'], false);
         },
         annoset_skip() {
-            this.fetch_data(['annoset'], false);
+            this.fetch_data(null, ['annoset'], false);
         },
         lexunit_skip() {
-            this.fetch_data(['lexunit'], false);
+            this.fetch_data(null, ['lexunit'], false);
         },
     },
     computed: {
