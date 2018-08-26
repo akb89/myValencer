@@ -73,6 +73,16 @@ module.exports = {
                 this.display_tab(this._get_key_from_qs('tn'));
             }
 
+            if (modules.length === 1) {
+                try {
+                    CountlyUtils.add_custom_event(Countly, 'valencer-subsequent-search', {
+                        query: this.$store.state.queries.current.input.trim(),
+                        type: this._get_key_from_qs('tn'),
+                        skip: this.state.data[modules[0]].skip,
+                    });
+                } catch (err) {}
+            }
+
             modules.forEach((module) => {
                 let limit = this.$store.state.queries.items;
                 if ('queries' in this.$store.state[module]) {

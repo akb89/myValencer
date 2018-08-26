@@ -52,9 +52,11 @@ module.exports = {
         } else if (multi) {
             Vue.set(state.content, request_name, payload.content);
             Vue.set(state, 'error', payload.error);
+            Vue.set(state, 'error_code', payload.error_code);
         } else {
             Vue.set(state, 'content', payload.content);
             Vue.set(state, 'error', payload.error);
+            Vue.set(state, 'error_code', payload.error_code);
         }
         Vue.set(state, 'loading', false);
     },

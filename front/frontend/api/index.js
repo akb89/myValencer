@@ -23,6 +23,7 @@ async function fetch(object) {
         return {
             type: Messages.FAILURE,
             error: err.response != null ? err.response.text : err,
+            error_code: err.status,
         };
     }
 }
