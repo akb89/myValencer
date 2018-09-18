@@ -78,7 +78,7 @@ pm2 logs myValencer
 
 [release-image]:https://img.shields.io/github/release/akb89/myvalencer.svg?style=flat-square
 [release-url]:https://github.com/akb89/myvalencer/releases/latest
-[travis-image]:https://img.shields.io/travis/akb89/myvalencer.svg?style=flat-square
+[travis-image]:https://img.shields.io/travis/akb89/myValencer.svg?style=flat-square
 [travis-url]:https://travis-ci.org/akb89/myValencer
 [coverage-image]:https://img.shields.io/coveralls/akb89/myvalencer/master.svg?style=flat-square
 [coverage-url]:https://coveralls.io/github/akb89/myValencer?branch=master
